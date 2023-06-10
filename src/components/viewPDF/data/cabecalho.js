@@ -1,6 +1,5 @@
 export const arrayCabecalho = [
   "Fundo",
-  // "Idade",
   "P.Resgate",
   "N. Cotistas",
   "Perc. PL",
