@@ -11,16 +11,24 @@ function App() {
   const handleExportPDF = () => {
     const input = document.getElementById("myScreen");
 
-    html2canvas(input, { scale: 2 }) // Aumenta a escala para melhor qualidade
-      .then((canvas) => {
-        const imgData = canvas.toDataURL("image/png");
-        const pdf = new jsPDF("landscape"); // Define a orientação como paisagem
-        const pdfWidth = pdf.internal.pageSize.getWidth();
-        const pdfHeight = pdf.internal.pageSize.getHeight();
-        pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
-        pdf.save("myScreen.pdf");
-      });
+    html2canvas(input).then((canvas) => {
+      const imgData = canvas.toDataURL("image/png");
+      const imgWidth = canvas.width;
+      const imgHeight = canvas.height;
+      const pdfAspectRatio = imgWidth / imgHeight;
+      const pdfWidth = 297; // Largura A4 em mm
+      const pdfHeight = pdfWidth / pdfAspectRatio;
+
+      const pdf = new jsPDF("l", "mm", "a4");
+      pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+      pdf.save("myScreen.pdf");
+    });
   };
+
+  const handlePrint = () => {
+    window.print(); // Chama a função de impressão do navegador
+  };
+
   const arrayListObjects = [
     {
       id: 1,
@@ -131,7 +139,7 @@ function App() {
         justifyContent={"space-evenly"}
         alignItems={"center"}
       >
-        <Filtros />
+        <Filtros handleExportPDF={handleExportPDF} />
       </Flex>
       <Flex
         w={"100%"}
@@ -151,9 +159,6 @@ function App() {
             />
           </Flex>
         </div>
-        <Button w={"15%"} onClick={handleExportPDF}>
-          Exportar para PDF
-        </Button>
       </Flex>
       <Flex w={"100%"} h={"8vh"} bg={"blue"}>
         teste
