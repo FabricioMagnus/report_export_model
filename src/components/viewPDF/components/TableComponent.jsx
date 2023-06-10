@@ -1,27 +1,7 @@
-import {
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  IconButton,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  Icon,
-} from "@chakra-ui/react";
+import { Table, Thead, Tbody, Tr, Th, Td, Flex, Text } from "@chakra-ui/react";
 import { Spinner } from "@chakra-ui/react";
-import { HamburgerIcon } from "@chakra-ui/icons";
 
-export default function TableComponent({
-  headerList,
-  data,
-  rowList,
-  loading,
-  optionsList,
-}) {
+export default function TableComponent({ headerList, data, rowList, loading }) {
   const Rows = data.map((obj, index) => {
     function CNPJFormater(cnpj) {
       const CNPJ = cnpj;
@@ -31,15 +11,6 @@ export default function TableComponent({
         .replace(/(\d{3})(\d)/, "$1/$2")
         .replace(/(\d{4})(\d)/, "$1-$2")
         .replace(/(-\d{2})\d+?$/, "$1");
-    }
-
-    function PhoneFormater(number) {
-      const phoneNumber = number;
-      return phoneNumber
-        .replace(/\D/g, "")
-        .replace(/(\d{2})(\d)/, "($1) $2")
-        .replace(/(\d{5})(\d)/, "$1-$2")
-        .replace(/(-\d{4})\d+?$/, "$1");
     }
 
     function CaptionFormater(text) {
@@ -73,14 +44,9 @@ export default function TableComponent({
       "valorRestante",
     ];
 
-    const arrayToCaptionFormat = [
-      "nome",
-      "sobrenome",
-      "profissao",
-      "razaoSocial",
-      "nomeFantasia",
-      "endereço",
-    ];
+    const arrayToCaptionFormat = ["fundo", "legislacao", "tipo"];
+
+    const arrayToPercentFormat = ["taxaAdm", "participacao"];
 
     //saldoPeriodo
 
@@ -90,6 +56,9 @@ export default function TableComponent({
       }
       if (arrayToLocaleFormater.includes(key.toLowerCase())) {
         return <Td>{ToLocaleFormat(obj[key])}</Td>;
+      }
+      if (arrayToPercentFormat.includes(key.toLowerCase())) {
+        return <Td>{`${obj[key]} %`}</Td>;
       }
       if (arrayToCaptionFormat.includes(key.toLowerCase())) {
         return <Td>{CaptionFormater(obj[key])}</Td>;
@@ -105,27 +74,14 @@ export default function TableComponent({
       }
       return <Td>{obj[key]}</Td>;
     });
-    const options = (
-      <Td>
-        <Menu>
-          <MenuButton as={IconButton} icon={<Icon as={HamburgerIcon} />} />
-          <MenuList>
-            {optionsList.map((option) => (
-              <MenuItem key={option.label} onClick={() => option.onClick(obj)}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </MenuList>
-        </Menu>
-      </Td>
-    );
+
     return <Tr key={index}>{[...rowCells]}</Tr>;
   });
 
   const Header_Row =
     headerList &&
     headerList.map((item, index) => (
-      <Th bgColor={"black"} color={"white"} key={index}>
+      <Th bgColor={"blue.900"} color={"white"} key={index}>
         {item}
       </Th>
     ));
@@ -143,11 +99,26 @@ export default function TableComponent({
   }
 
   return (
-    <Table variant={"striped"}>
-      <Thead>
-        <Tr key={1}>{Header_Row}</Tr>
-      </Thead>
-      <Tbody>{Rows}</Tbody>
-    </Table>
+    <Flex flexDirection="column">
+      <Flex
+        w={"100%"}
+        justifyContent={"space-evenly"}
+        alignItems={"center"}
+        my={5}
+      >
+        <Text fontSize={"2xl"} fontWeight={"bold"} color={"blue.900"}>
+          Visão Geral da Carteira
+        </Text>
+        <Text fontSize={"2xl"} fontWeight={"bold"} color={"blue.900"}>
+          Cliente : IPSCBG
+        </Text>
+      </Flex>
+      <Table variant={"striped"}>
+        <Thead>
+          <Tr key={1}>{Header_Row}</Tr>
+        </Thead>
+        <Tbody>{Rows}</Tbody>
+      </Table>
+    </Flex>
   );
 }
