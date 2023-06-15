@@ -9,6 +9,7 @@ import {
   ModalBody,
   ModalCloseButton,
   Text,
+  Flex,
 } from "@chakra-ui/react";
 import handleExportPDF from "../../functions/exportPDF";
 import { ProgressoPorEtapas } from "../react-circle-progress";
@@ -21,43 +22,50 @@ const ModalComponent = ({ isOpen, setIsOpen }) => {
 
   const [etapaAtual, setEtapaAtual] = useState(15);
 
-  // useEffect(() => {
-  //   const connection = new HubConnectionBuilder()
-  //     .withUrl("https://localhost:5001/etapa")
-  //     .build();
+  useEffect(() => {
+    const connection = new HubConnectionBuilder()
+      .withUrl("https://localhost:5001/etapa")
+      .build();
 
-  //   connection.on("ReceiveEtapaAtual", (novaEtapa) => {
-  //     setEtapaAtual(novaEtapa);
-  //   });
+    connection.on("ReceiveEtapaAtual", (novaEtapa) => {
+      setEtapaAtual(novaEtapa);
+    });
 
-  //   connection.start();
+    connection.start();
 
-  //   return () => {
-  //     connection.stop();
-  //   };
-  // }, []);
+    return () => {
+      connection.stop();
+    };
+  }, []);
 
   const totalEtapas = 17;
 
   return (
     <div>
       <Modal isOpen={isOpen} onClose={handleClose}>
-        <ModalOverlay />
+        <ModalOverlay bg="blackAlpha.800" blur={"2xl"} />
         <ModalContent>
           <ModalHeader>Exportação de Relatório</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <p>Conteúdo do modal...</p>
-            {etapaAtual === 17 ? (
-              <Text>Requisição Finalizada</Text>
-            ) : (
-              <ProgressoPorEtapas
-                etapaAtual={etapaAtual}
-                totalEtapas={totalEtapas}
-              />
-            )}
+            <Flex
+              w={"400px"}
+              h={"200px"}
+              justifyContent={"center"}
+              alignItems={"center"}
+              // bgColor={"blue"}
+            >
+              {etapaAtual === 17 ? (
+                <Text>Requisição Finalizada</Text>
+              ) : (
+                <ProgressoPorEtapas
+                  etapaAtual={etapaAtual}
+                  totalEtapas={totalEtapas}
+                />
+              )}
+            </Flex>
           </ModalBody>
-          <ModalFooter>
+          <ModalFooter justifyContent={"center"}>
             <Button
               type="button"
               colorScheme="blue"
