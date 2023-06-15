@@ -99,7 +99,7 @@ export default function TableComponent({ headerList, data, rowList, loading }) {
   }
 
   return (
-    <Flex flexDirection="column">
+    <Flex flexDirection="column" h={"100%"} my={6}>
       <Flex w={"100%"} justifyContent={"space-evenly"} alignItems={"center"}>
         <Text fontSize={"2xl"} fontWeight={"bold"} color={"blue.900"}>
           Visão Geral da Carteira
