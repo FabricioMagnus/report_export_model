@@ -10,11 +10,15 @@ import {
   ModalCloseButton,
 } from "@chakra-ui/react";
 import handleExportPDF from "../../functions/exportPDF";
+import { ProgressoPorEtapas } from "../react-circle-progress";
 
 const ModalComponent = ({ isOpen, setIsOpen }) => {
   const handleClose = () => {
     setIsOpen(false);
   };
+
+  const etapaAtual = 13;
+  const totalEtapas = 17;
 
   return (
     <div>
@@ -25,6 +29,10 @@ const ModalComponent = ({ isOpen, setIsOpen }) => {
           <ModalCloseButton />
           <ModalBody>
             <p>Conteúdo do modal...</p>
+            <ProgressoPorEtapas
+              etapaAtual={etapaAtual}
+              totalEtapas={totalEtapas}
+            />
           </ModalBody>
           <ModalFooter>
             <Button
