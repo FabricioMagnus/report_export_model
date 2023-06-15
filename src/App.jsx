@@ -12,18 +12,19 @@ function App() {
   const componentRef = useRef();
 
   return (
-    <Flex w={"100vw"} h={"100vh"} flexDirection={"column"}>
+    <Flex w={"100vw"} h={"100vh"} flexDirection={"column"} bgColor={"#e5e5e5"}>
       <Flex
         w={"100%"}
         h={"11vh"}
         justifyContent={"space-evenly"}
         alignItems={"center"}
+        bgColor={"#fff"}
       >
         <Filtros componentRef={componentRef} />
       </Flex>
       <Flex
         w={"100%"}
-        h={"81vh"}
+        h={"85vh"}
         flexDirection={"column"}
         justifyContent={"space-evenly"}
         alignItems={"center"}
@@ -39,9 +40,9 @@ function App() {
           </Flex>
         </div>
       </Flex>
-      <Flex w={"100%"} h={"8vh"} bg={"blue"}>
+      {/* <Flex w={"100%"} h={"8vh"} bg={"blue"}>
         teste
-      </Flex>
+      </Flex> */}
     </Flex>
   );
 }
