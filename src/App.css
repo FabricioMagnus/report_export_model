@@ -1,0 +1,13 @@
+* {
+  @page {
+    size: A4 landscape;
+    margin: 5;
+  }
+
+  @media print {
+    body {
+      margin-left: 1cm;
+      margin-right: 1cm;
+    }
+  }
+}

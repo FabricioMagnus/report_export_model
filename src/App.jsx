@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "./App.css";
 import { Flex } from "@chakra-ui/react";
 import Filtros from "./components/filtros";
@@ -9,9 +9,7 @@ import { arrayListObjects } from "./components/viewPDF/data/dataTable";
 import { rowList } from "./components/viewPDF/data/rowList";
 
 function App() {
-  const handlePrint = () => {
-    window.print(); // Chama a função de impressão do navegador
-  };
+  const componentRef = useRef();
 
   return (
     <Flex w={"100vw"} h={"100vh"} flexDirection={"column"}>
@@ -21,7 +19,7 @@ function App() {
         justifyContent={"space-evenly"}
         alignItems={"center"}
       >
-        <Filtros />
+        <Filtros componentRef={componentRef} />
       </Flex>
       <Flex
         w={"100%"}
@@ -30,7 +28,7 @@ function App() {
         justifyContent={"space-evenly"}
         alignItems={"center"}
       >
-        <div id="myScreen">
+        <div id="myScreen" ref={componentRef}>
           <Flex w={"100%"}>
             <TableComponent
               headerList={arrayCabecalho}
