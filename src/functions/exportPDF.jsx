@@ -1,8 +1,24 @@
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
+import { arrayCabecalho } from "../components/viewPDF/data/cabecalho";
+import { arrayListObjects } from "../components/viewPDF/data/dataTable";
+import { rowList } from "../components/viewPDF/data/rowList";
+import { Flex } from "@chakra-ui/react";
+import TableComponent from "../components/viewPDF/components/TableComponent";
 
 export default function handleExportPDF(id) {
-  const input = document.getElementById(id);
+  // const input = document.getElementById(id);
+
+  const input = (
+    <Flex w={"100%"}>
+      <TableComponent
+        headerList={arrayCabecalho}
+        data={arrayListObjects}
+        rowList={rowList}
+        loading={false}
+      />
+    </Flex>
+  );
 
   html2canvas(input).then((canvas) => {
     const imgData = canvas.toDataURL("image/png");
@@ -25,6 +41,6 @@ export default function handleExportPDF(id) {
       pdfWidth - marginLeft - marginRight,
       pdfHeight - marginTop - marginBottom
     );
-    pdf.save(`${id}.pdf`);
+    pdf.save(`relatorio-dinamico.pdf`);
   });
 }

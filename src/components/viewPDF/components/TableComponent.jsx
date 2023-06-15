@@ -115,7 +115,7 @@ export default function TableComponent({ headerList, data, rowList, loading }) {
       </Flex>
       <Table variant={"striped"}>
         <Thead>
-          <Tr key={1}>{Header_Row}</Tr>
+          <Tr>{Header_Row}</Tr>
         </Thead>
         <Tbody>{Rows}</Tbody>
       </Table>
