@@ -28,7 +28,7 @@ function App() {
         justifyContent={"space-evenly"}
         alignItems={"center"}
       >
-        {/* <div id="myScreen" ref={componentRef}>
+        <div id="myScreen" ref={componentRef}>
           <Flex w={"100%"}>
             <TableComponent
               headerList={arrayCabecalho}
@@ -37,7 +37,7 @@ function App() {
               loading={false}
             />
           </Flex>
-        </div> */}
+        </div>
       </Flex>
       <Flex w={"100%"} h={"8vh"} bg={"blue"}>
         teste
