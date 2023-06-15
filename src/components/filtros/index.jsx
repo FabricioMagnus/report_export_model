@@ -8,16 +8,30 @@ export default function Filtros({ componentRef }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <Flex w={"100vw"} justifyContent={"space-evenly"}>
-      <Input type="date" maxWidth="200px" />
-      <Button type="submit">Filtrar</Button>
+    <Flex w={"100%"} justifyContent={"space-evenly"}>
+      <Input
+        bgColor={"blue.900"}
+        color={"white"}
+        type="date"
+        textColor={"white"}
+        maxWidth="200px"
+      />
+      {/* <Button bgColor={"blue.900"} color={"white"} type="submit">
+        Filtrar
+      </Button> */}
       <ReactToPrint
-        trigger={() => <Button type="reset">Imprimir</Button>}
+        trigger={() => (
+          <Button bgColor={"blue.900"} color={"white"} type="reset">
+            Imprimir
+          </Button>
+        )}
         content={() => componentRef.current}
       />
 
       <Button
         type="button"
+        bgColor={"blue.900"}
+        color={"white"}
         onClick={() => {
           setIsOpen(true);
           // handleExportPDF("myScreen");

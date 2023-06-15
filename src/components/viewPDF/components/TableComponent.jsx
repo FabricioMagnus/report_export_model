@@ -100,12 +100,7 @@ export default function TableComponent({ headerList, data, rowList, loading }) {
 
   return (
     <Flex flexDirection="column">
-      <Flex
-        w={"100%"}
-        justifyContent={"space-evenly"}
-        alignItems={"center"}
-        my={5}
-      >
+      <Flex w={"100%"} justifyContent={"space-evenly"} alignItems={"center"}>
         <Text fontSize={"2xl"} fontWeight={"bold"} color={"blue.900"}>
           Visão Geral da Carteira
         </Text>

@@ -12,32 +12,37 @@ function App() {
   const componentRef = useRef();
 
   return (
-    <Flex w={"100vw"} h={"100vh"} flexDirection={"column"} bgColor={"#e5e5e5"}>
+    <Flex
+      w={"100vw"}
+      h={"100vh"}
+      flexDirection={"column"}
+      bgColor={"#e5e5e5"}
+      justifyContent={"space-evenly"}
+    >
       <Flex
         w={"100%"}
         h={"11vh"}
         justifyContent={"space-evenly"}
         alignItems={"center"}
         bgColor={"#fff"}
+        shadow={"lg"}
       >
         <Filtros componentRef={componentRef} />
       </Flex>
       <Flex
         w={"100%"}
-        h={"85vh"}
+        h="calc( 100% - 11vh )"
         flexDirection={"column"}
         justifyContent={"space-evenly"}
         alignItems={"center"}
       >
         <div id="myScreen" ref={componentRef}>
-          <Flex w={"100%"}>
-            <TableComponent
-              headerList={arrayCabecalho}
-              data={arrayListObjects}
-              rowList={rowList}
-              loading={false}
-            />
-          </Flex>
+          <TableComponent
+            headerList={arrayCabecalho}
+            data={arrayListObjects}
+            rowList={rowList}
+            loading={false}
+          />
         </div>
       </Flex>
       {/* <Flex w={"100%"} h={"8vh"} bg={"blue"}>
