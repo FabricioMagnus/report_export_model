@@ -44,14 +44,7 @@ function App() {
             loading={false}
           />
         </div>
-      </Flex>
-      <Flex
-        h={"fit-content"}
-        flexDirection={"column"}
-        justifyContent={"space-evenly"}
-        alignItems={"center"}
-      >
-        <div id="myScreen" ref={componentRef}>
+        <div id="myScreen2" ref={componentRef}>
           <TableComponent
             headerList={arrayCabecalho}
             data={arrayListObjects}
@@ -60,10 +53,6 @@ function App() {
           />
         </div>
       </Flex>
-
-      {/* <Flex w={"100%"} h={"8vh"} bg={"blue"}>
-        teste
-      </Flex> */}
     </Flex>
   );
 }

@@ -70,7 +70,7 @@ const ModalComponent = ({ isOpen, setIsOpen }) => {
               type="button"
               colorScheme="blue"
               onClick={() => {
-                handleExportPDF("myScreen");
+                handleExportPDF(["myScreen", "myScreen2"]);
               }}
             >
               Exportar
