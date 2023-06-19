@@ -65,9 +65,9 @@ export default function TableComponent({ headerList, data, rowList, loading }) {
       if (key === "taxaAdm") {
         return <Td>{`${obj[key]} %`}</Td>;
       }
-      if (key === "participao") {
-        const total = obj.reduce((a, b) => a + b.saldo, 0);
-        return <Td>{total}</Td>;
+      if (key === "participacao") {
+        const total = data.reduce((a, b) => a + b.saldo, 0);
+        return <Td>{`${(obj.saldo / total).toFixed(5)} %`}</Td>;
       }
       if (arrayToLocaleFormater.includes(key.toLowerCase())) {
         return <Td>{ToLocaleFormat(obj[key])}</Td>;
