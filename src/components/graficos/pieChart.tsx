@@ -51,7 +51,7 @@ function PieChart({ dataChart }) {
   };
 
   return (
-    <Box p={1} h={"100%"} w={"57%"}>
+    <Box p={1} h={"100%"} w={"90%"}>
       <Text fontWeight={"bold"} color={"#123E6B"} fontSize={"24px"}>
         DISTRIBUIÇÃO
       </Text>
