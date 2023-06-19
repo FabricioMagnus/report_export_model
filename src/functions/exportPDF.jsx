@@ -1,16 +1,41 @@
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 
-function splitImageIntoPages(imageData) {
-  const doc = new jsPDF("l", "mm", "a4"); // Formato paisagem
-  const imgWidth = 210; // Largura da página A4 em mm
-  const imgHeight = 297; // Altura da página A4 em mm
+function addMarginsToPDF(
+  doc,
+  marginLeft,
+  marginTop,
+  marginRight,
+  marginBottom
+) {
+  const pageWidth = doc.internal.pageSize.getWidth();
+  const pageHeight = doc.internal.pageSize.getHeight();
+  const contentWidth = pageWidth - marginLeft - marginRight;
+  const contentHeight = pageHeight - marginTop - marginBottom;
 
-  const imgData = imageData;
+  doc.addPage();
+  doc.setDrawColor(0); // Remove a cor da borda
+
+  doc.setPage(marginLeft / 2, marginTop / 2); // Define a posição do conteúdo
+
+  return { contentWidth, contentHeight };
+}
+
+function splitImageIntoPages(
+  imageData,
+  doc,
+  imgWidth,
+  imgHeight,
+  marginLeft,
+  marginTop,
+  marginRight,
+  marginBottom
+) {
   const imgHeightPx = Math.floor(imgHeight * 2.83465); // Converter mm para pixels considerando 72 dpi
   const totalPages = Math.ceil(imgHeightPx / imgWidth);
 
   let currentPosition = 0;
+  const promises = [];
 
   for (let i = 1; i <= totalPages; i++) {
     const pageCanvas = document.createElement("canvas");
@@ -19,7 +44,7 @@ function splitImageIntoPages(imageData) {
 
     const context = pageCanvas.getContext("2d");
     context.drawImage(
-      imgData,
+      imageData,
       0,
       currentPosition,
       imgWidth,
@@ -47,8 +72,21 @@ function splitImageIntoPages(imageData) {
         const pageHeight = pageImage.height;
 
         if (pageHeight > 0) {
-          doc.addPage();
-          doc.addImage(pageImageData, "PNG", 0, 0, imgWidth, imgHeight);
+          const { contentWidth, contentHeight } = addMarginsToPDF(
+            doc,
+            marginLeft,
+            marginTop,
+            marginRight,
+            marginBottom
+          );
+          doc.addImage(
+            pageImageData,
+            "PNG",
+            marginLeft,
+            marginTop,
+            contentWidth,
+            contentHeight
+          );
         }
 
         resolve();
@@ -73,39 +111,50 @@ export default function handleExportPDF(ids) {
 
     return html2canvas(input).then((canvas) => {
       const imgData = canvas.toDataURL("image/png");
+      const imgWidth = canvas.width;
       const imgHeight = canvas.height;
+      const pdfWidth = 297; // Largura A4 em mm
+      const pdfAspectRatio = imgWidth / imgHeight;
+      const pdfHeight = pdfWidth / pdfAspectRatio;
+      const marginLeft = 10; // Margem esquerda em mm
+      const marginTop = 10; // Margem superior em mm
+      const marginRight = 10; // Margem direita em mm
+      const marginBottom = 10; // Margem inferior em mm
 
-      if (imgHeight > canvas.width) {
+      if (imgHeight > imgWidth) {
         // Dividir a imagem em várias páginas A4
-        return splitImageIntoPages(imgData).then((doc) => {
+        return splitImageIntoPages(
+          imgData,
+          pdf,
+          imgWidth,
+          imgHeight,
+          marginLeft,
+          marginTop,
+          marginRight,
+          marginBottom
+        ).then((doc) => {
           const pages = doc.internal.pages;
           const numPagesToRemove = pages.length; // Remover todas as páginas em branco
 
           if (numPagesToRemove > 0) {
             pages.splice(0, numPagesToRemove); // Remove as páginas extras
           }
-
-          pdf.addPage();
-          pdf.addImage(doc.output("datauristring"), "PNG", 0, 0);
         });
       } else {
-        const imgWidth = canvas.width;
-        const pdfAspectRatio = imgWidth / imgHeight;
-        const pdfWidth = 297; // Largura A4 em mm
-        const pdfHeight = pdfWidth / pdfAspectRatio;
-        const marginLeft = 10; // Margem esquerda em mm
-        const marginTop = 10; // Margem superior em mm
-        const marginRight = 10; // Margem direita em mm
-        const marginBottom = 10; // Margem inferior em mm
-
-        pdf.addPage();
+        const { contentWidth, contentHeight } = addMarginsToPDF(
+          pdf,
+          marginLeft,
+          marginTop,
+          marginRight,
+          marginBottom
+        );
         pdf.addImage(
           imgData,
           "PNG",
           marginLeft,
           marginTop,
-          pdfWidth - marginLeft - marginRight,
-          pdfHeight - marginTop - marginBottom
+          contentWidth,
+          contentHeight
         );
       }
     });

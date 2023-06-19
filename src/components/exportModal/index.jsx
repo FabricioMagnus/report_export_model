@@ -20,23 +20,23 @@ const ModalComponent = ({ isOpen, setIsOpen }) => {
     setIsOpen(false);
   };
 
-  const [etapaAtual, setEtapaAtual] = useState(15);
+  const [etapaAtual, setEtapaAtual] = useState(10);
 
-  useEffect(() => {
-    const connection = new HubConnectionBuilder()
-      .withUrl("https://localhost:5001/etapa")
-      .build();
+  // useEffect(() => {
+  //   const connection = new HubConnectionBuilder()
+  //     .withUrl("https://localhost:5001/etapa")
+  //     .build();
 
-    connection.on("ReceiveEtapaAtual", (novaEtapa) => {
-      setEtapaAtual(novaEtapa);
-    });
+  //   connection.on("ReceiveEtapaAtual", (novaEtapa) => {
+  //     setEtapaAtual(novaEtapa);
+  //   });
 
-    connection.start();
+  //   connection.start();
 
-    return () => {
-      connection.stop();
-    };
-  }, []);
+  //   return () => {
+  //     connection.stop();
+  //   };
+  // }, []);
 
   const totalEtapas = 17;
 

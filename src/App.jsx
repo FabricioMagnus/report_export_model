@@ -7,6 +7,7 @@ import { Button } from "@chakra-ui/react";
 import { arrayCabecalho } from "./components/viewPDF/data/cabecalho";
 import { arrayListObjects } from "./components/viewPDF/data/dataTable";
 import { rowList } from "./components/viewPDF/data/rowList";
+import BarChart from "./components/graficos/barChart";
 
 function App() {
   const componentRef = useRef();
@@ -36,21 +37,18 @@ function App() {
         justifyContent={"space-evenly"}
         alignItems={"center"}
       >
-        <div id="myScreen" ref={componentRef}>
-          <TableComponent
-            headerList={arrayCabecalho}
-            data={arrayListObjects}
-            rowList={rowList}
-            loading={false}
-          />
-        </div>
-        <div id="myScreen2" ref={componentRef}>
-          <TableComponent
-            headerList={arrayCabecalho}
-            data={arrayListObjects}
-            rowList={rowList}
-            loading={false}
-          />
+        <div ref={componentRef}>
+          <div id="myScreen">
+            <TableComponent
+              headerList={arrayCabecalho}
+              data={arrayListObjects}
+              rowList={rowList}
+              loading={false}
+            />
+          </div>
+          <div id="myScreen2">
+            <BarChart />
+          </div>
         </div>
       </Flex>
     </Flex>

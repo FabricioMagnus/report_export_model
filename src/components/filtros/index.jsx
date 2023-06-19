@@ -16,9 +16,7 @@ export default function Filtros({ componentRef }) {
         textColor={"white"}
         maxWidth="200px"
       />
-      {/* <Button bgColor={"blue.900"} color={"white"} type="submit">
-        Filtrar
-      </Button> */}
+
       <ReactToPrint
         trigger={() => (
           <Button bgColor={"blue.900"} color={"white"} type="reset">
@@ -27,7 +25,6 @@ export default function Filtros({ componentRef }) {
         )}
         content={() => componentRef.current}
       />
-
       <Button
         type="button"
         bgColor={"blue.900"}
@@ -39,6 +36,7 @@ export default function Filtros({ componentRef }) {
       >
         Exportar
       </Button>
+
       <ModalComponent isOpen={isOpen} setIsOpen={setIsOpen} />
     </Flex>
   );
