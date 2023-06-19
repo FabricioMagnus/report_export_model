@@ -8,6 +8,6 @@ export const arrayCabecalho = [
   "Risco",
   "Tipo",
   "Taxa ADM.",
-  // "Participação",
+  "Participação",
   "Saldo",
 ];

@@ -44,9 +44,9 @@ export default function TableComponent({ headerList, data, rowList, loading }) {
       "valorRestante",
     ];
 
-    const arrayToCaptionFormat = ["nomeFundo", "legislacao", "tipo"];
+    const arrayToCaptionFormat = ["legislacao", "tipo"];
 
-    const arrayToPercentFormat = ["taxaAdm", "participacao"];
+    const arrayToPercentFormat = ["taxaAdm"];
 
     //saldoPeriodo
 
@@ -54,12 +54,27 @@ export default function TableComponent({ headerList, data, rowList, loading }) {
       if (key.toLowerCase().includes("telefone")) {
         return <Td>{PhoneFormater(obj[key])}</Td>;
       }
+      if (key === "nomeFundo") {
+        return <Td>{CaptionFormater(obj[key])}</Td>;
+      }
+      if (key === "patrimonioLiquido") {
+        return (
+          <Td minWidth={"120px"}>{`${(obj.saldo / obj[key]).toFixed(5)} %`}</Td>
+        );
+      }
+      if (key === "taxaAdm") {
+        return <Td>{`${obj[key]} %`}</Td>;
+      }
+      if (key === "participao") {
+        const total = obj.reduce((a, b) => a + b.saldo, 0);
+        return <Td>{total}</Td>;
+      }
       if (arrayToLocaleFormater.includes(key.toLowerCase())) {
         return <Td>{ToLocaleFormat(obj[key])}</Td>;
       }
-      if (arrayToPercentFormat.includes(key.toLowerCase())) {
-        return <Td>{`${obj[key]} %`}</Td>;
-      }
+      // if (arrayToPercentFormat.includes(key.toLowerCase())) {
+      //   return <Td>{`${obj[key]} %`}</Td>;
+      // }
       if (arrayToCaptionFormat.includes(key.toLowerCase())) {
         return <Td>{CaptionFormater(obj[key])}</Td>;
       }

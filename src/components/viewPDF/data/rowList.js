@@ -8,6 +8,6 @@ export const rowList = [
   "grauRisco",
   "tipo",
   "taxaAdm",
-  // "participacao",
+  "participacao",
   "saldo",
 ];
