@@ -11,6 +11,7 @@ import {
 } from "chart.js";
 import { Chart } from "react-chartjs-2";
 import { Box, Text } from "@chakra-ui/react";
+import { IDGRAFICOSREVISAOCARTEIRA } from "../../constants/idForHTML";
 ChartJS.register(...registerables);
 
 function BarChart({ dataChart }) {
@@ -33,8 +34,6 @@ function BarChart({ dataChart }) {
       return { enquadramentoLegislacao, contagem };
     }
   );
-
-  console.log("contagensArray", contagensArray);
 
   const options = {
     indexAxis: "y",
@@ -92,7 +91,7 @@ function BarChart({ dataChart }) {
       <Text color={"#006FB7"} fontSize={"20px"} mb={3}>
         Por tipo de ativo (enquadramento ou legislação)
       </Text>
-      <Bar options={options} data={data} />
+      <Bar options={options} data={data} id={IDGRAFICOSREVISAOCARTEIRA} />
     </Box>
   );
 }

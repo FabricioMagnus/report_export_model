@@ -10,6 +10,10 @@ import { rowList } from "./components/viewPDF/data/rowList";
 import BarChart from "./components/graficos/barChart";
 import LineChart from "./components/graficos/lineChart";
 import PieChart from "./components/graficos/pieChart";
+import {
+  IDGRAFICOSREVISAOCARTEIRA,
+  IDREVISAOCARTEIRA,
+} from "./constants/idForHTML";
 
 function App() {
   const componentRef = useRef();
@@ -50,7 +54,7 @@ function App() {
           height={"fit-content"}
         >
           <div ref={componentRef}>
-            <div id="myScreen">
+            <div id={IDREVISAOCARTEIRA}>
               <TableComponent
                 headerList={arrayCabecalho}
                 data={arrayListObjects}
@@ -58,7 +62,7 @@ function App() {
                 loading={false}
               />
             </div>
-            <div id="myScreen2">
+            <div>
               <Flex
                 bgColor={"#fff"}
                 my={3}
