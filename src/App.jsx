@@ -8,6 +8,8 @@ import { arrayCabecalho } from "./components/viewPDF/data/cabecalho";
 import { arrayListObjects } from "./components/viewPDF/data/dataTable";
 import { rowList } from "./components/viewPDF/data/rowList";
 import BarChart from "./components/graficos/barChart";
+import LineChart from "./components/graficos/lineChart";
+import PieChart from "./components/graficos/pieChart";
 
 function App() {
   const componentRef = useRef();
@@ -62,13 +64,42 @@ function App() {
               bgColor={"#fff"}
               my={3}
               mx={"auto"}
-              p={2}
+              px={6}
               borderRadius={"lg"}
               shadow={"lg"}
               w={"98%"}
+              justifyContent={"space-evenly"}
               height={"fit-content"}
             >
-              <BarChart />
+              <Flex
+                justifyContent={"center"}
+                alignItems={"flex-start"}
+                width={"49.5%"}
+                bgColor={"#fff"}
+                minHeight={"500px"}
+                height={"500px"}
+                mt={"0.5%"}
+                py={5}
+                my={"0.5%"}
+                border={"1px solid #e5e5e5"}
+                borderRadius={"lg"}
+              >
+                <PieChart dataChart={arrayListObjects} />
+              </Flex>
+              <Flex
+                justifyContent={"center"}
+                alignItems={"flex-start"}
+                width={"49.5%"}
+                bgColor={"#fff"}
+                minHeight={"500px"}
+                height={"500px"}
+                py={5}
+                my={"0.5%"}
+                border={"1px solid #e5e5e5"}
+                borderRadius={"lg"}
+              >
+                <LineChart />
+              </Flex>
             </Flex>
           </div>
         </div>
