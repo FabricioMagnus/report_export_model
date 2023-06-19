@@ -42,7 +42,7 @@ function App() {
             <Flex
               bgColor={"#fff"}
               my={2}
-              p={2}
+              px={6}
               borderRadius={"lg"}
               shadow={"lg"}
               w={"100%"}
