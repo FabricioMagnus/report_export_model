@@ -39,70 +39,69 @@ function App() {
         justifyContent={"space-evenly"}
         alignItems={"center"}
       >
-        <div ref={componentRef}>
-          <div id="myScreen">
-            <Flex
-              bgColor={"#fff"}
-              my={3}
-              mx={"auto"}
-              px={6}
-              borderRadius={"lg"}
-              shadow={"lg"}
-              w={"98%"}
-              height={"fit-content"}
-            >
+        <Flex
+          bgColor={"#fff"}
+          my={3}
+          mx={"auto"}
+          px={6}
+          borderRadius={"lg"}
+          shadow={"lg"}
+          w={"98%"}
+          height={"fit-content"}
+        >
+          <div ref={componentRef}>
+            <div id="myScreen">
               <TableComponent
                 headerList={arrayCabecalho}
                 data={arrayListObjects}
                 rowList={rowList}
                 loading={false}
               />
-            </Flex>
-          </div>
-          <div id="myScreen2">
-            <Flex
-              bgColor={"#fff"}
-              my={3}
-              mx={"auto"}
-              px={6}
-              borderRadius={"lg"}
-              shadow={"lg"}
-              w={"98%"}
-              justifyContent={"space-evenly"}
-              height={"fit-content"}
-            >
+            </div>
+            <div id="myScreen2">
               <Flex
-                justifyContent={"center"}
-                alignItems={"flex-start"}
-                width={"49.5%"}
                 bgColor={"#fff"}
-                minHeight={"500px"}
-                height={"500px"}
-                mt={"0.5%"}
-                py={5}
-                my={"0.5%"}
-                border={"1px solid #e5e5e5"}
+                my={3}
+                mx={"auto"}
+                px={6}
                 borderRadius={"lg"}
+                w={"100%"}
+                justifyContent={"space-evenly"}
+                height={"fit-content"}
               >
-                <PieChart dataChart={arrayListObjects} />
+                <Flex
+                  justifyContent={"center"}
+                  alignItems={"flex-start"}
+                  width={"49.5%"}
+                  bgColor={"#fff"}
+                  minHeight={"500px"}
+                  height={"500px"}
+                  mt={"0.5%"}
+                  py={5}
+                  my={"0.5%"}
+                  border={"1px solid #e5e5e5"}
+                  borderRadius={"lg"}
+                >
+                  <PieChart dataChart={arrayListObjects} />
+                </Flex>
+                <Flex
+                  justifyContent={"center"}
+                  alignItems={"flex-start"}
+                  width={"49.5%"}
+                  bgColor={"#fff"}
+                  minHeight={"500px"}
+                  height={"500px"}
+                  py={5}
+                  my={"0.5%"}
+                  border={"1px solid #e5e5e5"}
+                  borderRadius={"lg"}
+                >
+                  <BarChart />
+                </Flex>
               </Flex>
-              <Flex
-                justifyContent={"center"}
-                alignItems={"flex-start"}
-                width={"49.5%"}
-                bgColor={"#fff"}
-                minHeight={"500px"}
-                height={"500px"}
-                py={5}
-                my={"0.5%"}
-                border={"1px solid #e5e5e5"}
-                borderRadius={"lg"}
-              >
-                <LineChart />
-              </Flex>
-            </Flex>
+            </div>
           </div>
-        </div>
+        </Flex>
       </Flex>
     </Flex>
   );

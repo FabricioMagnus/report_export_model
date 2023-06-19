@@ -12,16 +12,6 @@ function PieChart({ dataChart }) {
     return cor;
   }
 
-  const labelsChart =
-    dataChart &&
-    dataChart.reduce((acumulador, objeto) => {
-      const { nome, grupo } = objeto;
-      if (!acumulador[grupo]) {
-        acumulador[grupo] = nome;
-      }
-      return acumulador;
-    }, {});
-
   const dataForChart =
     dataChart &&
     dataChart.reduce((acumulador, objeto) => {
@@ -41,7 +31,7 @@ function PieChart({ dataChart }) {
   );
 
   const data = {
-    labels: Object.keys(labelsChart),
+    labels: contagensArray.map((item) => `${item.grupo} (${item.contagem})`),
     datasets: [
       {
         data: contagensArray.map((item) => item.contagem),
@@ -52,8 +42,12 @@ function PieChart({ dataChart }) {
 
   return (
     <Box p={1} h={"100%"} w={"57%"}>
-      <Text fontWeight={"bold"}>DISTRIBUIÇÃO</Text>
-
+      <Text fontWeight={"bold"} color={"#123E6B"} fontSize={"24px"}>
+        DISTRIBUIÇÃO
+      </Text>
+      <Text color={"#006FB7"} fontSize={"20px"} mb={-3}>
+        Por segmento
+      </Text>
       <Pie
         data={data}
         options={{ plugins: { legend: { position: "right" } } }}

@@ -1,5 +1,5 @@
 export const arrayCabecalho = [
-  "id",
+  // "id",
   "Fundo",
   "P.Resgate",
   "N. Cotistas",
