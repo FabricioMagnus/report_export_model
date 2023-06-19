@@ -41,11 +41,12 @@ function App() {
           <div id="myScreen">
             <Flex
               bgColor={"#fff"}
-              my={2}
+              my={3}
+              mx={"auto"}
               px={6}
               borderRadius={"lg"}
               shadow={"lg"}
-              w={"100%"}
+              w={"98%"}
               height={"fit-content"}
             >
               <TableComponent
@@ -59,11 +60,12 @@ function App() {
           <div id="myScreen2">
             <Flex
               bgColor={"#fff"}
-              my={2}
+              my={3}
+              mx={"auto"}
               p={2}
               borderRadius={"lg"}
               shadow={"lg"}
-              w={"100%"}
+              w={"98%"}
               height={"fit-content"}
             >
               <BarChart />
