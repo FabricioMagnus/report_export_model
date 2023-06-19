@@ -39,15 +39,35 @@ function App() {
       >
         <div ref={componentRef}>
           <div id="myScreen">
-            <TableComponent
-              headerList={arrayCabecalho}
-              data={arrayListObjects}
-              rowList={rowList}
-              loading={false}
-            />
+            <Flex
+              bgColor={"#fff"}
+              my={2}
+              p={2}
+              borderRadius={"lg"}
+              shadow={"lg"}
+              w={"100%"}
+              height={"fit-content"}
+            >
+              <TableComponent
+                headerList={arrayCabecalho}
+                data={arrayListObjects}
+                rowList={rowList}
+                loading={false}
+              />
+            </Flex>
           </div>
           <div id="myScreen2">
-            <BarChart />
+            <Flex
+              bgColor={"#fff"}
+              my={2}
+              p={2}
+              borderRadius={"lg"}
+              shadow={"lg"}
+              w={"100%"}
+              height={"fit-content"}
+            >
+              <BarChart />
+            </Flex>
           </div>
         </div>
       </Flex>

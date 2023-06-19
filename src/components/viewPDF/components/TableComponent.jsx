@@ -44,7 +44,7 @@ export default function TableComponent({ headerList, data, rowList, loading }) {
       "valorRestante",
     ];
 
-    const arrayToCaptionFormat = ["fundo", "legislacao", "tipo"];
+    const arrayToCaptionFormat = ["nomeFundo", "legislacao", "tipo"];
 
     const arrayToPercentFormat = ["taxaAdm", "participacao"];
 
@@ -75,7 +75,11 @@ export default function TableComponent({ headerList, data, rowList, loading }) {
       return <Td>{obj[key]}</Td>;
     });
 
-    return <Tr key={index}>{[...rowCells]}</Tr>;
+    return (
+      <Tr fontSize={"sm"} key={index}>
+        {[...rowCells]}
+      </Tr>
+    );
   });
 
   const Header_Row =

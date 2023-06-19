@@ -1,4 +1,5 @@
 export const arrayCabecalho = [
+  "id",
   "Fundo",
   "P.Resgate",
   "N. Cotistas",
@@ -7,6 +8,6 @@ export const arrayCabecalho = [
   "Risco",
   "Tipo",
   "Taxa ADM.",
-  "Participação",
+  // "Participação",
   "Saldo",
 ];
