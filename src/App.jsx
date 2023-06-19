@@ -90,13 +90,13 @@ function App() {
                   width={"49.5%"}
                   bgColor={"#fff"}
                   minHeight={"500px"}
-                  height={"500px"}
+                  maxHeight={"500px"}
                   py={5}
                   my={"0.5%"}
                   border={"1px solid #e5e5e5"}
                   borderRadius={"lg"}
                 >
-                  <BarChart />
+                  <BarChart dataChart={arrayListObjects} />
                 </Flex>
               </Flex>
             </div>
