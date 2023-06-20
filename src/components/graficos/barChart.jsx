@@ -52,7 +52,11 @@ function BarChart({ dataChart }) {
   };
 
   const data = {
-    labels: contagensArray.map((item) => `${item.enquadramentoLegislacao}`),
+    labels: contagensArray.map((item) =>
+      item.enquadramentoLegislacao.substring(
+        item.enquadramentoLegislacao.indexOf("Art. ")
+      )
+    ),
     datasets: [
       {
         data: contagensArray.map((item) => item.contagem),
