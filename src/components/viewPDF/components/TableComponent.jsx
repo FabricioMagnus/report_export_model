@@ -54,7 +54,7 @@ export default function TableComponent({ headerList, data, rowList, loading }) {
       if (key.toLowerCase().includes("telefone")) {
         return <Td>{PhoneFormater(obj[key])}</Td>;
       }
-      if (key === "nomeFundo") {
+      if (key === "nomeFundo" || key === "enquadramentoLegislacao") {
         return <Td>{CaptionFormater(obj[key])}</Td>;
       }
       if (key === "patrimonioLiquido") {

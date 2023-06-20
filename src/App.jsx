@@ -1,9 +1,8 @@
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import "./App.css";
 import { Flex } from "@chakra-ui/react";
 import Filtros from "./components/filtros";
 import TableComponent from "./components/viewPDF/components/TableComponent";
-import { Button } from "@chakra-ui/react";
 import { arrayCabecalho } from "./components/viewPDF/data/cabecalho";
 import { arrayListObjects } from "./components/viewPDF/data/dataTable";
 import { rowList } from "./components/viewPDF/data/rowList";
