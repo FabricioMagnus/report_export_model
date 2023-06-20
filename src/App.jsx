@@ -7,13 +7,13 @@ import { arrayCabecalho } from "./components/viewPDF/data/cabecalho";
 import { arrayListObjects } from "./components/viewPDF/data/dataTable";
 import { rowList } from "./components/viewPDF/data/rowList";
 import BarChart from "./components/graficos/barChart";
-import LineChart from "./components/graficos/lineChart";
 import PieChart from "./components/graficos/pieChart";
 import {
   IDCAPARELATORIO,
   IDGRAFICOSREVISAOCARTEIRA,
   IDREVISAOCARTEIRA,
 } from "./constants/idForHTML";
+import Capa from "./components/capa";
 import { dataClient } from "./components/viewPDF/data/dataClient";
 
 function App() {
@@ -61,36 +61,7 @@ function App() {
                 pageBreakInside: "avoid",
               }}
             >
-              <Flex
-                w={"100%"}
-                h={"85vh"}
-                bgGradient="linear(#20A6DF, #123E6B)"
-                mx={"auto"}
-                shadow={"lg"}
-                borderRadius={"lg"}
-                flexDir={"column"}
-                alignItems={"flex-end"}
-              >
-                <Flex
-                  w={"100%"}
-                  h={"25%"}
-                  bgColor={"#fff"}
-                  justifyContent={"space-between"}
-                  px={10}
-                  alignItems={"center"}
-                >
-                  <Img src={"/logo-liasys.png"} h={"70%"} />
-                  <Img src={dataClient.foto} h={"70%"} />
-                </Flex>
-                <Flex
-                  w={"35%"}
-                  height={"35vh"}
-                  // bgColor={"red"}
-                  mt={"10%"}
-                  mr={20}
-                  borderLeft={"2px solid #20A6DF"}
-                ></Flex>
-              </Flex>
+              <Capa data={dataClient} filtroData={"Junho / 2023"} />
             </div>
             <div
               id={IDREVISAOCARTEIRA}
