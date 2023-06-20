@@ -32,24 +32,24 @@ const ModalComponent = ({ isOpen, setIsOpen, setIsOk }) => {
 
   const [etapaAtual, setEtapaAtual] = useState(4);
 
-  // useEffect(() => {
-  //   const connection = new HubConnectionBuilder()
-  //     .withUrl(LinkWebsocket, {
-  //       transport: HttpTransportType.WebSockets | HttpTransportType.LongPolling,
-  //     })
-  //     .configureLogging(LogLevel.Information)
-  //     .build();
+  useEffect(() => {
+    const connection = new HubConnectionBuilder()
+      .withUrl(LinkWebsocket, {
+        transport: HttpTransportType.WebSockets | HttpTransportType.LongPolling,
+      })
+      .configureLogging(LogLevel.Information)
+      .build();
 
-  //   connection.on("ReceiveStatusUpdate", (novaEtapa) => {
-  //     setEtapaAtual(novaEtapa);
-  //   });
+    connection.on("ReceiveStatusUpdate", (novaEtapa) => {
+      setEtapaAtual(novaEtapa);
+    });
 
-  //   connection.start();
+    connection.start();
 
-  //   return () => {
-  //     connection.stop();
-  //   };
-  // }, []);
+    return () => {
+      connection.stop();
+    };
+  }, []);
 
   const totalEtapas = 4;
 

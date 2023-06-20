@@ -46,7 +46,6 @@ function App() {
         "cliente",
         filtroData.split("-")[1].replace(/^0+(?!10$)/g, "")
       );
-      console.log("response2", response2);
       setDataCliente(response2);
       setViewRelatório(true);
     } catch (error) {
