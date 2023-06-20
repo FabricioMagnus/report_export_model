@@ -1,6 +1,7 @@
 import { jsPDF } from "jspdf";
 import autoTable from "jspdf-autotable";
 import {
+  IDCAPARELATORIO,
   IDGRAFICOSREVISAOCARTEIRA,
   IDREVISAOCARTEIRA,
 } from "../../../constants/idForHTML";
@@ -116,7 +117,7 @@ export class ReportPDF {
   addBase64Image(
     base64Img: string,
     height?: number,
-    configs = { center: false, border: true }
+    configs = { center: false, border: false }
   ) {
     const maxHeight = PAGE_HEIGHT_PX - MARGIN_Y * 2;
     const imageHeight = height && height < maxHeight ? height : maxHeight;
@@ -131,9 +132,9 @@ export class ReportPDF {
     }
     this.doc.addImage(base64Img, "PNG", xPos, this.y, imageWidth, imageHeight);
     this.doc.setDrawColor(0, 0, 0);
-    if (configs.border) {
-      this.doc.rect(xPos - 1, this.y - 1, imageWidth + 2, imageHeight + 2);
-    }
+    // if (configs.border) {
+    //   this.doc.rect(xPos - 1, this.y - 1, imageWidth + 2, imageHeight + 2);
+    // }
     this.newLine(imageHeight + Y_SPACE);
   }
 
@@ -158,8 +159,10 @@ export async function generateReportPdf() {
     report.addBase64Image(image, width);
   }
 
-  report.addTitle(`Relatório Dinâmico`);
+  // report.addTitle(`Relatório Dinâmico`);
   // report.addSection("Visão Geral da Carteira");
+  await addHtmlElementAsImage(IDCAPARELATORIO);
+  report.addPage();
   await addHtmlElementAsImage(IDREVISAOCARTEIRA);
 
   // report.addSection("2 - Evolução do Patrimônio - (Crescimento da Carteira)");

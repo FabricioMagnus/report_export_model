@@ -10,6 +10,7 @@ import BarChart from "./components/graficos/barChart";
 import LineChart from "./components/graficos/lineChart";
 import PieChart from "./components/graficos/pieChart";
 import {
+  IDCAPARELATORIO,
   IDGRAFICOSREVISAOCARTEIRA,
   IDREVISAOCARTEIRA,
 } from "./constants/idForHTML";
@@ -46,14 +47,36 @@ function App() {
           bgColor={"#fff"}
           my={3}
           mx={"auto"}
-          px={6}
+          // px={5}
           borderRadius={"lg"}
           shadow={"lg"}
           w={"98%"}
           height={"fit-content"}
         >
           <div ref={componentRef} style={{ padding: "15px" }}>
-            <div id={IDREVISAOCARTEIRA}>
+            <div
+              id={IDCAPARELATORIO}
+              style={{
+                pageBreakInside: "avoid",
+              }}
+            >
+              <Flex
+                w={"100%"}
+                h={"85vh"}
+                bgGradient="linear(#20A6DF, #123E6B)"
+                mx={"auto"}
+                shadow={"lg"}
+                borderRadius={"lg"}
+              >
+                <Flex w={"100%"} h={"25%"} bgColor={"#fff"}></Flex>
+              </Flex>
+            </div>
+            <div
+              id={IDREVISAOCARTEIRA}
+              style={{
+                pageBreakInside: "avoid",
+              }}
+            >
               <TableComponent
                 headerList={arrayCabecalho}
                 data={arrayListObjects}
@@ -61,7 +84,11 @@ function App() {
                 loading={false}
               />
             </div>
-            <div style={{ pageBreakInside: "avoid" }}>
+            <div
+              style={{
+                pageBreakInside: "avoid",
+              }}
+            >
               <Flex
                 bgColor={"#fff"}
                 my={3}

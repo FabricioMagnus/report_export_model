@@ -15,6 +15,7 @@ import handleExportPDF from "../../functions/exportPDF";
 import { ProgressoPorEtapas } from "../react-circle-progress";
 import { HubConnectionBuilder } from "@microsoft/signalr";
 import {
+  IDCAPARELATORIO,
   IDGRAFICOSREVISAOCARTEIRA,
   IDREVISAOCARTEIRA,
 } from "../../constants/idForHTML";
@@ -74,7 +75,7 @@ const ModalComponent = ({ isOpen, setIsOpen }) => {
               type="button"
               colorScheme="blue"
               onClick={() => {
-                handleExportPDF([IDREVISAOCARTEIRA]);
+                handleExportPDF([IDCAPARELATORIO, IDREVISAOCARTEIRA]);
               }}
             >
               Exportar
