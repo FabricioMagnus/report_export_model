@@ -54,7 +54,10 @@ export default function Filtros({
         type="month"
         textColor={"white"}
         maxWidth="200px"
-        onChange={(e) => setFiltroData(e.target.value)}
+        onChange={(e) => {
+          setIsOk(false);
+          setFiltroData(e.target.value);
+        }}
       />
       <Button
         type="button"

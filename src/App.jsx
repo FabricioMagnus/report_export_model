@@ -83,7 +83,7 @@ function App() {
         justifyContent={"space-evenly"}
         alignItems={"center"}
       >
-        {viewRelatório && (
+        {viewRelatório && isOk && (
           <Flex
             bgColor={"#fff"}
             my={3}
