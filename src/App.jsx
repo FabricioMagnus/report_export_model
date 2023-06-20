@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import "./App.css";
-import { Flex } from "@chakra-ui/react";
+import { Flex, Img } from "@chakra-ui/react";
 import Filtros from "./components/filtros";
 import TableComponent from "./components/viewPDF/components/TableComponent";
 import { arrayCabecalho } from "./components/viewPDF/data/cabecalho";
@@ -14,6 +14,7 @@ import {
   IDGRAFICOSREVISAOCARTEIRA,
   IDREVISAOCARTEIRA,
 } from "./constants/idForHTML";
+import { dataClient } from "./components/viewPDF/data/dataClient";
 
 function App() {
   const componentRef = useRef();
@@ -67,8 +68,28 @@ function App() {
                 mx={"auto"}
                 shadow={"lg"}
                 borderRadius={"lg"}
+                flexDir={"column"}
+                alignItems={"flex-end"}
               >
-                <Flex w={"100%"} h={"25%"} bgColor={"#fff"}></Flex>
+                <Flex
+                  w={"100%"}
+                  h={"25%"}
+                  bgColor={"#fff"}
+                  justifyContent={"space-between"}
+                  px={10}
+                  alignItems={"center"}
+                >
+                  <Img src={"/logo-liasys.png"} h={"70%"} />
+                  <Img src={dataClient.foto} h={"70%"} />
+                </Flex>
+                <Flex
+                  w={"35%"}
+                  height={"35vh"}
+                  // bgColor={"red"}
+                  mt={"10%"}
+                  mr={20}
+                  borderLeft={"2px solid #20A6DF"}
+                ></Flex>
               </Flex>
             </div>
             <div

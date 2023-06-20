@@ -65,7 +65,10 @@ export default function TableComponent({ headerList, data, rowList, loading }) {
       }
       if (key === "patrimonioLiquido") {
         return (
-          <Td minWidth={"120px"}>{`${(obj.saldo / obj[key]).toFixed(5)} %`}</Td>
+          <Td minWidth={"120px"}>{`${(obj.saldo === 0
+            ? 0
+            : obj.saldo / obj[key]
+          ).toFixed(5)} %`}</Td>
         );
       }
       if (key === "taxaAdm") {

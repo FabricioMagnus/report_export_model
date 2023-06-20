@@ -75,7 +75,7 @@ const ModalComponent = ({ isOpen, setIsOpen }) => {
               type="button"
               colorScheme="blue"
               onClick={() => {
-                handleExportPDF([IDCAPARELATORIO, IDREVISAOCARTEIRA]);
+                handleExportPDF([IDCAPARELATORIO]);
               }}
             >
               Exportar
