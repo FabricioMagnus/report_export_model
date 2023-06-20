@@ -1,5 +1,5 @@
 export const rowList = [
-  "id",
+  // "id",
   "nomeFundo",
   "prazoResgate",
   "numCotistas",
