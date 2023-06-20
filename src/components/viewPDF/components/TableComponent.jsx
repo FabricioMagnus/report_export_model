@@ -57,7 +57,11 @@ export default function TableComponent({ headerList, data, rowList, loading }) {
         return <Td>{PhoneFormater(obj[key])}</Td>;
       }
       if (key === "nomeFundo" || key === "enquadramentoLegislacao") {
-        return <Td style={{ wordWrap: "break-word" }}>{CaptionFormater(obj[key])}</Td>;
+        return (
+          <Td style={{ wordWrap: "break-word" }}>
+            {CaptionFormater(obj[key])}
+          </Td>
+        );
       }
       if (key === "patrimonioLiquido") {
         return (
@@ -93,7 +97,7 @@ export default function TableComponent({ headerList, data, rowList, loading }) {
     });
 
     return (
-      <Tr style={{ pageBreakInside: 'avoid' }} fontSize={"sm"} key={index}>
+      <Tr style={{ pageBreakInside: "avoid" }} fontSize={"12px"} key={index}>
         {[...rowCells]}
       </Tr>
     );
@@ -102,7 +106,7 @@ export default function TableComponent({ headerList, data, rowList, loading }) {
   const Header_Row =
     headerList &&
     headerList.map((item, index) => (
-      <Th bgColor={"blue.900"} color={"white"} key={index}>
+      <Th fontSize={"11px"} bgColor={"blue.900"} color={"white"} key={index}>
         {item}
       </Th>
     ));
