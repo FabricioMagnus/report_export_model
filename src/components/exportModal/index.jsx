@@ -19,31 +19,32 @@ import {
   IDGRAFICOSREVISAOCARTEIRA,
   IDREVISAOCARTEIRA,
 } from "../../constants/idForHTML";
+import { LinkWebsocket } from "../../constants/urls";
 
 const ModalComponent = ({ isOpen, setIsOpen }) => {
   const handleClose = () => {
     setIsOpen(false);
   };
 
-  const [etapaAtual, setEtapaAtual] = useState(7);
+  const [etapaAtual, setEtapaAtual] = useState(1);
 
-  useEffect(() => {
-    const connection = new HubConnectionBuilder()
-      .withUrl("https://localhost:5001/etapa")
-      .build();
+  // useEffect(() => {
+  //   const connection = new HubConnectionBuilder()
+  //     .withUrl(LinkWebsocket)
+  //     .build();
 
-    connection.on("ReceiveEtapaAtual", (novaEtapa) => {
-      setEtapaAtual(novaEtapa);
-    });
+  //   connection.on("ReceiveStatusUpdate", (novaEtapa) => {
+  //     setEtapaAtual(novaEtapa);
+  //   });
 
-    connection.start();
+  //   connection.start();
 
-    return () => {
-      connection.stop();
-    };
-  }, []);
+  //   return () => {
+  //     connection.stop();
+  //   };
+  // }, []);
 
-  const totalEtapas = 17;
+  const totalEtapas = 4;
 
   return (
     <div>
