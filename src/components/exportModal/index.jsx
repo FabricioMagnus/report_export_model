@@ -30,6 +30,8 @@ const ModalComponent = ({ isOpen, setIsOpen, setIsOk }) => {
     setIsOpen(false);
   };
 
+  //comentario
+
   const [etapaAtual, setEtapaAtual] = useState(4);
 
   useEffect(() => {
