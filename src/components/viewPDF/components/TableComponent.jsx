@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/jsx-key */
 import { Table, Thead, Tbody, Tr, Th, Td, Flex, Text } from "@chakra-ui/react";
 import { Spinner } from "@chakra-ui/react";
 
@@ -55,7 +57,7 @@ export default function TableComponent({ headerList, data, rowList, loading }) {
         return <Td>{PhoneFormater(obj[key])}</Td>;
       }
       if (key === "nomeFundo" || key === "enquadramentoLegislacao") {
-        return <Td>{CaptionFormater(obj[key])}</Td>;
+        return <Td style={{ wordWrap: "break-word" }}>{CaptionFormater(obj[key])}</Td>;
       }
       if (key === "patrimonioLiquido") {
         return (
@@ -91,7 +93,7 @@ export default function TableComponent({ headerList, data, rowList, loading }) {
     });
 
     return (
-      <Tr fontSize={"sm"} key={index}>
+      <Tr style={{ pageBreakInside: 'avoid' }} fontSize={"sm"} key={index}>
         {[...rowCells]}
       </Tr>
     );
