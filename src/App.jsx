@@ -52,7 +52,7 @@ function App() {
           w={"98%"}
           height={"fit-content"}
         >
-          <div ref={componentRef}>
+          <div ref={componentRef} style={{ padding: "15px" }}>
             <div id={IDREVISAOCARTEIRA}>
               <TableComponent
                 headerList={arrayCabecalho}
@@ -68,7 +68,7 @@ function App() {
                 mx={"auto"}
                 px={6}
                 borderRadius={"lg"}
-                w={"100%"}
+                w={"95%"}
                 justifyContent={"space-evenly"}
                 height={"fit-content"}
               >
