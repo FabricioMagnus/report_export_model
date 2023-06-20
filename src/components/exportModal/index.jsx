@@ -25,29 +25,31 @@ import {
 } from "../../constants/idForHTML";
 import { LinkWebsocket } from "../../constants/urls";
 
-const ModalComponent = ({ isOpen, setIsOpen }) => {
-  const handleClose = () => {};
+const ModalComponent = ({ isOpen, setIsOpen, setIsOk }) => {
+  const handleClose = () => {
+    setIsOpen(false);
+  };
 
-  const [etapaAtual, setEtapaAtual] = useState(1);
+  const [etapaAtual, setEtapaAtual] = useState(4);
 
-  useEffect(() => {
-    const connection = new HubConnectionBuilder()
-      .withUrl(LinkWebsocket, {
-        transport: HttpTransportType.WebSockets | HttpTransportType.LongPolling,
-      })
-      .configureLogging(LogLevel.Information)
-      .build();
+  // useEffect(() => {
+  //   const connection = new HubConnectionBuilder()
+  //     .withUrl(LinkWebsocket, {
+  //       transport: HttpTransportType.WebSockets | HttpTransportType.LongPolling,
+  //     })
+  //     .configureLogging(LogLevel.Information)
+  //     .build();
 
-    connection.on("ReceiveStatusUpdate", (novaEtapa) => {
-      setEtapaAtual(novaEtapa);
-    });
+  //   connection.on("ReceiveStatusUpdate", (novaEtapa) => {
+  //     setEtapaAtual(novaEtapa);
+  //   });
 
-    connection.start();
+  //   connection.start();
 
-    return () => {
-      connection.stop();
-    };
-  }, []);
+  //   return () => {
+  //     connection.stop();
+  //   };
+  // }, []);
 
   const totalEtapas = 4;
 
@@ -83,7 +85,9 @@ const ModalComponent = ({ isOpen, setIsOpen }) => {
                 mr={3}
                 onClick={() => {
                   setIsOk(true);
+                  handleClose();
                   setIsOpen(false);
+                  setEtapaAtual(0);
                 }}
               >
                 Fechar

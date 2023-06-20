@@ -45,8 +45,6 @@ export default function Filtros({
     }
   }
 
-  console.log("filtroData", filtroData);
-
   return (
     <Flex w={"100%"} justifyContent={"space-evenly"}>
       <Input
