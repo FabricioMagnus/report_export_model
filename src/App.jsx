@@ -61,7 +61,7 @@ function App() {
                 loading={false}
               />
             </div>
-            <div>
+            <div style={{ pageBreakInside: "avoid" }}>
               <Flex
                 bgColor={"#fff"}
                 my={3}
