@@ -85,6 +85,7 @@ function App() {
                   border={"1px solid #e5e5e5"}
                   borderRadius={"lg"}
                 >
+                  <div style={{ pageBreakBefore: 'always' }}></div>               
                   <PieChart dataChart={arrayListObjects} />
                 </Flex>
                 <Flex
@@ -99,6 +100,7 @@ function App() {
                   border={"1px solid #e5e5e5"}
                   borderRadius={"lg"}
                 >
+                  <div style={{ pageBreakBefore: 'always' }}></div>
                   <BarChart dataChart={arrayListObjects} />
                 </Flex>
               </Flex>

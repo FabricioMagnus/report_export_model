@@ -10,7 +10,7 @@ import {
   registerables,
 } from "chart.js";
 import { Chart } from "react-chartjs-2";
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Flex, Text } from "@chakra-ui/react";
 import { IDGRAFICOSREVISAOCARTEIRA } from "../../constants/idForHTML";
 ChartJS.register(...registerables);
 
@@ -85,13 +85,17 @@ function BarChart({ dataChart }) {
 
   return (
     <Box p={1} h={"80%"} w={"90%"}>
-      <Text fontWeight={"bold"} color={"#123E6B"} fontSize={"24px"}>
-        DISTRIBUIÇÃO
-      </Text>
-      <Text color={"#006FB7"} fontSize={"20px"} mb={3}>
-        Por tipo de ativo (enquadramento ou legislação)
-      </Text>
-      <Bar options={options} data={data} id={IDGRAFICOSREVISAOCARTEIRA} />
+      <Box>
+        <Text fontWeight={"bold"} color={"#123E6B"} fontSize={"24px"}>
+          DISTRIBUIÇÃO
+        </Text>
+        <Text color={"#006FB7"} fontSize={"20px"} mb={3}>
+          Por tipo de ativo (enquadramento ou legislação)
+        </Text>
+      </Box>
+      <Flex w={"70%"} h={"100%"} >
+        <Bar options={options} data={data} id={IDGRAFICOSREVISAOCARTEIRA} />
+      </Flex>
     </Box>
   );
 }
