@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "proxy": "www.liasys.net/api/statusHub",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

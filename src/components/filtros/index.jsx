@@ -5,6 +5,7 @@ import { useState } from "react";
 import ModalComponent from "../exportModal";
 import { generateReportPdf } from "../reportPDF/functions/reportsPDF";
 import ServicesApi from "../../services/services";
+import { IDCAPARELATORIO } from "../../constants/idForHTML";
 
 export default function Filtros({
   componentRef,
@@ -37,7 +38,7 @@ export default function Filtros({
       const response = await ServicesApi.solicitarRelatorio(dataForApi, 129);
       console.log("response", response);
       setLoading(false);
-      setIsOk(true);
+      // setIsOk(true);
     } catch (error) {
       setIsOk(false);
       console.log("error", error);
@@ -66,6 +67,7 @@ export default function Filtros({
         isLoading={loading}
         onClick={() => {
           solicitarRelatorio();
+          setIsOpen(true);
           // handleExportPDF("myScreen");
         }}
       >
@@ -94,8 +96,7 @@ export default function Filtros({
           color={"white"}
           isLoading={loading}
           onClick={() => {
-            setIsOpen(true);
-            // handleExportPDF("myScreen");
+            handleExportPDF([IDCAPARELATORIO]);
           }}
         >
           Exportar
@@ -113,7 +114,7 @@ export default function Filtros({
         Exportar com fofinhos
       </Button> */}
 
-      <ModalComponent isOpen={isOpen} setIsOpen={setIsOpen} />
+      <ModalComponent isOpen={isOpen} setIsOpen={setIsOpen} setIsOk={setIsOk} />
     </Flex>
   );
 }

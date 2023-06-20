@@ -13,7 +13,11 @@ import {
 } from "@chakra-ui/react";
 import handleExportPDF from "../../functions/exportPDF";
 import { ProgressoPorEtapas } from "../react-circle-progress";
-import { HubConnectionBuilder } from "@microsoft/signalr";
+import {
+  HttpTransportType,
+  HubConnectionBuilder,
+  LogLevel,
+} from "@microsoft/signalr";
 import {
   IDCAPARELATORIO,
   IDGRAFICOSREVISAOCARTEIRA,
@@ -22,27 +26,28 @@ import {
 import { LinkWebsocket } from "../../constants/urls";
 
 const ModalComponent = ({ isOpen, setIsOpen }) => {
-  const handleClose = () => {
-    setIsOpen(false);
-  };
+  const handleClose = () => {};
 
   const [etapaAtual, setEtapaAtual] = useState(1);
 
-  // useEffect(() => {
-  //   const connection = new HubConnectionBuilder()
-  //     .withUrl(LinkWebsocket)
-  //     .build();
+  useEffect(() => {
+    const connection = new HubConnectionBuilder()
+      .withUrl(LinkWebsocket, {
+        transport: HttpTransportType.WebSockets | HttpTransportType.LongPolling,
+      })
+      .configureLogging(LogLevel.Information)
+      .build();
 
-  //   connection.on("ReceiveStatusUpdate", (novaEtapa) => {
-  //     setEtapaAtual(novaEtapa);
-  //   });
+    connection.on("ReceiveStatusUpdate", (novaEtapa) => {
+      setEtapaAtual(novaEtapa);
+    });
 
-  //   connection.start();
+    connection.start();
 
-  //   return () => {
-  //     connection.stop();
-  //   };
-  // }, []);
+    return () => {
+      connection.stop();
+    };
+  }, []);
 
   const totalEtapas = 4;
 
@@ -61,7 +66,7 @@ const ModalComponent = ({ isOpen, setIsOpen }) => {
               alignItems={"center"}
               // bgColor={"blue"}
             >
-              {etapaAtual === 17 ? (
+              {etapaAtual === totalEtapas ? (
                 <Text>Requisição Finalizada</Text>
               ) : (
                 <ProgressoPorEtapas
@@ -72,15 +77,20 @@ const ModalComponent = ({ isOpen, setIsOpen }) => {
             </Flex>
           </ModalBody>
           <ModalFooter justifyContent={"center"}>
-            <Button
-              type="button"
-              colorScheme="blue"
-              onClick={() => {
-                handleExportPDF([IDCAPARELATORIO]);
-              }}
-            >
-              Exportar
-            </Button>
+            {etapaAtual === totalEtapas ? (
+              <Button
+                colorScheme="blue"
+                mr={3}
+                onClick={() => {
+                  setIsOk(true);
+                  setIsOpen(false);
+                }}
+              >
+                Fechar
+              </Button>
+            ) : (
+              <></>
+            )}
           </ModalFooter>
         </ModalContent>
       </Modal>
