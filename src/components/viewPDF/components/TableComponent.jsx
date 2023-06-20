@@ -2,19 +2,16 @@
 /* eslint-disable react/jsx-key */
 import { Table, Thead, Tbody, Tr, Th, Td, Flex, Text } from "@chakra-ui/react";
 import { Spinner } from "@chakra-ui/react";
+import { CNPJFormater, abreviarNome } from "../../../functions/formtadores";
 
-export default function TableComponent({ headerList, data, rowList, loading }) {
+export default function TableComponent({
+  headerList,
+  data,
+  rowList,
+  loading,
+  nomeCliente,
+}) {
   const Rows = data.map((obj, index) => {
-    function CNPJFormater(cnpj) {
-      const CNPJ = cnpj;
-      return CNPJ.replace(/\D/g, "")
-        .replace(/(\d{2})(\d)/, "$1.$2")
-        .replace(/(\d{3})(\d)/, "$1.$2")
-        .replace(/(\d{3})(\d)/, "$1/$2")
-        .replace(/(\d{4})(\d)/, "$1-$2")
-        .replace(/(-\d{2})\d+?$/, "$1");
-    }
-
     function CaptionFormater(text) {
       return text
         .toLowerCase()
@@ -138,7 +135,7 @@ export default function TableComponent({ headerList, data, rowList, loading }) {
           Visão Geral da Carteira
         </Text>
         <Text fontSize={"2xl"} fontWeight={"bold"} color={"blue.900"}>
-          Cliente : IPSCBG
+          Cliente : {abreviarNome(nomeCliente)}
         </Text>
       </Flex>
       <Table variant={"striped"}>

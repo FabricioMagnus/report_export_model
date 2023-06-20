@@ -1,5 +1,6 @@
 import { Flex, Img, Text } from "@chakra-ui/react";
 import { dataClient } from "../viewPDF/data/dataClient";
+import { abreviarNome } from "../../functions/formtadores";
 
 export default function Capa({ data, filtroData }) {
   return (
@@ -22,7 +23,7 @@ export default function Capa({ data, filtroData }) {
         alignItems={"center"}
       >
         <Img src={"/logo-liasys.png"} h={"70%"} />
-        <Img src={data.foto} h={"70%"} />
+        <Img src={`data:image/png;base64,${data.foto}`} h={"70%"} />
       </Flex>
       <Flex
         w={"30%"}
@@ -35,8 +36,11 @@ export default function Capa({ data, filtroData }) {
         justifyContent={"center"}
         flexDir={"column"}
       >
+        <Text color={"#fff"} fontSize={"30px"} mb={2} fontWeight={"black"}>
+          {abreviarNome(data.nome)}
+        </Text>
         <Text color={"#fff"} fontSize={"30px"} mb={4}>
-          {dataClient.nome}
+          {data.nome}
         </Text>
         <Text color={"#20A6DF"} fontSize={"24px"} fontWeight={"black"}>
           {filtroData}

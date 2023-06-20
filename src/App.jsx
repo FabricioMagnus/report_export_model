@@ -26,17 +26,28 @@ function App() {
   const [filtroData, setFiltroData] = useState("");
 
   const [dataCarteira, setDataCarteira] = useState([]);
+  const [dataCliente, setDataCliente] = useState([]);
+
+  const idClienteDeTeste = 129;
 
   async function getRelatorio() {
     try {
       const response = await ServicesApi.getJsonByTipo(
         filtroData.split("-")[0],
-        129,
+        idClienteDeTeste,
         "carteira",
         filtroData.split("-")[1].replace(/^0+(?!10$)/g, "")
       );
       // console.log("response do get de relatório", response);
       setDataCarteira(response);
+      const response2 = await ServicesApi.getJsonByTipo(
+        filtroData.split("-")[0],
+        idClienteDeTeste,
+        "cliente",
+        filtroData.split("-")[1].replace(/^0+(?!10$)/g, "")
+      );
+      console.log("response2", response2);
+      setDataCliente(response2);
       setViewRelatório(true);
     } catch (error) {
       setViewRelatório(false);
@@ -101,7 +112,10 @@ function App() {
                   pageBreakInside: "avoid",
                 }}
               >
-                <Capa data={dataClient} filtroData={filtroData} />
+                <Capa
+                  data={dataCliente && dataCliente}
+                  filtroData={filtroData}
+                />
               </div>
               <div
                 id={IDREVISAOCARTEIRA}
@@ -111,9 +125,10 @@ function App() {
               >
                 <TableComponent
                   headerList={arrayCabecalho}
-                  data={dataCarteira ? dataCarteira : arrayListObjects}
+                  data={dataCarteira && dataCarteira}
                   rowList={rowList}
                   loading={false}
+                  nomeCliente={dataCliente && dataCliente.nome}
                 />
               </div>
               <div
