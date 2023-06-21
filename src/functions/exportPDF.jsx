@@ -174,6 +174,6 @@ export default async function handleExportPDF(ids) {
     pdf.save(`relatorio-dinamico.pdf`);
   });
   // await Promise.all(promises);
-  pdf.deletePage(1); // Remove a primeira página
-  pdf.save(`relatorio-dinamico.pdf`);
+  // pdf.deletePage(1); // Remove a primeira página
+  // pdf.save(`relatorio-dinamico.pdf`);
 }
