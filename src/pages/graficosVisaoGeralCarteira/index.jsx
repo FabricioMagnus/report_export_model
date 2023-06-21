@@ -8,7 +8,7 @@ export default function GraficosVisaoGeralCarteira({ dataCarteira }) {
     <div
       style={{
         pageBreakInside: "avoid",
-        width: "98%",
+        width: "98.5%",
       }}
       id={IDGRAFICOSREVISAOCARTEIRA}
     >

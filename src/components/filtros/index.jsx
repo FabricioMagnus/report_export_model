@@ -3,7 +3,6 @@ import handleExportPDF from "../../functions/exportPDF";
 import ReactToPrint from "react-to-print";
 import { useState } from "react";
 import ModalComponent from "../exportModal";
-import { generateReportPdf } from "../reportPDF/functions/reportsPDF";
 import ServicesApi from "../../services/services";
 import {
   IDCAPARELATORIO,
@@ -104,17 +103,6 @@ export default function Filtros({
           Exportar
         </Button>
       )}
-      {/* <Button
-        type="button"
-        bgColor={"blue.900"}
-        color={"white"}
-        isLoading={loadingPDF}
-        onClick={() => {
-          downloadSummarizedPdfReport();
-        }}
-      >
-        Exportar com fofinhos
-      </Button> */}
 
       <ModalComponent isOpen={isOpen} setIsOpen={setIsOpen} setIsOk={setIsOk} />
     </Flex>
