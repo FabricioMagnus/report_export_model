@@ -117,15 +117,9 @@ export default function TableComponent({
       w={"98%"}
       mx={"auto"}
     >
-      <Flex
-        w={"100%"}
-        justifyContent={"space-evenly"}
-        alignItems={"center"}
-        mb={3}
-      >
-        <CabecalhoRelatorio titulo={"Visão Geral da Carteira"} />
-      </Flex>
-      <Flex w={"85%"} mx={"auto"} h={"66vh"} overflowY={"scroll"}>
+      <CabecalhoRelatorio titulo={"Visão Geral da Carteira"} />
+
+      <Flex w={"85%"} mx={"auto"} h={"66vh"} overflowY={"scroll"} my={4}>
         <Table variant={"striped"}>
           <Thead>
             <Tr>{Header_Row}</Tr>
