@@ -53,12 +53,12 @@ const ModalComponent = ({ isOpen, setIsOpen, setIsOk }) => {
     setEtapaAtual(0);
   }, []);
   useEffect(() => {
-    if (etapaAtual < totalEtapas) {
+    if (isOpen === true && etapaAtual < totalEtapas) {
       setTimeout(() => {
         setEtapaAtual(etapaAtual + 1);
-      }, 2500);
+      }, 1800);
     }
-  }, [etapaAtual]);
+  }, [etapaAtual, isOpen]);
 
   const totalEtapas = 10;
 
