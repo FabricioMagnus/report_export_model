@@ -96,12 +96,19 @@ function App() {
         alignItems={"center"}
       >
         <Flex w={"100%"} h={"89vh"} bgColor={"#fff"} p={5}>
-          <SwipperBuilder
-            components={[
-              <Capa data={dataClient} filtroData={"2023-03-01"} />,
-              <GraficosVisaoGeralCarteira dataCarteira={arrayListObjects} />,
-            ]}
-          />
+          {viewRelatório && isOk && (
+            <SwipperBuilder
+              components={[
+                <Capa
+                  data={dataCliente && dataCliente}
+                  filtroData={filtroData}
+                />,
+                <GraficosVisaoGeralCarteira
+                  dataCarteira={dataCarteira && dataCarteira}
+                />,
+              ]}
+            />
+          )}
         </Flex>
         {/* {viewRelatório && isOk && (
           <Flex

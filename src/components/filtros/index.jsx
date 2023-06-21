@@ -75,7 +75,7 @@ export default function Filtros({
         Filtrar
       </Button>
 
-      {isOk && (
+      {/* {isOk && (
         <ReactToPrint
           trigger={() => (
             <Button
@@ -89,7 +89,7 @@ export default function Filtros({
           )}
           content={() => componentRef.current}
         />
-      )}
+      )} */}
       {isOk && (
         <Button
           type="button"
