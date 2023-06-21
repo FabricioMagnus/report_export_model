@@ -12,7 +12,11 @@ import {
   IDREVISAOCARTEIRA,
 } from "./constants/idForHTML";
 import Capa from "./components/capa";
+import Capa from "./pages/capa";
+import { dataClient } from "./components/viewPDF/data/dataClient";
 import ServicesApi from "./services/services";
+import SwipperBuilder from "./components/swipper";
+import GraficosVisaoGeralCarteira from "./pages/graficosVisaoGeralCarteira";
 
 function App() {
   const componentRef = useRef();
@@ -91,7 +95,42 @@ function App() {
         justifyContent={"space-evenly"}
         alignItems={"center"}
       >
-        {viewRelatório && isOk && (
+        <Flex w={"100%"} h={"89vh"} bgColor={"#fff"} p={5}>
+          {viewRelatório && isOk && (
+            <SwipperBuilder
+              components={[
+                <Capa
+                  data={dataCliente && dataCliente}
+                  filtroData={filtroData}
+                />,
+                ...(dataCarteira &&
+                  dataCarteira
+                    .reduce((result, item, index) => {
+                      const chunkIndex = Math.floor(index / 7);
+                      if (!result[chunkIndex]) {
+                        result[chunkIndex] = [];
+                      }
+                      result[chunkIndex].push(item);
+                      return result;
+                    }, [])
+                    .map((group, groupIndex) => (
+                      <TableComponent
+                        key={groupIndex}
+                        headerList={arrayCabecalho}
+                        data={group}
+                        rowList={rowList}
+                        loading={false}
+                        nomeCliente={dataCliente && dataCliente.nome}
+                      />
+                    ))),
+                <GraficosVisaoGeralCarteira
+                  dataCarteira={dataCarteira && dataCarteira}
+                />,
+              ]}
+            />
+          )}
+        </Flex>
+        {/* {viewRelatório && isOk && (
           <Flex
             bgColor={"#fff"}
             my={3}
@@ -127,6 +166,7 @@ function App() {
                   nomeCliente={dataCliente && dataCliente.nome}
                 />
               </div>
+<<<<<<< HEAD
               <div
                 style={{
                   pageBreakInside: "avoid"
@@ -174,9 +214,14 @@ function App() {
                   </Flex>
                 </Flex>
               </div>
+=======
+              <GraficosVisaoGeralCarteira
+                dataCarteira={dataCarteira && dataCarteira}
+              />
+>>>>>>> master
             </div>
           </Flex>
-        )}
+        )} */}
       </Flex>
     </Flex>
   );

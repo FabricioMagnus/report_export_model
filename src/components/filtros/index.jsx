@@ -3,7 +3,6 @@ import handleExportPDF from "../../functions/exportPDF";
 import ReactToPrint from "react-to-print";
 import { useState } from "react";
 import ModalComponent from "../exportModal";
-import { generateReportPdf } from "../reportPDF/functions/reportsPDF";
 import ServicesApi from "../../services/services";
 import {
   IDCAPARELATORIO,
@@ -40,8 +39,8 @@ export default function Filtros({
     try {
       setLoading(true);
       const response = await ServicesApi.solicitarRelatorio(dataForApi, 129);
-      console.log("response", response);
       setLoading(false);
+      setIsOpen(true);
       // setIsOk(true);
     } catch (error) {
       setIsOk(false);
@@ -76,7 +75,7 @@ export default function Filtros({
         Filtrar
       </Button>
 
-      {isOk && (
+      {/* {isOk && (
         <ReactToPrint
           trigger={() => (
             <Button
@@ -90,7 +89,7 @@ export default function Filtros({
           )}
           content={() => componentRef.current}
         />
-      )}
+      )} */}
       {isOk && (
         <Button
           type="button"
@@ -98,23 +97,12 @@ export default function Filtros({
           color={"white"}
           isLoading={loading}
           onClick={() => {
-            handleExportPDF([IDGRAFICOSREVISAOCARTEIRA, IDCAPARELATORIO]);
+            handleExportPDF([IDCAPARELATORIO, IDGRAFICOSREVISAOCARTEIRA]);
           }}
         >
           Exportar
         </Button>
       )}
-      {/* <Button
-        type="button"
-        bgColor={"blue.900"}
-        color={"white"}
-        isLoading={loadingPDF}
-        onClick={() => {
-          downloadSummarizedPdfReport();
-        }}
-      >
-        Exportar com fofinhos
-      </Button> */}
 
       <ModalComponent isOpen={isOpen} setIsOpen={setIsOpen} setIsOk={setIsOk} />
     </Flex>

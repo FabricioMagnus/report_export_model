@@ -1,12 +1,14 @@
 import { Flex, Img, Text } from "@chakra-ui/react";
-import { dataClient } from "../viewPDF/data/dataClient";
+import { dataClient } from "../../components/viewPDF/data/dataClient";
 import { abreviarNome } from "../../functions/formtadores";
+import { IDCAPARELATORIO } from "../../constants/idForHTML";
 
 export default function Capa({ data, filtroData }) {
   return (
     <Flex
       w={"100%"}
-      h={"100vh"}
+      id={IDCAPARELATORIO}
+      h={"86vh"}
       bgGradient="linear(#20A6DF, #123E6B)"
       mx={"auto"}
       shadow={"lg"}
