@@ -119,7 +119,7 @@ export default function TableComponent({
           Visão Geral da Carteira
         </Text>
         <Text fontSize={"2xl"} fontWeight={"bold"} color={"blue.900"}>
-          Cliente : {abreviarNome(nomeCliente)}
+          Cliente: {abreviarNome(nomeCliente)}
         </Text>
       </Flex>
       <Table variant={"striped"}>

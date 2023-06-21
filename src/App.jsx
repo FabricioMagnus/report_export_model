@@ -1,10 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import "./App.css";
-import { Flex, Img } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import Filtros from "./components/filtros";
 import TableComponent from "./components/viewPDF/components/TableComponent";
 import { arrayCabecalho } from "./components/viewPDF/data/cabecalho";
-import { arrayListObjects } from "./components/viewPDF/data/dataTable";
 import { rowList } from "./components/viewPDF/data/rowList";
 import BarChart from "./components/graficos/barChart";
 import PieChart from "./components/graficos/pieChart";
@@ -14,7 +12,6 @@ import {
   IDREVISAOCARTEIRA,
 } from "./constants/idForHTML";
 import Capa from "./components/capa";
-import { dataClient } from "./components/viewPDF/data/dataClient";
 import ServicesApi from "./services/services";
 
 function App() {
@@ -67,6 +64,7 @@ function App() {
       flexDirection={"column"}
       bgColor={"#e5e5e5"}
       justifyContent={"space-evenly"}
+      fontFamily={"roboto"}
     >
       <Flex
         h={"11vh"}
@@ -98,17 +96,16 @@ function App() {
             bgColor={"#fff"}
             my={3}
             mx={"auto"}
-            // px={5}
             borderRadius={"lg"}
             shadow={"lg"}
             w={"98%"}
             height={"fit-content"}
           >
-            <div ref={componentRef} style={{ padding: "15px" }}>
+            <div ref={componentRef} style={{ padding: "15px", fontFamily: "roboto" }}>
               <div
                 id={IDCAPARELATORIO}
                 style={{
-                  pageBreakInside: "avoid",
+                  pageBreakInside: "avoid"
                 }}
               >
                 <Capa
@@ -119,7 +116,7 @@ function App() {
               <div
                 id={IDREVISAOCARTEIRA}
                 style={{
-                  pageBreakInside: "avoid",
+                  pageBreakInside: "avoid"
                 }}
               >
                 <TableComponent
@@ -132,7 +129,7 @@ function App() {
               </div>
               <div
                 style={{
-                  pageBreakInside: "avoid",
+                  pageBreakInside: "avoid"
                 }}
                 id={IDGRAFICOSREVISAOCARTEIRA}
               >
