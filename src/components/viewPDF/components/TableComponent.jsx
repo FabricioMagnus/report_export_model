@@ -10,6 +10,7 @@ import {
   abreviarNome,
 } from "../../../functions/formtadores";
 import CabecalhoRelatorio from "../../CabecalhoRelatório";
+import { IDREVISAOCARTEIRA } from "../../../constants/idForHTML";
 
 export default function TableComponent({
   headerList,
@@ -109,24 +110,33 @@ export default function TableComponent({
   }
 
   return (
-    <Flex
-      flexDirection="column"
-      h={"98%"}
-      my={6}
-      bgColor={"#fff"}
-      w={"98%"}
-      mx={"auto"}
+    <div
+      style={{
+        pageBreakInside: "avoid",
+        width: "98.5%",
+      }}
+      id={IDREVISAOCARTEIRA}
     >
-      <CabecalhoRelatorio titulo={"Visão Geral da Carteira"} />
+      <Flex
+        flexDirection="column"
+        height={"95%"}
+        px={6}
+        m={3}
+        bgColor={"#fff"}
+        w={"98%"}
+        mx={"auto"}
+      >
+        <CabecalhoRelatorio titulo={"Visão Geral da Carteira"} />
 
-      <Flex w={"85%"} mx={"auto"} h={"66vh"} overflowY={"scroll"} my={4}>
-        <Table variant={"striped"}>
-          <Thead>
-            <Tr>{Header_Row}</Tr>
-          </Thead>
-          <Tbody>{Rows}</Tbody>
-        </Table>
+        <Flex w={"90%"} mx={"auto"} h={"80%"} overflowY={"scroll"} mt={8}>
+          <Table variant={"striped"}>
+            <Thead>
+              <Tr>{Header_Row}</Tr>
+            </Thead>
+            <Tbody>{Rows}</Tbody>
+          </Table>
+        </Flex>
       </Flex>
-    </Flex>
+    </div>
   );
 }
