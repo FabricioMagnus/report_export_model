@@ -140,6 +140,9 @@ function App() {
                   nomeCliente={dataCliente && dataCliente.nome}
                 />
               </div>
+              <GraficosVisaoGeralCarteira
+                dataCarteira={dataCarteira && dataCarteira}
+              />
             </div>
           </Flex>
         )}

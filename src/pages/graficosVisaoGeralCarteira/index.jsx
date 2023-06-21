@@ -42,6 +42,7 @@ export default function GraficosVisaoGeralCarteira({ dataCarteira }) {
           width={"49.5%"}
           bgColor={"#fff"}
           minHeight={"500px"}
+          height={"500px"}
           maxHeight={"500px"}
           py={5}
           my={"0.5%"}
