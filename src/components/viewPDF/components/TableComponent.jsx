@@ -9,6 +9,7 @@ import {
   ToLocaleFormat,
   abreviarNome,
 } from "../../../functions/formtadores";
+import CabecalhoRelatorio from "../../CabecalhoRelatório";
 
 export default function TableComponent({
   headerList,
@@ -122,19 +123,16 @@ export default function TableComponent({
         alignItems={"center"}
         mb={3}
       >
-        <Text fontSize={"2xl"} fontWeight={"bold"} color={"blue.900"}>
-          Visão Geral da Carteira
-        </Text>
-        <Text fontSize={"2xl"} fontWeight={"bold"} color={"blue.900"}>
-          Cliente : {abreviarNome(nomeCliente)}
-        </Text>
+        <CabecalhoRelatorio titulo={"Visão Geral da Carteira"} />
       </Flex>
-      <Table variant={"striped"}>
-        <Thead>
-          <Tr>{Header_Row}</Tr>
-        </Thead>
-        <Tbody>{Rows}</Tbody>
-      </Table>
+      <Flex w={"85%"} mx={"auto"} h={"66vh"} overflowY={"scroll"}>
+        <Table variant={"striped"}>
+          <Thead>
+            <Tr>{Header_Row}</Tr>
+          </Thead>
+          <Tbody>{Rows}</Tbody>
+        </Table>
+      </Flex>
     </Flex>
   );
 }
