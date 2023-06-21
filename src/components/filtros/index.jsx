@@ -39,8 +39,8 @@ export default function Filtros({
     try {
       setLoading(true);
       const response = await ServicesApi.solicitarRelatorio(dataForApi, 129);
-      console.log("response", response);
       setLoading(false);
+      setIsOpen(true);
       // setIsOk(true);
     } catch (error) {
       setIsOk(false);
