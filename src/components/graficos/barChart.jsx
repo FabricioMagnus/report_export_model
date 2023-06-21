@@ -97,7 +97,7 @@ function BarChart({ dataChart }) {
           Por tipo de ativo (enquadramento ou legislação)
         </Text>
       </Box>
-      <Flex w={"70%"} h={"100%"} >
+      <Flex w={"100%"} h={"100%"}>
         <Bar options={options} data={data} id={IDGRAFICOSREVISAOCARTEIRA} />
       </Flex>
     </Box>

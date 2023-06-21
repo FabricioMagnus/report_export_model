@@ -13,9 +13,11 @@ import {
   IDGRAFICOSREVISAOCARTEIRA,
   IDREVISAOCARTEIRA,
 } from "./constants/idForHTML";
-import Capa from "./components/capa";
+import Capa from "./pages/capa";
 import { dataClient } from "./components/viewPDF/data/dataClient";
 import ServicesApi from "./services/services";
+import SwipperBuilder from "./components/swipper";
+import GraficosVisaoGeralCarteira from "./pages/graficosVisaoGeralCarteira";
 
 function App() {
   const componentRef = useRef();
@@ -93,6 +95,14 @@ function App() {
         justifyContent={"space-evenly"}
         alignItems={"center"}
       >
+        <Flex w={"100%"} h={"90vh"} bgColor={"#fff"} p={5}>
+          <SwipperBuilder
+            components={[
+              <Capa data={dataClient} filtroData={"2023-03-01"} />,
+              <GraficosVisaoGeralCarteira dataCarteira={arrayListObjects} />,
+            ]}
+          />
+        </Flex>
         {viewRelatório && isOk && (
           <Flex
             bgColor={"#fff"}
@@ -129,53 +139,6 @@ function App() {
                   loading={false}
                   nomeCliente={dataCliente && dataCliente.nome}
                 />
-              </div>
-              <div
-                style={{
-                  pageBreakInside: "avoid",
-                }}
-                id={IDGRAFICOSREVISAOCARTEIRA}
-              >
-                <Flex
-                  bgColor={"#fff"}
-                  my={3}
-                  mx={"auto"}
-                  px={6}
-                  borderRadius={"lg"}
-                  w={"100%"}
-                  justifyContent={"space-evenly"}
-                  height={"fit-content"}
-                >
-                  <Flex
-                    justifyContent={"center"}
-                    alignItems={"flex-start"}
-                    width={"49.5%"}
-                    bgColor={"#fff"}
-                    minHeight={"500px"}
-                    height={"500px"}
-                    mt={"0.5%"}
-                    py={5}
-                    my={"0.5%"}
-                    border={"1px solid #e5e5e5"}
-                    borderRadius={"lg"}
-                  >
-                    <PieChart dataChart={dataCarteira && dataCarteira} />
-                  </Flex>
-                  <Flex
-                    justifyContent={"center"}
-                    alignItems={"flex-start"}
-                    width={"49.5%"}
-                    bgColor={"#fff"}
-                    minHeight={"500px"}
-                    maxHeight={"500px"}
-                    py={5}
-                    my={"0.5%"}
-                    border={"1px solid #e5e5e5"}
-                    borderRadius={"lg"}
-                  >
-                    <BarChart dataChart={dataCarteira && dataCarteira} />
-                  </Flex>
-                </Flex>
               </div>
             </div>
           </Flex>

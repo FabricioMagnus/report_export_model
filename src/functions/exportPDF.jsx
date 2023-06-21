@@ -118,13 +118,13 @@ export default function handleExportPDF(ids) {
       const pdfAspectRatio = Math.min(
         pdfWidth / imgWidth,
         pdfHeight / imgHeight
-      );
+      ); // Ajustar o aspect ratio, dimensões da imagem
       const marginLeft = 10; // Margem esquerda em mm
       const marginTop = 10; // Margem superior em mm
       const marginRight = 10; // Margem direita em mm
       const marginBottom = 10; // Margem inferior em mm
       // const imgX = (pdfWidth - imgWidth * pdfAspectRatio) / 2;
-      const imgX = 3;
+      const imgX = 3; // adiciona recuo de imagem a esquerda
       const imgY = 10; // adiciona recuo de imagem acima e abaixo
 
       if (imgHeight > imgWidth) {
