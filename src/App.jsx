@@ -103,6 +103,13 @@ function App() {
                   data={dataCliente && dataCliente}
                   filtroData={filtroData}
                 />,
+                <TableComponent
+                  headerList={arrayCabecalho}
+                  data={dataCarteira && dataCarteira}
+                  rowList={rowList}
+                  loading={false}
+                  nomeCliente={dataCliente && dataCliente.nome}
+                />,
                 <GraficosVisaoGeralCarteira
                   dataCarteira={dataCarteira && dataCarteira}
                 />,

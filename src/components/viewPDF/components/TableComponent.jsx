@@ -108,7 +108,14 @@ export default function TableComponent({
   }
 
   return (
-    <Flex flexDirection="column" h={"100%"} my={6}>
+    <Flex
+      flexDirection="column"
+      h={"98%"}
+      my={6}
+      bgColor={"#fff"}
+      w={"98%"}
+      mx={"auto"}
+    >
       <Flex
         w={"100%"}
         justifyContent={"space-evenly"}
