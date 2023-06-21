@@ -98,7 +98,7 @@ export default function Filtros({
           color={"white"}
           isLoading={loading}
           onClick={() => {
-            handleExportPDF([IDGRAFICOSREVISAOCARTEIRA, IDCAPARELATORIO]);
+            handleExportPDF([IDCAPARELATORIO, IDGRAFICOSREVISAOCARTEIRA]);
           }}
         >
           Exportar

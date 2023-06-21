@@ -103,13 +103,16 @@ function splitImageIntoPages(
   });
 }
 
-export default function handleExportPDF(ids) {
+export default async function handleExportPDF(ids) {
+
   const pdf = new jsPDF("landscape", "mm", "a4", true); // Formato paisagem
 
   const promises = ids.map((id) => {
+
     const input = document.getElementById(id);
 
     return html2canvas(input).then((canvas) => {
+
       const imgData = canvas.toDataURL("image/png");
       const imgWidth = canvas.width;
       const imgHeight = canvas.height;
@@ -165,8 +168,12 @@ export default function handleExportPDF(ids) {
       }
     });
   });
-
-  Promise.all(promises).then(() => {
+  
+  await Promise.all(promises).then(() => {
+    pdf.deletePage(1);
     pdf.save(`relatorio-dinamico.pdf`);
   });
+  // await Promise.all(promises);
+  pdf.deletePage(1); // Remove a primeira página
+  pdf.save(`relatorio-dinamico.pdf`);
 }
