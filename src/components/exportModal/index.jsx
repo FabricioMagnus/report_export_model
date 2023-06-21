@@ -48,11 +48,15 @@ const ModalComponent = ({ isOpen, setIsOpen, setIsOk }) => {
   // return () => {
   //   connection.stop();
   // };
+
+  useEffect(() => {
+    setEtapaAtual(0);
+  }, []);
   useEffect(() => {
     if (etapaAtual < totalEtapas) {
       setTimeout(() => {
         setEtapaAtual(etapaAtual + 1);
-      }, 2000);
+      }, 2500);
     }
   }, [etapaAtual]);
 
