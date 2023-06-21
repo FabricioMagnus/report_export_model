@@ -56,7 +56,7 @@ const ModalComponent = ({ isOpen, setIsOpen, setIsOk }) => {
     if (isOpen === true && etapaAtual < totalEtapas) {
       setTimeout(() => {
         setEtapaAtual(etapaAtual + 1);
-      }, 1800);
+      }, 1000);
     }
   }, [etapaAtual, isOpen]);
 
