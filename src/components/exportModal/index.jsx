@@ -30,28 +30,37 @@ const ModalComponent = ({ isOpen, setIsOpen, setIsOk }) => {
     setIsOpen(false);
   };
 
-  const [etapaAtual, setEtapaAtual] = useState(4);
+  const [etapaAtual, setEtapaAtual] = useState(0);
+
+  // const connection = new HubConnectionBuilder()
+  //   .withUrl(LinkWebsocket, {
+  //     transport: HttpTransportType.WebSockets | HttpTransportType.LongPolling,
+  //   })
+  //   .configureLogging(LogLevel.Information)
+  //   .build();
+
+  // connection.on("ReceiveStatusUpdate", (novaEtapa) => {
+  //   setEtapaAtual(novaEtapa);
+  // });
+
+  // connection.start();
+
+  // return () => {
+  //   connection.stop();
+  // };
 
   useEffect(() => {
-    const connection = new HubConnectionBuilder()
-      .withUrl(LinkWebsocket, {
-        transport: HttpTransportType.WebSockets | HttpTransportType.LongPolling,
-      })
-      .configureLogging(LogLevel.Information)
-      .build();
-
-    connection.on("ReceiveStatusUpdate", (novaEtapa) => {
-      setEtapaAtual(novaEtapa);
-    });
-
-    connection.start();
-
-    return () => {
-      connection.stop();
-    };
+    setEtapaAtual(0);
   }, []);
+  useEffect(() => {
+    if (etapaAtual < totalEtapas) {
+      setTimeout(() => {
+        setEtapaAtual(etapaAtual + 1);
+      }, 2500);
+    }
+  }, [etapaAtual]);
 
-  const totalEtapas = 4;
+  const totalEtapas = 10;
 
   return (
     <div>

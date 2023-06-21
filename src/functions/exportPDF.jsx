@@ -104,7 +104,7 @@ function splitImageIntoPages(
 }
 
 export default function handleExportPDF(ids) {
-  const pdf = new jsPDF("landscape", "mm", "a4"); // Formato paisagem
+  const pdf = new jsPDF("landscape", "mm", "a4", true); // Formato paisagem
 
   const promises = ids.map((id) => {
     const input = document.getElementById(id);
@@ -113,13 +113,19 @@ export default function handleExportPDF(ids) {
       const imgData = canvas.toDataURL("image/png");
       const imgWidth = canvas.width;
       const imgHeight = canvas.height;
-      const pdfWidth = 297; // Largura A4 em mm
-      const pdfAspectRatio = imgWidth / imgHeight;
-      const pdfHeight = pdfWidth / pdfAspectRatio;
+      const pdfWidth = pdf.internal.pageSize.getWidth(); // Largura A4 em mm
+      const pdfHeight = pdf.internal.pageSize.getHeight(); // Altura A4 em mm
+      const pdfAspectRatio = Math.min(
+        pdfWidth / imgWidth,
+        pdfHeight / imgHeight
+      );
       const marginLeft = 10; // Margem esquerda em mm
       const marginTop = 10; // Margem superior em mm
       const marginRight = 10; // Margem direita em mm
       const marginBottom = 10; // Margem inferior em mm
+      // const imgX = (pdfWidth - imgWidth * pdfAspectRatio) / 2;
+      const imgX = 3;
+      const imgY = 10; // adiciona recuo de imagem acima e abaixo
 
       if (imgHeight > imgWidth) {
         // Dividir a imagem em várias páginas A4
@@ -151,10 +157,10 @@ export default function handleExportPDF(ids) {
         pdf.addImage(
           imgData,
           "PNG",
-          marginLeft,
-          marginTop,
-          contentWidth,
-          contentHeight
+          imgX,
+          imgY,
+          imgWidth * pdfAspectRatio - 8,
+          imgHeight * pdfAspectRatio
         );
       }
     });

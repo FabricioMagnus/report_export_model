@@ -134,6 +134,7 @@ function App() {
                 style={{
                   pageBreakInside: "avoid",
                 }}
+                id={IDGRAFICOSREVISAOCARTEIRA}
               >
                 <Flex
                   bgColor={"#fff"}

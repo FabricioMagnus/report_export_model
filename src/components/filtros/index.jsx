@@ -5,7 +5,11 @@ import { useState } from "react";
 import ModalComponent from "../exportModal";
 import { generateReportPdf } from "../reportPDF/functions/reportsPDF";
 import ServicesApi from "../../services/services";
-import { IDCAPARELATORIO } from "../../constants/idForHTML";
+import {
+  IDCAPARELATORIO,
+  IDGRAFICOSREVISAOCARTEIRA,
+  IDREVISAOCARTEIRA,
+} from "../../constants/idForHTML";
 
 export default function Filtros({
   componentRef,
@@ -94,7 +98,7 @@ export default function Filtros({
           color={"white"}
           isLoading={loading}
           onClick={() => {
-            handleExportPDF([IDCAPARELATORIO]);
+            handleExportPDF([IDGRAFICOSREVISAOCARTEIRA, IDCAPARELATORIO]);
           }}
         >
           Exportar

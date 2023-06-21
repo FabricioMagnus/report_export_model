@@ -2,7 +2,13 @@
 /* eslint-disable react/jsx-key */
 import { Table, Thead, Tbody, Tr, Th, Td, Flex, Text } from "@chakra-ui/react";
 import { Spinner } from "@chakra-ui/react";
-import { CNPJFormater, abreviarNome } from "../../../functions/formtadores";
+import {
+  CNPJFormater,
+  CPFFormater,
+  CaptionFormater,
+  ToLocaleFormat,
+  abreviarNome,
+} from "../../../functions/formtadores";
 
 export default function TableComponent({
   headerList,
@@ -12,28 +18,6 @@ export default function TableComponent({
   nomeCliente,
 }) {
   const Rows = data.map((obj, index) => {
-    function CaptionFormater(text) {
-      return text
-        .toLowerCase()
-        .replace(/(^\w{1})|(\s+\w{1})/g, (letra) => letra.toUpperCase());
-    }
-
-    function ToLocaleFormat(value) {
-      return value.toLocaleString("pt-BR", {
-        style: "currency",
-        currency: "BRL",
-      });
-    }
-
-    function CPFFormater(cpf) {
-      const CPF = cpf;
-      return CPF.replace(/\D/g, "")
-        .replace(/(\d{3})(\d)/, "$1.$2")
-        .replace(/(\d{3})(\d)/, "$1.$2")
-        .replace(/(\d{3})(\d)/, "$1-$2")
-        .replace(/(-\d{2})\d+?$/, "$1");
-    }
-
     const arrayToLocaleFormater = [
       "valor",
       "saldo",
