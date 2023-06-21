@@ -127,7 +127,7 @@ export default function TableComponent({
         mx={"auto"}
       >
         <CabecalhoRelatorio titulo={"Visão Geral da Carteira"} />
-        <Flex w={"90%"} mx={"auto"} h={"80%"} overflowY={"scroll"} mt={8}>
+        <Flex w={"90%"} mx={"auto"} h={"80%"} mt={8}>
           <Table variant={"striped"}>
             <Thead>
               <Tr>{Header_Row}</Tr>
