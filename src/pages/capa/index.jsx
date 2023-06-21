@@ -6,7 +6,7 @@ export default function Capa({ data, filtroData }) {
   return (
     <Flex
       w={"100%"}
-      h={"100vh"}
+      h={"86vh"}
       bgGradient="linear(#20A6DF, #123E6B)"
       mx={"auto"}
       shadow={"lg"}

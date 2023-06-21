@@ -27,7 +27,7 @@ export default function SwiperBuilder({ components }) {
       {components &&
         components.map((component, index) => (
           <SwiperSlide key={index}>
-            <Flex w={"100%"} h={"100%"} bgColor={"#b2b2b2"}>
+            <Flex w={"100%"} h={"100%"} bgColor={"#4e4e4e"}>
               {component}
             </Flex>
           </SwiperSlide>
