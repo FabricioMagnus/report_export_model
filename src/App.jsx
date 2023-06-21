@@ -103,13 +103,26 @@ function App() {
                   data={dataCliente && dataCliente}
                   filtroData={filtroData}
                 />,
-                <TableComponent
-                  headerList={arrayCabecalho}
-                  data={dataCarteira && dataCarteira}
-                  rowList={rowList}
-                  loading={false}
-                  nomeCliente={dataCliente && dataCliente.nome}
-                />,
+                ...(dataCarteira &&
+                  dataCarteira
+                    .reduce((result, item, index) => {
+                      const chunkIndex = Math.floor(index / 7);
+                      if (!result[chunkIndex]) {
+                        result[chunkIndex] = [];
+                      }
+                      result[chunkIndex].push(item);
+                      return result;
+                    }, [])
+                    .map((group, groupIndex) => (
+                      <TableComponent
+                        key={groupIndex}
+                        headerList={arrayCabecalho}
+                        data={group}
+                        rowList={rowList}
+                        loading={false}
+                        nomeCliente={dataCliente && dataCliente.nome}
+                      />
+                    ))),
                 <GraficosVisaoGeralCarteira
                   dataCarteira={dataCarteira && dataCarteira}
                 />,
