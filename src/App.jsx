@@ -95,7 +95,7 @@ function App() {
         justifyContent={"space-evenly"}
         alignItems={"center"}
       >
-        <Flex w={"100%"} h={"90vh"} bgColor={"#fff"} p={5}>
+        <Flex w={"100%"} h={"89vh"} bgColor={"#fff"} p={5}>
           <SwipperBuilder
             components={[
               <Capa data={dataClient} filtroData={"2023-03-01"} />,
@@ -103,7 +103,7 @@ function App() {
             ]}
           />
         </Flex>
-        {viewRelatório && isOk && (
+        {/* {viewRelatório && isOk && (
           <Flex
             bgColor={"#fff"}
             my={3}
@@ -145,7 +145,7 @@ function App() {
               />
             </div>
           </Flex>
-        )}
+        )} */}
       </Flex>
     </Flex>
   );
