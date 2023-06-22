@@ -53,8 +53,8 @@ export default function TableComponent({
           <Td>{}</Td>
           <Td>{}</Td>
           <Td>{}</Td>
-          <Td>{obj.participacao}</Td>
-          <Td>{obj.saldo}</Td>
+          <Td bgColor={"#20A6DF"}>{`${obj.participacao.toFixed(5)} %`}</Td>
+          <Td>{ToLocaleFormat(obj.saldo)}</Td>
         </Tr>
       );
     }
@@ -62,22 +62,22 @@ export default function TableComponent({
     if (obj.isFooter && obj.isFooter === true) {
       return (
         <Tr
-          bgColor={"#20A6DF"}
+          bgColor={"#123E6B"}
           color={"#000"}
           sx={{ lineHeight: "1" }}
           fontSize={"11px"}
           key={index}
         >
-          <Td bgColor={"#20A6DF"}>{obj.nomeFundo}</Td>
-          <Td bgColor={"#20A6DF"}>{}</Td>
-          <Td bgColor={"#20A6DF"}>{}</Td>
-          <Td bgColor={"#20A6DF"}>{}</Td>
-          <Td bgColor={"#20A6DF"}>{}</Td>
-          <Td bgColor={"#20A6DF"}>{}</Td>
-          <Td bgColor={"#20A6DF"}>{}</Td>
-          <Td bgColor={"#20A6DF"}>{}</Td>
-          <Td bgColor={"#20A6DF"}>{obj.participacao}</Td>
-          <Td bgColor={"#20A6DF"}>{obj.saldo}</Td>
+          <Td bgColor={"#123E6B"}>{obj.nomeFundo}</Td>
+          <Td bgColor={"#123E6B"}>{}</Td>
+          <Td bgColor={"#123E6B"}>{}</Td>
+          <Td bgColor={"#123E6B"}>{}</Td>
+          <Td bgColor={"#123E6B"}>{}</Td>
+          <Td bgColor={"#123E6B"}>{}</Td>
+          <Td bgColor={"#123E6B"}>{}</Td>
+          <Td bgColor={"#123E6B"}>{}</Td>
+          <Td bgColor={"#123E6B"}>{`${obj.participacao.toFixed(5)} %`}</Td>
+          <Td bgColor={"#123E6B"}>{ToLocaleFormat(obj.saldo)}</Td>
         </Tr>
       );
     }
@@ -87,7 +87,9 @@ export default function TableComponent({
 
       const rowCells = rowList.map((key, index) => {
         if (key === "nomeFundo" || key === "enquadramentoLegislacao") {
-          return <Td style={{ wordWrap: "break-word" }}>{obj[key]}</Td>;
+          return (
+            <Td style={{ wordWrap: "break-word" }}>{obj[key].slice(0, 30)}</Td>
+          );
         }
         if (key === "patrimonioLiquido") {
           return (
@@ -103,10 +105,10 @@ export default function TableComponent({
         if (key === "saldo") {
           return <Td>{ToLocaleFormat(obj[key])}</Td>;
         }
-        // if (key === "participacao") {
-        //   const total = data.reduce((a, b) => a + b.saldo, 0);
-        //   return <Td>{`${(obj.saldo / total).toFixed(5)} %`}</Td>;
-        // }
+        if (key === "participacao") {
+          const total = data.reduce((a, b) => a + b.saldo, 0);
+          return <Td>{`${(obj.saldo / total).toFixed(5)} %`}</Td>;
+        }
         // if (arrayToLocaleFormater.includes(key.toLowerCase())) {
         //   return <Td>{ToLocaleFormat(obj[key])}</Td>;
         // }
