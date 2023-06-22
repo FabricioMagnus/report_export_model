@@ -130,6 +130,7 @@ export default function TableComponent({
             height: "25px",
           }}
           // bgColor={"#20A6DF"}
+          borderRadius={"5px"}
           sx={{ lineHeight: "1" }}
           fontSize={"11px"}
           key={index}
@@ -192,6 +193,7 @@ export default function TableComponent({
           <Table
             variant={"simple"}
             sx={{ display: "table", tableLayout: "auto" }}
+            borderRadius={"5px"}
           >
             <Thead>
               <Tr>{Header_Row}</Tr>
