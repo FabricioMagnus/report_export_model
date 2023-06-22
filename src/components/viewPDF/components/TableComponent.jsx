@@ -63,7 +63,8 @@ export default function TableComponent({
       return (
         <Tr
           bgColor={"#123E6B"}
-          color={"#000"}
+          color={"#fff"}
+          fontWeight={"bold"}
           sx={{ lineHeight: "1" }}
           fontSize={"11px"}
           key={index}
@@ -106,8 +107,7 @@ export default function TableComponent({
           return <Td>{ToLocaleFormat(obj[key])}</Td>;
         }
         if (key === "participacao") {
-          const total = data.reduce((a, b) => a + b.saldo, 0);
-          return <Td>{`${(obj.saldo / total).toFixed(5)} %`}</Td>;
+          return <Td>{`${obj[key] !== 0 ? obj[key].toFixed(5) : 0} %`}</Td>;
         }
         // if (arrayToLocaleFormater.includes(key.toLowerCase())) {
         //   return <Td>{ToLocaleFormat(obj[key])}</Td>;
