@@ -40,7 +40,7 @@ export default function TableComponent({
             height: "25px",
           }}
           bgColor={"#20A6DF"}
-          color={"#000"}
+          color={"#fff"}
           sx={{ lineHeight: "1" }}
           fontSize={"11px"}
           key={index}
