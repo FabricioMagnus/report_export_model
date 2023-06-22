@@ -133,7 +133,6 @@ export default function TableComponent({
         px={6}
         m={3}
         bgColor={"#fff"}
-        // bgColor={"red"}
         w={"98%"}
         mx={"auto"}
       >
@@ -142,12 +141,7 @@ export default function TableComponent({
           nomeCliente={nomeCliente}
           cnpjCliente={cnpjCliente}
         />
-        <Flex
-          w={"90%"}
-          mx={"auto"}
-          // h={"80%"}
-          mt={8}
-        >
+        <Flex w={"90%"} mx={"auto"} mt={8}>
           <Table
             variant={"striped"}
             sx={{ display: "table", tableLayout: "auto" }}
