@@ -83,7 +83,7 @@ export default function TableComponent({
 
     return (
       <Tr
-        // style={{ pageBreakInside: "avoid", maxHeight: "25px", height: "25px" }}
+        style={{ pageBreakInside: "avoid", maxHeight: "25px", height: "25px" }}
         sx={{ lineHeight: "1" }}
         fontSize={"11px"}
         key={index}
@@ -142,7 +142,12 @@ export default function TableComponent({
           nomeCliente={nomeCliente}
           cnpjCliente={cnpjCliente}
         />
-        <Flex w={"90%"} mx={"auto"} h={"80%"} mt={8}>
+        <Flex
+          w={"90%"}
+          mx={"auto"}
+          // h={"80%"}
+          mt={8}
+        >
           <Table
             variant={"striped"}
             sx={{ display: "table", tableLayout: "auto" }}

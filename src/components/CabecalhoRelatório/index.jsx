@@ -14,6 +14,7 @@ export default function CabecalhoRelatorio({
       alignItems={"center"}
       p={5}
       borderBottom={"1px solid #123E6B"}
+      mt={5}
     >
       <Text color={"#123E6B"} fontSize={"30px"} fontWeight={"bold"}>
         {titulo}

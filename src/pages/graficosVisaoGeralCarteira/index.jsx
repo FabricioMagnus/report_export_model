@@ -32,7 +32,13 @@ export default function GraficosVisaoGeralCarteira({
           nomeCliente={nomeCliente}
           cnpjCliente={cnpjCliente}
         />
-        <Flex w={"100%"} justifyContent={"space-evenly"}>
+        <Flex
+          w={"90%"}
+          mx={"auto"}
+          h={"80%"}
+          mt={8}
+          justifyContent={"space-evenly"}
+        >
           <Flex
             justifyContent={"center"}
             alignItems={"flex-start"}
