@@ -83,7 +83,11 @@ export default function TableComponent({
 
     return (
       <Tr
-        style={{ pageBreakInside: "avoid", maxHeight: "25px", height: "25px" }}
+        style={{
+          pageBreakInside: "avoid",
+          maxHeight: "25px",
+          height: "25px",
+        }}
         sx={{ lineHeight: "1" }}
         fontSize={"11px"}
         key={index}
