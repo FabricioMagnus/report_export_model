@@ -31,8 +31,6 @@ export default function Filtros({
     IDGRAFICOSREVISAOCARTEIRA,
   ];
 
-  console.log("arrayparaExportação", arrayparaExportação);
-
   async function downloadSummarizedPdfReport() {
     setLoadingPDF(true);
     try {
