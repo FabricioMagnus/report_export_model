@@ -31,71 +31,110 @@ export default function TableComponent({
       "valorRestante",
     ];
 
-    const arrayToCaptionFormat = ["legislacao", "tipo"];
+    if (obj.isHeader && obj.isHeader === true) {
+      return (
+        <Tr
+          style={{
+            pageBreakInside: "avoid",
+            maxHeight: "25px",
+            height: "25px",
+          }}
+          bgColor={"#20A6DF"}
+          color={"#000"}
+          sx={{ lineHeight: "1" }}
+          fontSize={"11px"}
+          key={index}
+        >
+          <Td>{obj.nomeFundo}</Td>
+          <Td>{}</Td>
+          <Td>{}</Td>
+          <Td>{}</Td>
+          <Td>{}</Td>
+          <Td>{}</Td>
+          <Td>{}</Td>
+          <Td>{}</Td>
+          <Td>{obj.participacao}</Td>
+          <Td>{obj.saldo}</Td>
+        </Tr>
+      );
+    }
 
-    const arrayToPercentFormat = ["taxaAdm"];
+    if (obj.isFooter && obj.isFooter === true) {
+      return (
+        <Tr
+          bgColor={"#20A6DF"}
+          color={"#000"}
+          sx={{ lineHeight: "1" }}
+          fontSize={"11px"}
+          key={index}
+        >
+          <Td bgColor={"#20A6DF"}>{obj.nomeFundo}</Td>
+          <Td bgColor={"#20A6DF"}>{}</Td>
+          <Td bgColor={"#20A6DF"}>{}</Td>
+          <Td bgColor={"#20A6DF"}>{}</Td>
+          <Td bgColor={"#20A6DF"}>{}</Td>
+          <Td bgColor={"#20A6DF"}>{}</Td>
+          <Td bgColor={"#20A6DF"}>{}</Td>
+          <Td bgColor={"#20A6DF"}>{}</Td>
+          <Td bgColor={"#20A6DF"}>{obj.participacao}</Td>
+          <Td bgColor={"#20A6DF"}>{obj.saldo}</Td>
+        </Tr>
+      );
+    }
 
-    //saldoPeriodo
+    if (!obj.isHeader && !obj.isFooter) {
+      const arrayToCaptionFormat = ["legislacao", "tipo"];
 
-    const rowCells = rowList.map((key, index) => {
-      if (key.toLowerCase().includes("telefone")) {
-        return <Td>{PhoneFormater(obj[key])}</Td>;
-      }
-      if (key === "nomeFundo" || key === "enquadramentoLegislacao") {
-        return (
-          <Td style={{ wordWrap: "break-word" }}>{obj[key].slice(0, 30)}</Td>
-        );
-      }
-      if (key === "patrimonioLiquido") {
-        return (
-          <Td minWidth={"120px"}>{`${(obj.saldo === 0
-            ? 0
-            : obj.saldo / obj[key]
-          ).toFixed(5)} %`}</Td>
-        );
-      }
-      if (key === "taxaAdm") {
-        return <Td>{`${obj[key]} %`}</Td>;
-      }
-      if (key === "participacao") {
-        const total = data.reduce((a, b) => a + b.saldo, 0);
-        return <Td>{`${(obj.saldo / total).toFixed(5)} %`}</Td>;
-      }
-      if (arrayToLocaleFormater.includes(key.toLowerCase())) {
-        return <Td>{ToLocaleFormat(obj[key])}</Td>;
-      }
-      // if (arrayToPercentFormat.includes(key.toLowerCase())) {
-      //   return <Td>{`${obj[key]} %`}</Td>;
-      // }
-      if (arrayToCaptionFormat.includes(key.toLowerCase())) {
-        return <Td>{CaptionFormater(obj[key])}</Td>;
-      }
-      if (
-        key.toLowerCase().includes("cpf") ||
-        key.toLowerCase().includes("cnpj")
-      ) {
-        if (obj[key].length === 11) {
-          return <Td>{CPFFormater(obj[key])}</Td>;
+      const rowCells = rowList.map((key, index) => {
+        if (key === "nomeFundo" || key === "enquadramentoLegislacao") {
+          return <Td style={{ wordWrap: "break-word" }}>{obj[key]}</Td>;
         }
-        return <Td>{CNPJFormater(obj[key])}</Td>;
-      }
-      return <Td>{obj[key]}</Td>;
-    });
+        if (key === "patrimonioLiquido") {
+          return (
+            <Td minWidth={"120px"}>{`${(obj.saldo === 0
+              ? 0
+              : obj.saldo / obj[key]
+            ).toFixed(5)} %`}</Td>
+          );
+        }
+        if (key === "taxaAdm") {
+          return <Td>{`${obj[key]} %`}</Td>;
+        }
+        if (key === "saldo") {
+          return <Td>{ToLocaleFormat(obj[key])}</Td>;
+        }
+        // if (key === "participacao") {
+        //   const total = data.reduce((a, b) => a + b.saldo, 0);
+        //   return <Td>{`${(obj.saldo / total).toFixed(5)} %`}</Td>;
+        // }
+        // if (arrayToLocaleFormater.includes(key.toLowerCase())) {
+        //   return <Td>{ToLocaleFormat(obj[key])}</Td>;
+        // }
+        // if (arrayToPercentFormat.includes(key.toLowerCase())) {
+        //   return <Td>{`${obj[key]} %`}</Td>;
+        // }
+        // if (arrayToCaptionFormat.includes(key.toLowerCase())) {
+        //   return <Td>{CaptionFormater(obj[key])}</Td>;
+        // }
 
-    return (
-      <Tr
-        style={{
-          pageBreakInside: "avoid",
-          maxHeight: "25px",
-          height: "25px",
-        }}
-        sx={{ lineHeight: "1" }}
-        fontSize={"11px"}
-        key={index}
-      >
-        {[...rowCells]}
-      </Tr>
-    );
+        return <Td>{obj[key]}</Td>;
+      });
+
+      return (
+        <Tr
+          style={{
+            pageBreakInside: "avoid",
+            maxHeight: "25px",
+            height: "25px",
+          }}
+          sx={{ lineHeight: "1" }}
+          fontSize={"11px"}
+          key={index}
+        >
+          {[...rowCells]}
+        </Tr>
+      );
+    }
   });
 
   const Header_Row =
