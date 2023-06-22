@@ -41,9 +41,7 @@ export default function TableComponent({
       }
       if (key === "nomeFundo" || key === "enquadramentoLegislacao") {
         return (
-          <Td style={{ wordWrap: "break-word" }}>
-            {CaptionFormater(obj[key])}
-          </Td>
+          <Td style={{ wordWrap: "break-word" }}>{obj[key].slice(0, 30)}</Td>
         );
       }
       if (key === "patrimonioLiquido") {
@@ -83,7 +81,12 @@ export default function TableComponent({
     });
 
     return (
-      <Tr style={{ pageBreakInside: "avoid" }} fontSize={"12px"} key={index}>
+      <Tr
+        // style={{ pageBreakInside: "avoid", maxHeight: "25px", height: "25px" }}
+        sx={{ lineHeight: "1" }}
+        fontSize={"11px"}
+        key={index}
+      >
         {[...rowCells]}
       </Tr>
     );
@@ -92,7 +95,13 @@ export default function TableComponent({
   const Header_Row =
     headerList &&
     headerList.map((item, index) => (
-      <Th fontSize={"11px"} bgColor={"blue.900"} color={"white"} key={index}>
+      <Th
+        fontSize={"10px"}
+        bgColor={"blue.900"}
+        color={"white"}
+        key={index}
+        style={{ maxHeight: "20px" }}
+      >
         {item}
       </Th>
     ));
@@ -123,12 +132,19 @@ export default function TableComponent({
         px={6}
         m={3}
         bgColor={"#fff"}
+        // bgColor={"red"}
         w={"98%"}
         mx={"auto"}
       >
-        <CabecalhoRelatorio titulo={"Visão Geral da Carteira"} />
+        <CabecalhoRelatorio
+          titulo={"Visão Geral da Carteira"}
+          nomeCliente={nomeCliente}
+        />
         <Flex w={"90%"} mx={"auto"} h={"80%"} mt={8}>
-          <Table variant={"striped"}>
+          <Table
+            variant={"striped"}
+            sx={{ display: "table", tableLayout: "auto" }}
+          >
             <Thead>
               <Tr>{Header_Row}</Tr>
             </Thead>
