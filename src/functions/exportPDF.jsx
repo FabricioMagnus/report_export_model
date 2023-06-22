@@ -169,6 +169,8 @@ export default async function handleExportPDF(ids) {
     }
   }
 
+  await Promise.all(elements);
+
   pdf.deletePage(1);
   pdf.save(`relatorio-dinamico.pdf`);
 }
