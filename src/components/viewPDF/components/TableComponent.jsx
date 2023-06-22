@@ -129,6 +129,7 @@ export default function TableComponent({
             maxHeight: "25px",
             height: "25px",
           }}
+          // bgColor={"#20A6DF"}
           sx={{ lineHeight: "1" }}
           fontSize={"11px"}
           key={index}
@@ -189,7 +190,7 @@ export default function TableComponent({
         />
         <Flex w={"90%"} mx={"auto"} mt={8}>
           <Table
-            variant={"striped"}
+            variant={"simple"}
             sx={{ display: "table", tableLayout: "auto" }}
           >
             <Thead>
