@@ -126,10 +126,13 @@ function App() {
                         rowList={rowList}
                         loading={false}
                         nomeCliente={dataCliente && dataCliente.nome}
+                        cnpjCliente={dataCliente && dataCliente.cnpj}
                       />
                     ))),
                 <GraficosVisaoGeralCarteira
                   dataCarteira={dataCarteira && dataCarteira}
+                  nomeCliente={dataCliente && dataCliente.nome}
+                  cnpjCliente={dataCliente && dataCliente.cnpj}
                 />,
               ]}
             />

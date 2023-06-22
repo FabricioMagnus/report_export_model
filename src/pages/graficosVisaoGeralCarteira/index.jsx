@@ -4,7 +4,11 @@ import BarChart from "../../components/graficos/barChart";
 import { IDGRAFICOSREVISAOCARTEIRA } from "../../constants/idForHTML";
 import CabecalhoRelatorio from "../../components/CabecalhoRelatório";
 
-export default function GraficosVisaoGeralCarteira({ dataCarteira }) {
+export default function GraficosVisaoGeralCarteira({
+  dataCarteira,
+  nomeCliente,
+  cnpjCliente,
+}) {
   return (
     <div
       style={{
@@ -23,7 +27,11 @@ export default function GraficosVisaoGeralCarteira({ dataCarteira }) {
         alignItems={"center"}
         flexDir={"column"}
       >
-        <CabecalhoRelatorio titulo={"Visão Geral da Carteira"} />
+        <CabecalhoRelatorio
+          titulo={"Visão Geral da Carteira"}
+          nomeCliente={nomeCliente}
+          cnpjCliente={cnpjCliente}
+        />
         <Flex w={"100%"} justifyContent={"space-evenly"}>
           <Flex
             justifyContent={"center"}

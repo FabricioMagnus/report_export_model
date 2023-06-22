@@ -18,6 +18,7 @@ export default function TableComponent({
   rowList,
   loading,
   nomeCliente,
+  cnpjCliente,
 }) {
   const Rows = data.map((obj, index) => {
     const arrayToLocaleFormater = [
@@ -139,6 +140,7 @@ export default function TableComponent({
         <CabecalhoRelatorio
           titulo={"Visão Geral da Carteira"}
           nomeCliente={nomeCliente}
+          cnpjCliente={cnpjCliente}
         />
         <Flex w={"90%"} mx={"auto"} h={"80%"} mt={8}>
           <Table
