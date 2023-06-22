@@ -18,6 +18,7 @@ import { dataClient } from "./components/viewPDF/data/dataClient";
 import ServicesApi from "./services/services";
 import SwipperBuilder from "./components/swipper";
 import GraficosVisaoGeralCarteira from "./pages/graficosVisaoGeralCarteira";
+import Sumario from "./pages/sumario";
 
 function App() {
   const componentRef = useRef();
@@ -103,6 +104,10 @@ function App() {
                   data={dataCliente && dataCliente}
                   filtroData={filtroData}
                 />,
+                <Sumario
+                  data={dataCliente && dataCliente}
+                  filtroData={filtroData}
+                />,
                 ...(dataCarteira &&
                   dataCarteira
                     .reduce((result, item, index) => {
@@ -130,49 +135,6 @@ function App() {
             />
           )}
         </Flex>
-        {/* {viewRelatório && isOk && (
-          <Flex
-            bgColor={"#fff"}
-            my={3}
-            mx={"auto"}
-            // px={5}
-            borderRadius={"lg"}
-            shadow={"lg"}
-            w={"98%"}
-            height={"fit-content"}
-          >
-            <div ref={componentRef} style={{ padding: "15px" }}>
-              <div
-                id={IDCAPARELATORIO}
-                style={{
-                  pageBreakInside: "avoid",
-                }}
-              >
-                <Capa
-                  data={dataCliente && dataCliente}
-                  filtroData={filtroData}
-                />
-              </div>
-              <div
-                id={IDREVISAOCARTEIRA}
-                style={{
-                  pageBreakInside: "avoid",
-                }}
-              >
-                <TableComponent
-                  headerList={arrayCabecalho}
-                  data={dataCarteira && dataCarteira}
-                  rowList={rowList}
-                  loading={false}
-                  nomeCliente={dataCliente && dataCliente.nome}
-                />
-              </div>
-              <GraficosVisaoGeralCarteira
-                dataCarteira={dataCarteira && dataCarteira}
-              />
-            </div>
-          </Flex>
-        )} */}
       </Flex>
     </Flex>
   );

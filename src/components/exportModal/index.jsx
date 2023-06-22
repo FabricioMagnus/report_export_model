@@ -26,40 +26,40 @@ const ModalComponent = ({ isOpen, setIsOpen, setIsOk }) => {
 
   const [etapaAtual, setEtapaAtual] = useState(0);
 
-  useEffect(() => {
-    const connection = new HubConnectionBuilder()
-      .withUrl(LinkWebsocket, {
-        transport: HttpTransportType.WebSockets | HttpTransportType.LongPolling,
-      })
-      .configureLogging(LogLevel.Information)
-      .build();
+  // useEffect(() => {
+  //   const connection = new HubConnectionBuilder()
+  //     .withUrl(LinkWebsocket, {
+  //       transport: HttpTransportType.WebSockets | HttpTransportType.LongPolling,
+  //     })
+  //     .configureLogging(LogLevel.Information)
+  //     .build();
 
-    connection.on("ReceiveStatusUpdate", (novaEtapa) => {
-      setEtapaAtual(novaEtapa);
-    });
+  //   connection.on("ReceiveStatusUpdate", (novaEtapa) => {
+  //     setEtapaAtual(novaEtapa);
+  //   });
 
-    // connection.invoke("JoinRoom", { user: "João", room: "pedro" });
+  //   // connection.invoke("JoinRoom", { user: "João", room: "pedro" });
 
-    connection.start();
+  //   connection.start();
 
-    return () => {
-      connection.stop();
-    };
-  }, []);
+  //   return () => {
+  //     connection.stop();
+  //   };
+  // }, []);
 
   useEffect(() => {
     setEtapaAtual(0);
   }, []);
 
-  // useEffect(() => {
-  //   if (isOpen === true && etapaAtual < totalEtapas) {
-  //     setTimeout(() => {
-  //       setEtapaAtual(etapaAtual + 1);
-  //     }, 1000);
-  //   }
-  // }, [etapaAtual, isOpen]);
+  useEffect(() => {
+    if (isOpen === true && etapaAtual < totalEtapas) {
+      setTimeout(() => {
+        setEtapaAtual(etapaAtual + 1);
+      }, 1000);
+    }
+  }, [etapaAtual, isOpen]);
 
-  const totalEtapas = 5;
+  const totalEtapas = 8;
 
   return (
     <div>
