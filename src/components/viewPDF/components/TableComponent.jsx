@@ -19,6 +19,7 @@ export default function TableComponent({
   loading,
   nomeCliente,
   cnpjCliente,
+  id,
 }) {
   const Rows = data.map((obj, index) => {
     const arrayToLocaleFormater = [
@@ -129,7 +130,7 @@ export default function TableComponent({
         pageBreakInside: "avoid",
         width: "98.5%",
       }}
-      id={IDREVISAOCARTEIRA}
+      id={id}
     >
       <Flex
         flexDirection="column"

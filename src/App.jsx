@@ -28,10 +28,37 @@ function App() {
   const [viewRelatório, setViewRelatório] = useState(false);
   const [filtroData, setFiltroData] = useState("");
 
-  const [dataCarteira, setDataCarteira] = useState([]);
   const [dataCliente, setDataCliente] = useState([]);
 
+  const [dataCarteira, setDataCarteira] = useState([]);
+  const [arrayIdsRevisaoCarteira, setArrayIdsRevisaoCarteira] = useState([]);
+
   const idClienteDeTeste = 129;
+
+  // async function getRelatorio() {
+  //   try {
+  //     const response = await ServicesApi.getJsonByTipo(
+  //       filtroData.split("-")[0],
+  //       idClienteDeTeste,
+  //       "carteira",
+  //       filtroData.split("-")[1].replace(/^0+(?!10$)/g, "")
+  //     );
+  //     // console.log("response do get de relatório", response);
+  //     setDataCarteira(response);
+  //     const response2 = await ServicesApi.getJsonByTipo(
+  //       filtroData.split("-")[0],
+  //       idClienteDeTeste,
+  //       "cliente",
+  //       filtroData.split("-")[1].replace(/^0+(?!10$)/g, "")
+  //     );
+  //     setDataCliente(response2);
+  //     setArrayIdsRevisaoCarteira();
+  //     setViewRelatório(true);
+  //   } catch (error) {
+  //     setViewRelatório(false);
+  //     console.log("error", error);
+  //   }
+  // }
 
   async function getRelatorio() {
     try {
@@ -41,8 +68,19 @@ function App() {
         "carteira",
         filtroData.split("-")[1].replace(/^0+(?!10$)/g, "")
       );
-      // console.log("response do get de relatório", response);
       setDataCarteira(response);
+
+      // Criação do array de IDs
+      const ids = response.reduce((acc, item, index) => {
+        if (index % 10 === 0) {
+          const IDREVISAOCARTEIRA = "IDREVISAOCARTEIRA"; // Defina o valor correto para IDREVISAOCARTEIRA
+          const id = `${IDREVISAOCARTEIRA}-${Math.floor(index / 10)}`;
+          acc.push(id);
+        }
+        return acc;
+      }, []);
+      setArrayIdsRevisaoCarteira(ids);
+
       const response2 = await ServicesApi.getJsonByTipo(
         filtroData.split("-")[0],
         idClienteDeTeste,
@@ -50,6 +88,7 @@ function App() {
         filtroData.split("-")[1].replace(/^0+(?!10$)/g, "")
       );
       setDataCliente(response2);
+
       setViewRelatório(true);
     } catch (error) {
       setViewRelatório(false);
@@ -88,6 +127,7 @@ function App() {
           setIsOk={setIsOk}
           filtroData={filtroData}
           setFiltroData={setFiltroData}
+          arrayIds={arrayIdsRevisaoCarteira}
         />
       </Flex>
       <Flex
@@ -118,17 +158,20 @@ function App() {
                       result[chunkIndex].push(item);
                       return result;
                     }, [])
-                    .map((group, groupIndex) => (
-                      <TableComponent
-                        key={groupIndex}
-                        headerList={arrayCabecalho}
-                        data={group}
-                        rowList={rowList}
-                        loading={false}
-                        nomeCliente={dataCliente && dataCliente.nome}
-                        cnpjCliente={dataCliente && dataCliente.cnpj}
-                      />
-                    ))),
+                    .map((group, groupIndex) => {
+                      return (
+                        <TableComponent
+                          key={groupIndex}
+                          headerList={arrayCabecalho}
+                          data={group}
+                          rowList={rowList}
+                          loading={false}
+                          nomeCliente={dataCliente && dataCliente.nome}
+                          cnpjCliente={dataCliente && dataCliente.cnpj}
+                          id={`${IDREVISAOCARTEIRA}-${groupIndex}`}
+                        />
+                      );
+                    })),
                 <GraficosVisaoGeralCarteira
                   dataCarteira={dataCarteira && dataCarteira}
                   nomeCliente={dataCliente && dataCliente.nome}

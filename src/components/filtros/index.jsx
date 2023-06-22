@@ -8,6 +8,7 @@ import {
   IDCAPARELATORIO,
   IDGRAFICOSREVISAOCARTEIRA,
   IDREVISAOCARTEIRA,
+  IDSUMARIORELATORIO,
 } from "../../constants/idForHTML";
 
 export default function Filtros({
@@ -18,9 +19,19 @@ export default function Filtros({
   setIsOk,
   filtroData,
   setFiltroData,
+  arrayIds,
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [loadingPDF, setLoadingPDF] = useState(false);
+
+  const arrayparaExportação = [
+    IDCAPARELATORIO,
+    IDSUMARIORELATORIO,
+    ...arrayIds,
+    IDGRAFICOSREVISAOCARTEIRA,
+  ];
+
+  console.log("arrayparaExportação", arrayparaExportação);
 
   async function downloadSummarizedPdfReport() {
     setLoadingPDF(true);
@@ -97,7 +108,7 @@ export default function Filtros({
           color={"white"}
           isLoading={loading}
           onClick={() => {
-            handleExportPDF([IDCAPARELATORIO]);
+            handleExportPDF(arrayparaExportação);
           }}
         >
           Exportar

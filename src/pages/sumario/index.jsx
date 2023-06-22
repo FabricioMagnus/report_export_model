@@ -1,13 +1,13 @@
 import { Flex, Img, Text } from "@chakra-ui/react";
 import { dataClient } from "../../components/viewPDF/data/dataClient";
 import { abreviarNome } from "../../functions/formtadores";
-import { IDCAPARELATORIO } from "../../constants/idForHTML";
+import { IDSUMARIORELATORIO } from "../../constants/idForHTML";
 
 export default function Sumario({ data, filtroData }) {
   return (
     <Flex
       w={"100%"}
-      id={IDCAPARELATORIO}
+      id={IDSUMARIORELATORIO}
       h={"86vh"}
       bgGradient="linear(#20A6DF, #123E6B)"
       mx={"auto"}
