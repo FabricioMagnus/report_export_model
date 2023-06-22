@@ -11,18 +11,12 @@ import {
   Text,
   Flex,
 } from "@chakra-ui/react";
-import handleExportPDF from "../../functions/exportPDF";
 import { ProgressoPorEtapas } from "../react-circle-progress";
 import {
   HttpTransportType,
   HubConnectionBuilder,
   LogLevel,
 } from "@microsoft/signalr";
-import {
-  IDCAPARELATORIO,
-  IDGRAFICOSREVISAOCARTEIRA,
-  IDREVISAOCARTEIRA,
-} from "../../constants/idForHTML";
 import { LinkWebsocket } from "../../constants/urls";
 
 const ModalComponent = ({ isOpen, setIsOpen, setIsOk }) => {
@@ -32,35 +26,40 @@ const ModalComponent = ({ isOpen, setIsOpen, setIsOk }) => {
 
   const [etapaAtual, setEtapaAtual] = useState(0);
 
-  // const connection = new HubConnectionBuilder()
-  //   .withUrl(LinkWebsocket, {
-  //     transport: HttpTransportType.WebSockets | HttpTransportType.LongPolling,
-  //   })
-  //   .configureLogging(LogLevel.Information)
-  //   .build();
+  // useEffect(() => {
+  //   const connection = new HubConnectionBuilder()
+  //     .withUrl(LinkWebsocket, {
+  //       transport: HttpTransportType.WebSockets | HttpTransportType.LongPolling,
+  //     })
+  //     .configureLogging(LogLevel.Information)
+  //     .build();
 
-  // connection.on("ReceiveStatusUpdate", (novaEtapa) => {
-  //   setEtapaAtual(novaEtapa);
-  // });
+  //   connection.on("ReceiveStatusUpdate", (novaEtapa) => {
+  //     setEtapaAtual(novaEtapa);
+  //   });
 
-  // connection.start();
+  //   // connection.invoke("JoinRoom", { user: "João", room: "pedro" });
 
-  // return () => {
-  //   connection.stop();
-  // };
+  //   connection.start();
+
+  //   return () => {
+  //     connection.stop();
+  //   };
+  // }, []);
 
   useEffect(() => {
     setEtapaAtual(0);
   }, []);
+
   useEffect(() => {
     if (isOpen === true && etapaAtual < totalEtapas) {
       setTimeout(() => {
         setEtapaAtual(etapaAtual + 1);
-      }, 1800);
+      }, 1000);
     }
   }, [etapaAtual, isOpen]);
 
-  const totalEtapas = 10;
+  const totalEtapas = 8;
 
   return (
     <div>
