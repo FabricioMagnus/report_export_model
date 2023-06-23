@@ -87,7 +87,7 @@ export default function TableComponent({
       const arrayToCaptionFormat = ["legislacao", "tipo"];
 
       const rowCells = rowList.map((key, index) => {
-        if (key === "nomeFundo" || key === "enquadramentoLegislacao") {
+        if (key === "nomeFundo") {
           return (
             <Td style={{ wordWrap: "break-word" }}>{obj[key].slice(0, 30)}</Td>
           );
