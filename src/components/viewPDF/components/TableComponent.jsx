@@ -129,7 +129,7 @@ export default function TableComponent({
             maxHeight: "25px",
             height: "25px",
           }}
-          // bgColor={"#20A6DF"}
+          bgColor={index % 2 === 0 ? "#d3d3d3" : "#fff"}
           borderRadius={"5px"}
           sx={{ lineHeight: "1" }}
           fontSize={"11px"}
