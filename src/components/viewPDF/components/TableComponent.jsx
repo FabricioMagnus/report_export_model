@@ -41,13 +41,16 @@ export default function TableComponent({
             maxHeight: "25px",
             height: "25px",
           }}
+          my={0.5}
           bgColor={"#20A6DF"}
           color={"#fff"}
           sx={{ lineHeight: "1" }}
           fontSize={"10px"}
           key={index}
         >
-          <Td>{obj.nomeFundo}</Td>
+          <Td borderTopLeftRadius="lg" borderBottomLeftRadius="lg">
+            {obj.nomeFundo}
+          </Td>
           <Td>{}</Td>
           <Td>{}</Td>
           <Td>{}</Td>
@@ -56,7 +59,9 @@ export default function TableComponent({
           <Td>{}</Td>
           <Td>{}</Td>
           <Td bgColor={"#20A6DF"}>{`${obj.participacao.toFixed(5)} %`}</Td>
-          <Td>{ToLocaleFormat(obj.saldo)}</Td>
+          <Td borderTopRightRadius={"lg"} borderBottomRightRadius={"lg"}>
+            {ToLocaleFormat(obj.saldo)}
+          </Td>
         </Tr>
       );
     }
@@ -66,12 +71,19 @@ export default function TableComponent({
         <Tr
           bgColor={"#123E6B"}
           color={"#fff"}
+          my={0.5}
           fontWeight={"bold"}
           sx={{ lineHeight: "1" }}
           fontSize={fontTd}
           key={index}
         >
-          <Td bgColor={"#123E6B"}>{obj.nomeFundo}</Td>
+          <Td
+            bgColor={"#123E6B"}
+            borderTopLeftRadius="lg"
+            borderBottomLeftRadius="lg"
+          >
+            {obj.nomeFundo}
+          </Td>
           <Td bgColor={"#123E6B"}>{}</Td>
           <Td bgColor={"#123E6B"}>{}</Td>
           <Td bgColor={"#123E6B"}>{}</Td>
@@ -80,7 +92,9 @@ export default function TableComponent({
           <Td bgColor={"#123E6B"}>{}</Td>
           <Td bgColor={"#123E6B"}>{}</Td>
           <Td bgColor={"#123E6B"}>{`${obj.participacao.toFixed(5)} %`}</Td>
-          <Td bgColor={"#123E6B"}>{ToLocaleFormat(obj.saldo)}</Td>
+          <Td borderTopRightRadius={"lg"} borderBottomRightRadius={"lg"}>
+            {ToLocaleFormat(obj.saldo)}
+          </Td>
         </Tr>
       );
     }
@@ -91,7 +105,12 @@ export default function TableComponent({
       const rowCells = rowList.map((key, index) => {
         if (key === "nomeFundo") {
           return (
-            <Td fontSize={fontTd} style={{ wordWrap: "break-word" }}>
+            <Td
+              borderTopLeftRadius="lg"
+              borderBottomLeftRadius="lg"
+              fontSize={fontTd}
+              style={{ wordWrap: "break-word" }}
+            >
               {obj[key].slice(0, 30)}
             </Td>
           );
@@ -108,7 +127,15 @@ export default function TableComponent({
           return <Td fontSize={fontTd}>{`${obj[key]} %`}</Td>;
         }
         if (key === "saldo") {
-          return <Td fontSize={fontTd}>{ToLocaleFormat(obj[key])}</Td>;
+          return (
+            <Td
+              borderTopRightRadius={"lg"}
+              borderBottomRightRadius={"lg"}
+              fontSize={fontTd}
+            >
+              {ToLocaleFormat(obj[key])}
+            </Td>
+          );
         }
         if (key === "participacao") {
           return (
@@ -117,15 +144,6 @@ export default function TableComponent({
             } %`}</Td>
           );
         }
-        // if (arrayToLocaleFormater.includes(key.toLowerCase())) {
-        //   return <Td>{ToLocaleFormat(obj[key])}</Td>;
-        // }
-        // if (arrayToPercentFormat.includes(key.toLowerCase())) {
-        //   return <Td>{`${obj[key]} %`}</Td>;
-        // }
-        // if (arrayToCaptionFormat.includes(key.toLowerCase())) {
-        //   return <Td>{CaptionFormater(obj[key])}</Td>;
-        // }
 
         return <Td fontSize={fontTd}>{obj[key]}</Td>;
       });
@@ -137,7 +155,8 @@ export default function TableComponent({
             maxHeight: "25px",
             height: "10px",
           }}
-          bgColor={index % 2 === 0 ? "#d3d3d3" : "#fff"}
+          my={0.5}
+          bgColor={index % 2 === 0 ? "#F3F3F3" : "#EBEBEB"}
           borderRadius={"md"}
           sx={{ lineHeight: "1" }}
           fontSize={fontTd}
