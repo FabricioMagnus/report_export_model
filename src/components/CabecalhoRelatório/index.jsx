@@ -13,7 +13,7 @@ export default function CabecalhoRelatorio({
       justifyContent={"space-between"}
       alignItems={"center"}
       p={5}
-      borderBottom={"1px solid #123E6B"}
+      borderBottom={"1px solid #20A6DF"}
       mt={5}
     >
       <Text color={"#123E6B"} fontSize={"30px"} fontWeight={"bold"}>
