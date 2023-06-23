@@ -21,6 +21,8 @@ export default function TableComponent({
   cnpjCliente,
   id,
 }) {
+  const fontTd = "10px";
+
   const Rows = data.map((obj, index) => {
     const arrayToLocaleFormater = [
       "valor",
@@ -42,7 +44,7 @@ export default function TableComponent({
           bgColor={"#20A6DF"}
           color={"#fff"}
           sx={{ lineHeight: "1" }}
-          fontSize={"11px"}
+          fontSize={"10px"}
           key={index}
         >
           <Td>{obj.nomeFundo}</Td>
@@ -66,7 +68,7 @@ export default function TableComponent({
           color={"#fff"}
           fontWeight={"bold"}
           sx={{ lineHeight: "1" }}
-          fontSize={"11px"}
+          fontSize={fontTd}
           key={index}
         >
           <Td bgColor={"#123E6B"}>{obj.nomeFundo}</Td>
@@ -89,25 +91,31 @@ export default function TableComponent({
       const rowCells = rowList.map((key, index) => {
         if (key === "nomeFundo") {
           return (
-            <Td style={{ wordWrap: "break-word" }}>{obj[key].slice(0, 30)}</Td>
+            <Td fontSize={fontTd} style={{ wordWrap: "break-word" }}>
+              {obj[key].slice(0, 30)}
+            </Td>
           );
         }
         if (key === "patrimonioLiquido") {
           return (
-            <Td minWidth={"120px"}>{`${(obj.saldo === 0
+            <Td fontSize={fontTd} minWidth={"120px"}>{`${(obj.saldo === 0
               ? 0
               : obj.saldo / obj[key]
             ).toFixed(5)} %`}</Td>
           );
         }
         if (key === "taxaAdm") {
-          return <Td>{`${obj[key]} %`}</Td>;
+          return <Td fontSize={fontTd}>{`${obj[key]} %`}</Td>;
         }
         if (key === "saldo") {
-          return <Td>{ToLocaleFormat(obj[key])}</Td>;
+          return <Td fontSize={fontTd}>{ToLocaleFormat(obj[key])}</Td>;
         }
         if (key === "participacao") {
-          return <Td>{`${obj[key] !== 0 ? obj[key].toFixed(5) : 0} %`}</Td>;
+          return (
+            <Td fontSize={fontTd}>{`${
+              obj[key] !== 0 ? obj[key].toFixed(5) : 0
+            } %`}</Td>
+          );
         }
         // if (arrayToLocaleFormater.includes(key.toLowerCase())) {
         //   return <Td>{ToLocaleFormat(obj[key])}</Td>;
@@ -119,7 +127,7 @@ export default function TableComponent({
         //   return <Td>{CaptionFormater(obj[key])}</Td>;
         // }
 
-        return <Td>{obj[key]}</Td>;
+        return <Td fontSize={fontTd}>{obj[key]}</Td>;
       });
 
       return (
@@ -127,12 +135,12 @@ export default function TableComponent({
           style={{
             pageBreakInside: "avoid",
             maxHeight: "25px",
-            height: "25px",
+            height: "10px",
           }}
           bgColor={index % 2 === 0 ? "#d3d3d3" : "#fff"}
-          borderRadius={"5px"}
+          borderRadius={"md"}
           sx={{ lineHeight: "1" }}
-          fontSize={"11px"}
+          fontSize={fontTd}
           key={index}
         >
           {[...rowCells]}
@@ -145,7 +153,7 @@ export default function TableComponent({
     headerList &&
     headerList.map((item, index) => (
       <Th
-        fontSize={"10px"}
+        fontSize={fontTd}
         bgColor={"blue.900"}
         color={"white"}
         key={index}
@@ -192,6 +200,7 @@ export default function TableComponent({
         <Flex w={"90%"} mx={"auto"} mt={8}>
           <Table
             variant={"simple"}
+            size={"sm"}
             sx={{ display: "table", tableLayout: "auto" }}
             borderRadius={"5px"}
           >
