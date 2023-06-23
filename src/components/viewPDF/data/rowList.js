@@ -3,7 +3,7 @@ export const rowList = [
   "nomeFundo",
   "prazoResgate",
   "numCotistas",
-  "patrimonioLiquido",
+  "percPL",
   "enquadramentoLegislacao",
   "grauRisco",
   "tipo",

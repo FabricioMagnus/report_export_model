@@ -58,7 +58,7 @@ export default function TableComponent({
           <Td>{}</Td>
           <Td>{}</Td>
           <Td>{}</Td>
-          <Td bgColor={"#20A6DF"}>{`${obj.participacao.toFixed(5)} %`}</Td>
+          <Td bgColor={"#20A6DF"}>{`${obj.participacao.toFixed(2)} %`}</Td>
           <Td borderTopRightRadius={"lg"} borderBottomRightRadius={"lg"}>
             {ToLocaleFormat(obj.saldo)}
           </Td>
@@ -91,7 +91,7 @@ export default function TableComponent({
           <Td bgColor={"#123E6B"}>{}</Td>
           <Td bgColor={"#123E6B"}>{}</Td>
           <Td bgColor={"#123E6B"}>{}</Td>
-          <Td bgColor={"#123E6B"}>{`${obj.participacao.toFixed(5)} %`}</Td>
+          <Td bgColor={"#123E6B"}>{`${obj.participacao.toFixed(2)} %`}</Td>
           <Td borderTopRightRadius={"lg"} borderBottomRightRadius={"lg"}>
             {ToLocaleFormat(obj.saldo)}
           </Td>
@@ -115,12 +115,12 @@ export default function TableComponent({
             </Td>
           );
         }
-        if (key === "patrimonioLiquido") {
+        if (key === "percPL") {
           return (
-            <Td fontSize={fontTd} minWidth={"120px"}>{`${(obj.saldo === 0
+            <Td fontSize={fontTd} minWidth={"120px"}>{`${(obj.percPL === 0
               ? 0
-              : obj.saldo / obj[key]
-            ).toFixed(5)} %`}</Td>
+              : obj.percPL
+            ).toFixed(2)}`}</Td>
           );
         }
         if (key === "taxaAdm") {
@@ -140,7 +140,7 @@ export default function TableComponent({
         if (key === "participacao") {
           return (
             <Td fontSize={fontTd}>{`${
-              obj[key] !== 0 ? obj[key].toFixed(5) : 0
+              obj[key] !== 0 ? obj[key].toFixed(2) : 0
             } %`}</Td>
           );
         }
@@ -183,7 +183,6 @@ export default function TableComponent({
             borderBottomRightRadius={"lg"}
             color={"white"}
             key={index}
-            style={{ maxHeight: "20px" }}
           >
             {item}
           </Th>
@@ -211,7 +210,8 @@ export default function TableComponent({
           bgColor={"blue.900"}
           color={"white"}
           key={index}
-          style={{ maxHeight: "20px" }}
+          height={"35px"}
+          // style={{ maxHeight: "20px" }}
         >
           {item}
         </Th>

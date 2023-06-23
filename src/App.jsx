@@ -122,7 +122,7 @@ function App() {
                 ...(dataCarteira &&
                   dataCarteira
                     .reduce((result, item, index) => {
-                      const chunkIndex = Math.floor(index / 15);
+                      const chunkIndex = Math.floor(index / 17);
                       if (!result[chunkIndex]) {
                         result[chunkIndex] = [];
                       }
