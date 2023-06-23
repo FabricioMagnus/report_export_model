@@ -1,6 +1,10 @@
 import { Flex, Img, Text } from "@chakra-ui/react";
 import { dataClient } from "../../components/viewPDF/data/dataClient";
-import { abreviarNome } from "../../functions/formtadores";
+import {
+  CaptionFormater,
+  abreviarNome,
+  obterMesAno,
+} from "../../functions/formtadores";
 import { IDCAPARELATORIO } from "../../constants/idForHTML";
 
 export default function Capa({ data, filtroData }) {
@@ -42,10 +46,10 @@ export default function Capa({ data, filtroData }) {
           {abreviarNome(data.nome)}
         </Text>
         <Text color={"#fff"} fontSize={"30px"} mb={4}>
-          {data.nome}
+          {CaptionFormater(data.nome)}
         </Text>
         <Text color={"#20A6DF"} fontSize={"24px"} fontWeight={"black"}>
-          {filtroData}
+          {obterMesAno(filtroData)}
         </Text>
       </Flex>
     </Flex>

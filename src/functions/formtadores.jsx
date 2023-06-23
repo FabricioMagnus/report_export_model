@@ -37,3 +37,28 @@ export function CPFFormater(cpf) {
     .replace(/(\d{3})(\d)/, "$1-$2")
     .replace(/(-\d{2})\d+?$/, "$1");
 }
+export function obterMesAno(dataString) {
+  const meses = [
+    "Janeiro",
+    "Fevereiro",
+    "Março",
+    "Abril",
+    "Maio",
+    "Junho",
+    "Julho",
+    "Agosto",
+    "Setembro",
+    "Outubro",
+    "Novembro",
+    "Dezembro",
+  ];
+
+  const [ano, mes] = dataString.split("-");
+  const mesIndex = parseInt(mes, 10) - 1;
+
+  if (mesIndex < 0 || mesIndex >= meses.length) {
+    return "Mês inválido";
+  }
+
+  return `${meses[mesIndex]} / ${ano}`;
+}
