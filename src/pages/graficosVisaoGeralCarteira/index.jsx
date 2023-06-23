@@ -52,7 +52,16 @@ export default function GraficosVisaoGeralCarteira({
             border={"1px solid #e5e5e5"}
             borderRadius={"lg"}
           >
-            <PieChart dataChart={dataCarteira && dataCarteira} />
+            <PieChart
+              dataChart={
+                dataCarteira &&
+                dataCarteira.filter(
+                  (item) =>
+                    !item.hasOwnProperty("isHeader") &&
+                    !item.hasOwnProperty("isFooter")
+                )
+              }
+            />
           </Flex>
           <Flex
             justifyContent={"center"}
@@ -67,7 +76,16 @@ export default function GraficosVisaoGeralCarteira({
             border={"1px solid #e5e5e5"}
             borderRadius={"lg"}
           >
-            <BarChart dataChart={dataCarteira && dataCarteira} />
+            <BarChart
+              dataChart={
+                dataCarteira &&
+                dataCarteira.filter(
+                  (item) =>
+                    !item.hasOwnProperty("isHeader") &&
+                    !item.hasOwnProperty("isFooter")
+                )
+              }
+            />
           </Flex>
         </Flex>
       </Flex>
