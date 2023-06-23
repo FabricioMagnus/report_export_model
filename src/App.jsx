@@ -4,21 +4,14 @@ import { Flex, Img } from "@chakra-ui/react";
 import Filtros from "./components/filtros";
 import TableComponent from "./components/viewPDF/components/TableComponent";
 import { arrayCabecalho } from "./components/viewPDF/data/cabecalho";
-import { arrayListObjects } from "./components/viewPDF/data/dataTable";
 import { rowList } from "./components/viewPDF/data/rowList";
-import BarChart from "./components/graficos/barChart";
-import PieChart from "./components/graficos/pieChart";
-import {
-  IDCAPARELATORIO,
-  IDGRAFICOSREVISAOCARTEIRA,
-  IDREVISAOCARTEIRA,
-} from "./constants/idForHTML";
+import { IDREVISAOCARTEIRA } from "./constants/idForHTML";
 import Capa from "./pages/capa";
-import { dataClient } from "./components/viewPDF/data/dataClient";
 import ServicesApi from "./services/services";
 import SwipperBuilder from "./components/swipper";
 import GraficosVisaoGeralCarteira from "./pages/graficosVisaoGeralCarteira";
 import Sumario from "./pages/sumario";
+import { useParams } from "react-router-dom";
 
 function App() {
   const componentRef = useRef();
@@ -35,30 +28,10 @@ function App() {
 
   const idClienteDeTeste = 129;
 
-  // async function getRelatorio() {
-  //   try {
-  //     const response = await ServicesApi.getJsonByTipo(
-  //       filtroData.split("-")[0],
-  //       idClienteDeTeste,
-  //       "carteira",
-  //       filtroData.split("-")[1].replace(/^0+(?!10$)/g, "")
-  //     );
-  //     // console.log("response do get de relatório", response);
-  //     setDataCarteira(response);
-  //     const response2 = await ServicesApi.getJsonByTipo(
-  //       filtroData.split("-")[0],
-  //       idClienteDeTeste,
-  //       "cliente",
-  //       filtroData.split("-")[1].replace(/^0+(?!10$)/g, "")
-  //     );
-  //     setDataCliente(response2);
-  //     setArrayIdsRevisaoCarteira();
-  //     setViewRelatório(true);
-  //   } catch (error) {
-  //     setViewRelatório(false);
-  //     console.log("error", error);
-  //   }
-  // }
+  const { id } = useParams();
+  const idClienteParametro = id ? Number(id) : idClienteDeTeste;
+
+  console.log("id", idClienteParametro);
 
   async function getRelatorio() {
     try {
