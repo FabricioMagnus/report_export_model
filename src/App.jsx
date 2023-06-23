@@ -31,13 +31,11 @@ function App() {
   const { id } = useParams();
   const idClienteParametro = id ? Number(id) : idClienteDeTeste;
 
-  console.log("id", idClienteParametro);
-
   async function getRelatorio() {
     try {
       const response = await ServicesApi.getJsonByTipo(
         filtroData.split("-")[0],
-        idClienteDeTeste,
+        idClienteParametro,
         "carteira",
         filtroData.split("-")[1].replace(/^0+(?!10$)/g, "")
       );
@@ -56,7 +54,7 @@ function App() {
 
       const response2 = await ServicesApi.getJsonByTipo(
         filtroData.split("-")[0],
-        idClienteDeTeste,
+        idClienteParametro,
         "cliente",
         filtroData.split("-")[1].replace(/^0+(?!10$)/g, "")
       );

@@ -10,6 +10,7 @@ import {
   IDREVISAOCARTEIRA,
   IDSUMARIORELATORIO,
 } from "../../constants/idForHTML";
+import { useParams } from "react-router-dom";
 
 export default function Filtros({
   componentRef,
@@ -31,6 +32,11 @@ export default function Filtros({
     IDGRAFICOSREVISAOCARTEIRA,
   ];
 
+  const idClienteDeTeste = 129;
+
+  const { id } = useParams();
+  const idClienteParametro = id ? Number(id) : idClienteDeTeste;
+
   async function downloadSummarizedPdfReport() {
     setLoadingPDF(true);
     try {
@@ -47,7 +53,10 @@ export default function Filtros({
     const dataForApi = filtroData + "-01";
     try {
       setLoading(true);
-      const response = await ServicesApi.solicitarRelatorio(dataForApi, 129);
+      const response = await ServicesApi.solicitarRelatorio(
+        dataForApi,
+        idClienteParametro
+      );
       setLoading(false);
       setIsOpen(true);
       // setIsOk(true);
