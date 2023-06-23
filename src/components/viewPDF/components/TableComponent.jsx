@@ -170,17 +170,53 @@ export default function TableComponent({
 
   const Header_Row =
     headerList &&
-    headerList.map((item, index) => (
-      <Th
-        fontSize={fontTd}
-        bgColor={"blue.900"}
-        color={"white"}
-        key={index}
-        style={{ maxHeight: "20px" }}
-      >
-        {item}
-      </Th>
-    ));
+    headerList.map((item, index) => {
+      const isFirstChild = index === 0;
+      const isLastChild = index === headerList.length - 1;
+
+      if (isLastChild) {
+        return (
+          <Th
+            fontSize={fontTd}
+            borderTopRightRadius={"lg"}
+            bgColor={"blue.900"}
+            borderBottomRightRadius={"lg"}
+            color={"white"}
+            key={index}
+            style={{ maxHeight: "20px" }}
+          >
+            {item}
+          </Th>
+        );
+      }
+      if (isFirstChild) {
+        return (
+          <Th
+            fontSize={fontTd}
+            borderTopLeftRadius={"lg"}
+            borderBottomLeftRadius={"lg"}
+            bgColor={"blue.900"}
+            color={"white"}
+            key={index}
+            style={{ maxHeight: "20px" }}
+          >
+            {item}
+          </Th>
+        );
+      }
+
+      return (
+        <Th
+          fontSize={fontTd}
+          bgColor={"blue.900"}
+          color={"white"}
+          key={index}
+          style={{ maxHeight: "20px" }}
+        >
+          {item}
+        </Th>
+      );
+    });
 
   if (loading) {
     return (
