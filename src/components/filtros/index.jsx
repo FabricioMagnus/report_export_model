@@ -39,11 +39,19 @@ export default function Filtros({
   const { id } = useParams();
   const idClienteParametro = id ? Number(id) : idClienteDeTeste;
 
-  const timestamp = Date.now().toString();
-  const idSignal = MD5(timestamp).toString();
+  const [idSignal, setIdSignal] = useState("");
+
+  // console.log("idSinal", idSignal);
+
+  function openModal(id) {
+    setIdSignal(id);
+    setIsOpen(true);
+  }
 
   async function solicitarRelatorio() {
     const dataForApi = filtroData + "-01";
+    const timestamp = Date.now().toString();
+    const idSignal = MD5(timestamp).toString();
     try {
       setLoading(true);
       const response = await ServicesApi.solicitarRelatorio(
@@ -52,7 +60,7 @@ export default function Filtros({
         idSignal
       );
       setLoading(false);
-      setIsOpen(true);
+      openModal(idSignal);
     } catch (error) {
       setIsOk(false);
       console.log("error", error);

@@ -24,7 +24,7 @@ const ModalComponent = ({ isOpen, setIsOpen, setIsOk, idRequisicao }) => {
     setIsOpen(false);
   };
 
-  // console.log("idRequisicao", idRequisicao);
+  console.log("idRequisicao recebido no modal", idRequisicao);
 
   const [etapaAtual, setEtapaAtual] = useState(0);
 
@@ -36,20 +36,21 @@ const ModalComponent = ({ isOpen, setIsOpen, setIsOk, idRequisicao }) => {
       .configureLogging(LogLevel.Information)
       .build();
 
-    connection.start().then(() => {
-      connection.invoke("JoinExportGroup", idRequisicao);
-    });
-
+    if (idRequisicao) {
+      connection.start().then(() => {
+        connection.invoke("JoinExportGroup", idRequisicao);
+      });
+    }
     connection.on("ReceiveStatusUpdate", (id, status) => {
-      // console.log("id da chamada", id);
-      // console.log("status da chamada", status);
+      console.log("id da chamada websocket", id);
+      console.log("status da chamada websocket", status);
       setEtapaAtual(status);
     });
 
     return () => {
       connection.stop();
     };
-  }, []);
+  }, [idRequisicao]);
 
   useEffect(() => {
     setEtapaAtual(0);
@@ -63,7 +64,7 @@ const ModalComponent = ({ isOpen, setIsOpen, setIsOk, idRequisicao }) => {
   //   }
   // }, [etapaAtual, isOpen]);
 
-  const totalEtapas = 10;
+  const totalEtapas = 5;
 
   return (
     <div>
