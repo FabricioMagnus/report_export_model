@@ -6,7 +6,7 @@ export async function newExportPDF(ids) {
   const pdfWidth = pdf.internal.pageSize.getWidth();
   const pdfHeight = pdf.internal.pageSize.getHeight();
   const margin = 2;
-  const marginTop = 15;
+  const marginTop = 30;
 
   for (const id of ids) {
     const element = document.getElementById(id);
