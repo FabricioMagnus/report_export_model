@@ -58,8 +58,15 @@ export default function TableComponent({
           <Td>{}</Td>
           <Td>{}</Td>
           <Td>{}</Td>
-          <Td bgColor={"#20A6DF"}>{`${obj.participacao.toFixed(2)} %`}</Td>
-          <Td borderTopRightRadius={"lg"} borderBottomRightRadius={"lg"}>
+          <Td
+            textAlign={"center"}
+            bgColor={"#20A6DF"}
+          >{`${obj.participacao.toFixed(2)} %`}</Td>
+          <Td
+            borderTopRightRadius={"lg"}
+            borderBottomRightRadius={"lg"}
+            textAlign={"center"}
+          >
             {ToLocaleFormat(obj.saldo)}
           </Td>
         </Tr>
@@ -91,8 +98,15 @@ export default function TableComponent({
           <Td bgColor={"#123E6B"}>{}</Td>
           <Td bgColor={"#123E6B"}>{}</Td>
           <Td bgColor={"#123E6B"}>{}</Td>
-          <Td bgColor={"#123E6B"}>{`${obj.participacao.toFixed(2)} %`}</Td>
-          <Td borderTopRightRadius={"lg"} borderBottomRightRadius={"lg"}>
+          <Td
+            bgColor={"#123E6B"}
+            textAlign={"center"}
+          >{`${obj.participacao.toFixed(2)} %`}</Td>
+          <Td
+            borderTopRightRadius={"lg"}
+            borderBottomRightRadius={"lg"}
+            textAlign={"center"}
+          >
             {ToLocaleFormat(obj.saldo)}
           </Td>
         </Tr>
@@ -124,7 +138,9 @@ export default function TableComponent({
           );
         }
         if (key === "taxaAdm") {
-          return <Td fontSize={fontTd}>{`${obj[key]} %`}</Td>;
+          return (
+            <Td textAlign={"center"} fontSize={fontTd}>{`${obj[key]} %`}</Td>
+          );
         }
         if (key === "saldo") {
           return (
@@ -132,6 +148,7 @@ export default function TableComponent({
               borderTopRightRadius={"lg"}
               borderBottomRightRadius={"lg"}
               fontSize={fontTd}
+              textAlign={"center"}
             >
               {ToLocaleFormat(obj[key])}
             </Td>
@@ -139,7 +156,7 @@ export default function TableComponent({
         }
         if (key === "participacao") {
           return (
-            <Td fontSize={fontTd}>{`${
+            <Td textAlign={"center"} fontSize={fontTd}>{`${
               obj[key] !== 0 ? obj[key].toFixed(2) : 0
             } %`}</Td>
           );
@@ -183,6 +200,7 @@ export default function TableComponent({
             borderBottomRightRadius={"lg"}
             color={"white"}
             key={index}
+            textAlign={"center"}
           >
             {item}
           </Th>
