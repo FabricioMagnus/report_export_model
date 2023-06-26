@@ -1,7 +1,9 @@
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 
-export async function newExportPDF(ids) {
+export async function newExportPDF(ids, setLoadingPDF) {
+  setLoadingPDF(true);
+
   const pdf = new jsPDF("landscape", "mm", "a4");
   const pdfWidth = pdf.internal.pageSize.getWidth();
   const pdfHeight = pdf.internal.pageSize.getHeight();
@@ -35,6 +37,7 @@ export async function newExportPDF(ids) {
     );
   }
 
+  setLoadingPDF(false);
   pdf.deletePage(1);
   pdf.save("relatório-dinamico.pdf");
 }

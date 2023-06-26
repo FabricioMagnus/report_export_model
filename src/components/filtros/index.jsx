@@ -114,10 +114,9 @@ export default function Filtros({
           type="button"
           bgColor={"blue.900"}
           color={"white"}
-          isLoading={loading}
+          isLoading={loadingPDF}
           onClick={() => {
-            // handleExportPDF(arrayparaExportação);
-            newExportPDF(arrayparaExportação);
+            newExportPDF(arrayparaExportação, setLoadingPDF);
           }}
         >
           Exportar
