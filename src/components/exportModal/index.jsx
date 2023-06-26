@@ -24,40 +24,44 @@ const ModalComponent = ({ isOpen, setIsOpen, setIsOk, idRequisicao }) => {
     setIsOpen(false);
   };
 
+  // console.log("idRequisicao", idRequisicao);
+
   const [etapaAtual, setEtapaAtual] = useState(0);
 
-  // useEffect(() => {
-  //   const connection = new HubConnectionBuilder()
-  //     .withUrl(LinkWebsocket, {
-  //       transport: HttpTransportType.WebSockets | HttpTransportType.LongPolling,
-  //     })
-  //     .configureLogging(LogLevel.Information)
-  //     .build();
+  useEffect(() => {
+    const connection = new HubConnectionBuilder()
+      .withUrl(LinkWebsocket, {
+        transport: HttpTransportType.WebSockets | HttpTransportType.LongPolling,
+      })
+      .configureLogging(LogLevel.Information)
+      .build();
 
-  //   connection.start();
-  //   connection.invoke("JoinExportGroup", idRequisicao);
+    connection.start().then(() => {
+      connection.invoke("JoinExportGroup", idRequisicao);
+    });
 
-  //   connection.on("ReceiveStatusUpdate", (novaEtapa) => {
-  //     console.log("novaEtapa", novaEtapa);
-  //     // setEtapaAtual(novaEtapa);
-  //   });
+    connection.on("ReceiveStatusUpdate", (id, status) => {
+      // console.log("id da chamada", id);
+      // console.log("status da chamada", status);
+      setEtapaAtual(status);
+    });
 
-  //   return () => {
-  //     connection.stop();
-  //   };
-  // }, []);
+    return () => {
+      connection.stop();
+    };
+  }, []);
 
   useEffect(() => {
     setEtapaAtual(0);
   }, []);
 
-  useEffect(() => {
-    if (isOpen === true && etapaAtual < totalEtapas) {
-      setTimeout(() => {
-        setEtapaAtual(etapaAtual + 1);
-      }, 1000);
-    }
-  }, [etapaAtual, isOpen]);
+  // useEffect(() => {
+  //   if (isOpen === true && etapaAtual < totalEtapas) {
+  //     setTimeout(() => {
+  //       setEtapaAtual(etapaAtual + 1);
+  //     }, 1000);
+  //   }
+  // }, [etapaAtual, isOpen]);
 
   const totalEtapas = 10;
 
