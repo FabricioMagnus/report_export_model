@@ -24,7 +24,7 @@ const ModalComponent = ({ isOpen, setIsOpen, setIsOk, idRequisicao }) => {
     setIsOpen(false);
   };
 
-  console.log("idRequisicao recebido no modal", idRequisicao);
+  // console.log("idRequisicao recebido no modal", idRequisicao);
 
   const [etapaAtual, setEtapaAtual] = useState(0);
 
@@ -42,8 +42,8 @@ const ModalComponent = ({ isOpen, setIsOpen, setIsOk, idRequisicao }) => {
       });
     }
     connection.on("ReceiveStatusUpdate", (id, status) => {
-      console.log("id da chamada websocket", id);
-      console.log("status da chamada websocket", status);
+      // console.log("id da chamada websocket", id);
+      // console.log("status da chamada websocket", status);
       setEtapaAtual(status);
     });
 
