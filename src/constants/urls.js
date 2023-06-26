@@ -1,1 +1,1 @@
-export const LinkWebsocket = "http://107.20.171.227/signal/chat";
+export const LinkWebsocket = "https://teste.liasys.net/api/signal/chat";
