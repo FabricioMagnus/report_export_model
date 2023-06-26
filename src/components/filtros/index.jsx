@@ -11,6 +11,7 @@ import {
   IDSUMARIORELATORIO,
 } from "../../constants/idForHTML";
 import { useParams } from "react-router-dom";
+import { newExportPDF } from "../../functions/newExportPDF";
 
 export default function Filtros({
   componentRef,
@@ -115,7 +116,8 @@ export default function Filtros({
           color={"white"}
           isLoading={loading}
           onClick={() => {
-            handleExportPDF(arrayparaExportação);
+            // handleExportPDF(arrayparaExportação);
+            newExportPDF(arrayparaExportação);
           }}
         >
           Exportar
