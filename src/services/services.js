@@ -8,9 +8,9 @@ export default class ServicesApi {
     return response.data;
   };
 
-  static solicitarRelatorio = async (data, idCliente) => {
+  static solicitarRelatorio = async (data, idCliente, idSignal) => {
     const response = await api.get(
-      `/exportacao/nova?data=${data}&idCliente=${idCliente}`
+      `/exportacao/nova?data=${data}&idCliente=${idCliente}&idSignal=${idSignal}`
     );
     return response.data;
   };

@@ -12,6 +12,7 @@ import {
 } from "../../constants/idForHTML";
 import { useParams } from "react-router-dom";
 import { newExportPDF } from "../../functions/newExportPDF";
+import { MD5 } from "crypto-js";
 
 export default function Filtros({
   componentRef,
@@ -38,17 +39,8 @@ export default function Filtros({
   const { id } = useParams();
   const idClienteParametro = id ? Number(id) : idClienteDeTeste;
 
-  async function downloadSummarizedPdfReport() {
-    setLoadingPDF(true);
-    try {
-      await generateReportPdf();
-      console.log("PDF gerado com sucesso");
-    } catch (error) {
-      toast.error("Houve um erro ao gerar o pdf: " + error);
-    } finally {
-      setLoadingPDF(false);
-    }
-  }
+  const timestamp = Date.now().toString();
+  const idSignal = MD5(timestamp).toString();
 
   async function solicitarRelatorio() {
     const dataForApi = filtroData + "-01";
@@ -56,11 +48,11 @@ export default function Filtros({
       setLoading(true);
       const response = await ServicesApi.solicitarRelatorio(
         dataForApi,
-        idClienteParametro
+        idClienteParametro,
+        idSignal
       );
       setLoading(false);
       setIsOpen(true);
-      // setIsOk(true);
     } catch (error) {
       setIsOk(false);
       console.log("error", error);
@@ -87,8 +79,7 @@ export default function Filtros({
         isLoading={loading}
         onClick={() => {
           solicitarRelatorio();
-          setIsOpen(true);
-          // handleExportPDF("myScreen");
+          // setIsOpen(true);
         }}
       >
         Filtrar
@@ -123,7 +114,12 @@ export default function Filtros({
         </Button>
       )}
 
-      <ModalComponent isOpen={isOpen} setIsOpen={setIsOpen} setIsOk={setIsOk} />
+      <ModalComponent
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        setIsOk={setIsOk}
+        idRequisicao={idSignal}
+      />
     </Flex>
   );
 }

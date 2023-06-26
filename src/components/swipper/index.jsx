@@ -7,9 +7,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import Capa from "../../pages/capa";
-import { dataClient } from "../viewPDF/data/dataClient";
-import { Flex, Text } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 
 export default function SwiperBuilder({ components }) {
   return (
@@ -21,8 +19,8 @@ export default function SwiperBuilder({ components }) {
       navigation
       pagination={{ clickable: true }}
       scrollbar={{ draggable: true }}
-      onSwiper={(swiper) => console.log(swiper)}
-      onSlideChange={() => console.log("slide change")}
+      onSwiper={(swiper) => {}}
+      onSlideChange={() => {}}
     >
       {components &&
         components.map((component, index) => (

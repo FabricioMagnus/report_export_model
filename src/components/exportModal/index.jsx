@@ -19,47 +19,47 @@ import {
 } from "@microsoft/signalr";
 import { LinkWebsocket } from "../../constants/urls";
 
-const ModalComponent = ({ isOpen, setIsOpen, setIsOk }) => {
+const ModalComponent = ({ isOpen, setIsOpen, setIsOk, idRequisicao }) => {
   const handleClose = () => {
     setIsOpen(false);
   };
 
   const [etapaAtual, setEtapaAtual] = useState(0);
 
-  useEffect(() => {
-    const connection = new HubConnectionBuilder()
-      .withUrl(LinkWebsocket, {
-        transport: HttpTransportType.WebSockets | HttpTransportType.LongPolling,
-      })
-      .configureLogging(LogLevel.Information)
-      .build();
+  // useEffect(() => {
+  //   const connection = new HubConnectionBuilder()
+  //     .withUrl(LinkWebsocket, {
+  //       transport: HttpTransportType.WebSockets | HttpTransportType.LongPolling,
+  //     })
+  //     .configureLogging(LogLevel.Information)
+  //     .build();
 
-    connection.on("ReceiveStatusUpdate", (novaEtapa) => {
-      setEtapaAtual(novaEtapa);
-    });
+  //   connection.start();
+  //   connection.invoke("JoinExportGroup", idRequisicao);
 
-    // connection.invoke("JoinRoom", { user: "João", room: "pedro" });
+  //   connection.on("ReceiveStatusUpdate", (novaEtapa) => {
+  //     console.log("novaEtapa", novaEtapa);
+  //     // setEtapaAtual(novaEtapa);
+  //   });
 
-    connection.start();
-
-    return () => {
-      connection.stop();
-    };
-  }, []);
+  //   return () => {
+  //     connection.stop();
+  //   };
+  // }, []);
 
   useEffect(() => {
     setEtapaAtual(0);
   }, []);
 
-  // useEffect(() => {
-  //   if (isOpen === true && etapaAtual < totalEtapas) {
-  //     setTimeout(() => {
-  //       setEtapaAtual(etapaAtual + 1);
-  //     }, 1000);
-  //   }
-  // }, [etapaAtual, isOpen]);
+  useEffect(() => {
+    if (isOpen === true && etapaAtual < totalEtapas) {
+      setTimeout(() => {
+        setEtapaAtual(etapaAtual + 1);
+      }, 1000);
+    }
+  }, [etapaAtual, isOpen]);
 
-  const totalEtapas = 5;
+  const totalEtapas = 10;
 
   return (
     <div>
