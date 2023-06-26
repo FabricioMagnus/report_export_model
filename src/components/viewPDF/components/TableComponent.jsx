@@ -131,15 +131,26 @@ export default function TableComponent({
         }
         if (key === "percPL") {
           return (
-            <Td fontSize={fontTd} minWidth={"120px"}>{`${(obj.percPL === 0
-              ? 0
-              : obj.percPL
-            ).toFixed(2)}`}</Td>
+            <Td
+              textAlign={"center"}
+              fontSize={fontTd}
+              minWidth={"120px"}
+            >{`${(obj.percPL === 0 ? 0 : obj.percPL).toFixed(2)}`}</Td>
           );
         }
         if (key === "taxaAdm") {
           return (
             <Td textAlign={"center"} fontSize={fontTd}>{`${obj[key]} %`}</Td>
+          );
+        }
+        if (key === "numCotistas") {
+          return (
+            <Td textAlign={"center"} fontSize={fontTd}>{`${obj[key]}`}</Td>
+          );
+        }
+        if (key === "prazoResgate") {
+          return (
+            <Td textAlign={"center"} fontSize={fontTd}>{`${obj[key]}`}</Td>
           );
         }
         if (key === "saldo") {
@@ -216,6 +227,7 @@ export default function TableComponent({
             color={"white"}
             key={index}
             style={{ maxHeight: "20px" }}
+            textAlign={"center"}
           >
             {item}
           </Th>
@@ -229,6 +241,7 @@ export default function TableComponent({
           color={"white"}
           key={index}
           height={"35px"}
+          textAlign={"center"}
           // style={{ maxHeight: "20px" }}
         >
           {item}
