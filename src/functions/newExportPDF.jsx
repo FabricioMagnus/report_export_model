@@ -35,5 +35,6 @@ export async function newExportPDF(ids) {
     );
   }
 
+  pdf.deletePage(1);
   pdf.save("relatório-dinamico.pdf");
 }
