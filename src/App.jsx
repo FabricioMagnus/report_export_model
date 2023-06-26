@@ -26,6 +26,9 @@ function App() {
   const [dataCarteira, setDataCarteira] = useState([]);
   const [arrayIdsRevisaoCarteira, setArrayIdsRevisaoCarteira] = useState([]);
 
+  const [dataGrafico, setDataGrafico] = useState([]);
+  const [dataGraficoTipos, setDataGraficoTipos] = useState([]);
+
   const idClienteDeTeste = 129;
 
   const { id } = useParams();
@@ -59,6 +62,22 @@ function App() {
         filtroData.split("-")[1].replace(/^0+(?!10$)/g, "")
       );
       setDataCliente(response2);
+
+      const response3 = await ServicesApi.getJsonByTipo(
+        filtroData.split("-")[0],
+        idClienteParametro,
+        "contagemlegislacao",
+        filtroData.split("-")[1].replace(/^0+(?!10$)/g, "")
+      );
+      setDataGrafico(response3);
+
+      const response4 = await ServicesApi.getJsonByTipo(
+        filtroData.split("-")[0],
+        idClienteParametro,
+        "contagemtipo",
+        filtroData.split("-")[1].replace(/^0+(?!10$)/g, "")
+      );
+      setDataGraficoTipos(response4);
 
       setViewRelatório(true);
     } catch (error) {
@@ -147,6 +166,8 @@ function App() {
                   dataCarteira={dataCarteira && dataCarteira}
                   nomeCliente={dataCliente && dataCliente.nome}
                   cnpjCliente={dataCliente && dataCliente.cnpj}
+                  dataGraficoLegislacao={dataGrafico && dataGrafico}
+                  dataGraficoTipos={dataGraficoTipos && dataGraficoTipos}
                 />,
               ]}
             />

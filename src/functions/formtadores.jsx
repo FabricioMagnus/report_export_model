@@ -62,3 +62,12 @@ export function obterMesAno(dataString) {
 
   return `${meses[mesIndex]} / ${ano}`;
 }
+
+export function gerarCorAleatoria() {
+  const letrasHexadecimais = "0123456789ABCDEF";
+  let cor = "#";
+  for (let i = 0; i < 6; i++) {
+    cor += letrasHexadecimais[Math.floor(Math.random() * 16)];
+  }
+  return cor;
+}

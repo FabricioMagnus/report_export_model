@@ -8,6 +8,8 @@ export default function GraficosVisaoGeralCarteira({
   dataCarteira,
   nomeCliente,
   cnpjCliente,
+  dataGraficoLegislacao,
+  dataGraficoTipos,
 }) {
   return (
     <div
@@ -52,16 +54,7 @@ export default function GraficosVisaoGeralCarteira({
             border={"1px solid #e5e5e5"}
             borderRadius={"lg"}
           >
-            <PieChart
-              dataChart={
-                dataCarteira &&
-                dataCarteira.filter(
-                  (item) =>
-                    !item.hasOwnProperty("isHeader") &&
-                    !item.hasOwnProperty("isFooter")
-                )
-              }
-            />
+            <PieChart dataChart={dataGraficoTipos && dataGraficoTipos} />
           </Flex>
           <Flex
             justifyContent={"center"}
@@ -77,14 +70,7 @@ export default function GraficosVisaoGeralCarteira({
             borderRadius={"lg"}
           >
             <BarChart
-              dataChart={
-                dataCarteira &&
-                dataCarteira.filter(
-                  (item) =>
-                    !item.hasOwnProperty("isHeader") &&
-                    !item.hasOwnProperty("isFooter")
-                )
-              }
+              dataChart={dataGraficoLegislacao && dataGraficoLegislacao}
             />
           </Flex>
         </Flex>

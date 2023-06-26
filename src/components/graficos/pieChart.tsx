@@ -3,38 +3,15 @@ import { Pie } from "react-chartjs-2";
 import { Box, Text } from "@chakra-ui/react";
 
 function PieChart({ dataChart }) {
-  function gerarCorAleatoria() {
-    const letrasHexadecimais = "0123456789ABCDEF";
-    let cor = "#";
-    for (let i = 0; i < 6; i++) {
-      cor += letrasHexadecimais[Math.floor(Math.random() * 16)];
-    }
-    return cor;
-  }
+  const labels = Object.keys(dataChart);
 
-  const dataForChart =
-    dataChart &&
-    dataChart.reduce((acumulador, objeto) => {
-      const { grupo } = objeto;
-      if (!acumulador[grupo]) {
-        acumulador[grupo] = 1;
-      } else {
-        acumulador[grupo]++;
-      }
-      return acumulador;
-    }, {});
-
-  const contagensArray = Object.entries(dataForChart).map(
-    ([grupo, contagem]) => {
-      return { grupo, contagem };
-    }
-  );
+  const dataNumbers = Object.values(dataChart);
 
   const data = {
-    labels: contagensArray.map((item) => `${item.grupo} (${item.contagem})`),
+    labels: labels,
     datasets: [
       {
-        data: contagensArray.map((item) => item.contagem),
+        data: dataNumbers,
         backgroundColor: [
           "rgba(255, 99, 132, 0.6)",
           "rgba(54, 162, 235, 0.6)",

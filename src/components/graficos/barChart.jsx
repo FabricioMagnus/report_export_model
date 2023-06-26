@@ -15,25 +15,9 @@ import { IDGRAFICOSREVISAOCARTEIRA } from "../../constants/idForHTML";
 ChartJS.register(...registerables);
 
 function BarChart({ dataChart }) {
-  // console.log("dataChart", dataChart);
+  const labels = Object.keys(dataChart);
 
-  const dataForChart =
-    dataChart &&
-    dataChart.reduce((acumulador, objeto) => {
-      const { enquadramentoLegislacao } = objeto;
-      if (!acumulador[enquadramentoLegislacao]) {
-        acumulador[enquadramentoLegislacao] = 1;
-      } else {
-        acumulador[enquadramentoLegislacao]++;
-      }
-      return acumulador;
-    }, {});
-
-  const contagensArray = Object.entries(dataForChart).map(
-    ([enquadramentoLegislacao, contagem]) => {
-      return { enquadramentoLegislacao, contagem };
-    }
-  );
+  const dataNumbers = Object.values(dataChart);
 
   const options = {
     indexAxis: "y",
@@ -52,14 +36,10 @@ function BarChart({ dataChart }) {
   };
 
   const data = {
-    labels: contagensArray.map((item) =>
-      item.enquadramentoLegislacao.substring(
-        item.enquadramentoLegislacao.indexOf("Art. ")
-      )
-    ),
+    labels: labels,
     datasets: [
       {
-        data: contagensArray.map((item) => item.contagem),
+        data: dataNumbers,
         backgroundColor: [
           "rgba(255, 99, 132, 0.4)",
           "rgba(54, 162, 235, 0.4)",
