@@ -10,7 +10,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <ChakraProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/:id" element={<App />} />
+          <Route path="/:id/:secret" element={<App />} />
           <Route path="/" element={<App />} />
         </Routes>
       </BrowserRouter>

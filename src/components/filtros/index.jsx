@@ -37,7 +37,9 @@ export default function Filtros({
   const idClienteDeTeste = 129;
 
   const { id } = useParams();
+  const { secret } = useParams();
   const idClienteParametro = id ? Number(id) : idClienteDeTeste;
+  const secretClienteParametro = secret;
 
   const [idSignal, setIdSignal] = useState("");
 
@@ -57,13 +59,16 @@ export default function Filtros({
       const response = await ServicesApi.solicitarRelatorio(
         dataForApi,
         idClienteParametro,
-        idSignal
+        idSignal,
+        secretClienteParametro
       );
       setLoading(false);
       openModal(idSignal);
     } catch (error) {
       setIsOk(false);
-      console.log("error", error);
+      window.alert("Você não tem autorização para gerar o relatório");
+      setLoading(false);
+      console.log("error ao solicitar relatório", error);
     }
   }
 
