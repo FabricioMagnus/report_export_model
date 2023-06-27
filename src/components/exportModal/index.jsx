@@ -21,7 +21,7 @@ import { LinkWebsocket } from "../../constants/urls";
 
 const ModalComponent = ({ isOpen, setIsOpen, setIsOk, idRequisicao }) => {
   const handleClose = () => {
-    setIsOpen(false);
+    // setIsOpen(false);
   };
 
   // console.log("idRequisicao recebido no modal", idRequisicao);
@@ -72,7 +72,7 @@ const ModalComponent = ({ isOpen, setIsOpen, setIsOk, idRequisicao }) => {
         <ModalOverlay bg="blackAlpha.800" blur={"2xl"} />
         <ModalContent>
           <ModalHeader>Exportação de Relatório</ModalHeader>
-          <ModalCloseButton />
+          {/* <ModalCloseButton /> */}
           <ModalBody>
             <Flex
               w={"400px"}
