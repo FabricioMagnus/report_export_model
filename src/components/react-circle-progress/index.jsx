@@ -9,7 +9,7 @@ export const ProgressoPorEtapas = ({ etapaAtual, totalEtapas }) => {
     <div style={{ width: "100px" }}>
       <CircularProgressbar
         value={progresso}
-        text={`${etapaAtual}/${totalEtapas}`}
+        text={`${progresso} %`}
         styles={buildStyles({
           textSize: "16px",
           pathTransitionDuration: 0.5,
