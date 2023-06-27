@@ -10,13 +10,14 @@ export const ProgressoPorEtapas = ({ etapaAtual, totalEtapas }) => {
       <CircularProgressbar
         value={progresso}
         text={`${progresso} %`}
+        background
+        backgroundPadding={6}
         styles={buildStyles({
           textSize: "16px",
-          pathTransitionDuration: 0.5,
-          pathColor: `rgba(62, 152, 199, ${progresso / 100})`,
-          textColor: "#f88",
-          trailColor: "#d6d6d6",
           backgroundColor: "#3e98c7",
+          textColor: "#fff",
+          pathColor: "#fff",
+          trailColor: "transparent",
         })}
       />
     </div>
