@@ -140,7 +140,9 @@ export default function TableComponent({
         }
         if (key === "taxaAdm") {
           return (
-            <Td textAlign={"center"} fontSize={fontTd}>{`${obj[key]} %`}</Td>
+            <Td textAlign={"center"} fontSize={fontTd}>{`${obj[key].toFixed(
+              2
+            )} %`}</Td>
           );
         }
         if (key === "numCotistas") {

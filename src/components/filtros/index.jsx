@@ -1,4 +1,4 @@
-import { Flex, Input, Button } from "@chakra-ui/react";
+import { Flex, Input, Button, Checkbox, Text } from "@chakra-ui/react";
 import handleExportPDF from "../../functions/exportPDF";
 import ReactToPrint from "react-to-print";
 import { useState } from "react";
@@ -42,6 +42,7 @@ export default function Filtros({
   const secretClienteParametro = secret;
 
   const [idSignal, setIdSignal] = useState("");
+  const [filtrozero, setFiltroZero] = useState(false);
 
   // console.log("idSinal", idSignal);
 
@@ -60,7 +61,8 @@ export default function Filtros({
         dataForApi,
         idClienteParametro,
         idSignal,
-        secretClienteParametro
+        secretClienteParametro,
+        filtrozero
       );
       setLoading(false);
       openModal(idSignal);
@@ -71,6 +73,10 @@ export default function Filtros({
       console.log("error ao solicitar relatório", error);
     }
   }
+
+  const handleChange = () => {
+    setFiltroZero(!filtrozero);
+  };
 
   return (
     <Flex w={"100%"} justifyContent={"space-evenly"}>
@@ -85,6 +91,10 @@ export default function Filtros({
           setFiltroData(e.target.value);
         }}
       />
+      <Flex w={"300px"} alignItems={"center"}>
+        <Checkbox mr={2} isChecked={filtrozero} onChange={handleChange} />
+        <Text>Filtrar saldos zerados?</Text>
+      </Flex>
       <Button
         type="button"
         bgColor={"blue.900"}

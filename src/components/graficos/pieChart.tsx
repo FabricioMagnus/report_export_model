@@ -8,7 +8,7 @@ function PieChart({ dataChart }) {
   const dataNumbers = Object.values(dataChart);
 
   const data = {
-    labels: labels,
+    labels: labels.map((x, index) => `${x} ( ${dataNumbers[index]} )`),
     datasets: [
       {
         data: dataNumbers,
