@@ -14,6 +14,8 @@ import { useParams } from "react-router-dom";
 import TableComponentRetorno from "./components/retornoMes/components/TableComponentRetorno";
 import Filtros from "./defaultComponents/filtros";
 import SwipperBuilder from "./defaultComponents/swipper";
+import { arrayCabecalhoRetornoMes } from "./components/retornoMes/data/cabecalho";
+import { rowListretornoMes } from "./components/retornoMes/data/rowList";
 
 function App() {
   const componentRef = useRef();
@@ -174,6 +176,13 @@ function App() {
                         />
                       );
                     })),
+                <GraficosVisaoGeralCarteira
+                  dataCarteira={dataCarteira && dataCarteira}
+                  nomeCliente={dataCliente && dataCliente.nome}
+                  cnpjCliente={dataCliente && dataCliente.cnpj}
+                  dataGraficoLegislacao={dataGrafico && dataGrafico}
+                  dataGraficoTipos={dataGraficoTipos && dataGraficoTipos}
+                />,
                 ...(dataRetorno &&
                   dataRetorno
                     .reduce((result, item, index) => {
@@ -188,9 +197,9 @@ function App() {
                       return (
                         <TableComponentRetorno
                           key={groupIndex}
-                          headerList={arrayCabecalho}
+                          headerList={arrayCabecalhoRetornoMes}
                           data={group}
-                          rowList={rowList}
+                          rowList={rowListretornoMes}
                           loading={false}
                           nomeCliente={dataCliente && dataCliente.nome}
                           cnpjCliente={dataCliente && dataCliente.cnpj}
@@ -198,13 +207,6 @@ function App() {
                         />
                       );
                     })),
-                <GraficosVisaoGeralCarteira
-                  dataCarteira={dataCarteira && dataCarteira}
-                  nomeCliente={dataCliente && dataCliente.nome}
-                  cnpjCliente={dataCliente && dataCliente.cnpj}
-                  dataGraficoLegislacao={dataGrafico && dataGrafico}
-                  dataGraficoTipos={dataGraficoTipos && dataGraficoTipos}
-                />,
               ]}
             />
           )}

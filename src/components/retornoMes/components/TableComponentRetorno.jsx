@@ -2,15 +2,10 @@
 /* eslint-disable react/jsx-key */
 import { Table, Thead, Tbody, Tr, Th, Td, Flex, Text } from "@chakra-ui/react";
 import { Spinner } from "@chakra-ui/react";
-import {
-  CNPJFormater,
-  CPFFormater,
-  CaptionFormater,
-  ToLocaleFormat,
-  abreviarNome,
-} from "../../../functions/formtadores";
+
 import { IDREVISAOCARTEIRA } from "../../../constants/idForHTML";
 import CabecalhoRelatorio from "../../../defaultComponents/CabecalhoRelatório";
+import { ToLocaleFormat } from "../../../functions/formtadores";
 
 export default function TableComponentRetorno({
   headerList,
@@ -58,17 +53,12 @@ export default function TableComponentRetorno({
           <Td>{}</Td>
           <Td>{}</Td>
           <Td>{}</Td>
-          <Td
-            textAlign={"center"}
-            bgColor={"#20A6DF"}
-          >{`${obj.participacao.toFixed(2)} %`}</Td>
+
           <Td
             borderTopRightRadius={"lg"}
             borderBottomRightRadius={"lg"}
             textAlign={"center"}
-          >
-            {ToLocaleFormat(obj.saldo)}
-          </Td>
+          ></Td>
         </Tr>
       );
     }
@@ -98,17 +88,12 @@ export default function TableComponentRetorno({
           <Td bgColor={"#123E6B"}>{}</Td>
           <Td bgColor={"#123E6B"}>{}</Td>
           <Td bgColor={"#123E6B"}>{}</Td>
-          <Td
-            bgColor={"#123E6B"}
-            textAlign={"center"}
-          >{`${obj.participacao.toFixed(2)} %`}</Td>
+
           <Td
             borderTopRightRadius={"lg"}
             borderBottomRightRadius={"lg"}
             textAlign={"center"}
-          >
-            {ToLocaleFormat(obj.saldo)}
-          </Td>
+          ></Td>
         </Tr>
       );
     }
@@ -129,49 +114,29 @@ export default function TableComponentRetorno({
             </Td>
           );
         }
-        if (key === "percPL") {
+        if (
+          key === "saldoAnterior" ||
+          key === "saldoAtual" ||
+          key === "aplicacoes" ||
+          key === "resgates" ||
+          key === "retorno"
+        ) {
           return (
-            <Td
-              textAlign={"center"}
-              fontSize={fontTd}
-              minWidth={"120px"}
-            >{`${(obj.percPL === 0 ? 0 : obj.percPL).toFixed(2)}`}</Td>
-          );
-        }
-        if (key === "taxaAdm") {
-          return (
-            <Td textAlign={"center"} fontSize={fontTd}>{`${obj[key].toFixed(
-              2
-            )} %`}</Td>
-          );
-        }
-        if (key === "numCotistas") {
-          return (
-            <Td textAlign={"center"} fontSize={fontTd}>{`${obj[key]}`}</Td>
-          );
-        }
-        if (key === "prazoResgate") {
-          return (
-            <Td textAlign={"center"} fontSize={fontTd}>{`${obj[key]}`}</Td>
-          );
-        }
-        if (key === "saldo") {
-          return (
-            <Td
-              borderTopRightRadius={"lg"}
-              borderBottomRightRadius={"lg"}
-              fontSize={fontTd}
-              textAlign={"center"}
-            >
+            <Td fontSize={fontTd} textAlign={"center"}>
               {ToLocaleFormat(obj[key])}
             </Td>
           );
         }
         if (key === "participacao") {
           return (
-            <Td textAlign={"center"} fontSize={fontTd}>{`${
-              obj[key] !== 0 ? obj[key].toFixed(2) : 0
-            } %`}</Td>
+            <Td textAlign={"center"} fontSize={fontTd}>{`${obj[key]} %`}</Td>
+          );
+        }
+        if (key === "efetivo" || key === "retornoPercentual") {
+          return (
+            <Td textAlign={"center"} fontSize={fontTd}>{`${obj[key].toFixed(
+              4
+            )} %`}</Td>
           );
         }
 
@@ -280,7 +245,7 @@ export default function TableComponentRetorno({
         mx={"auto"}
       >
         <CabecalhoRelatorio
-          titulo={"Visão Geral da Carteira"}
+          titulo={"Retorno do Mês"}
           nomeCliente={nomeCliente}
           cnpjCliente={cnpjCliente}
         />
