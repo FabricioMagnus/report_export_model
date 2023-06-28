@@ -12,6 +12,7 @@ import SwipperBuilder from "./components/swipper";
 import GraficosVisaoGeralCarteira from "./pages/graficosVisaoGeralCarteira";
 import Sumario from "./pages/sumario";
 import { useParams } from "react-router-dom";
+import TableComponentRetorno from "./components/retornoMes/components/TableComponentRetorno";
 
 function App() {
   const componentRef = useRef();
@@ -184,7 +185,7 @@ function App() {
                     }, [])
                     .map((group, groupIndex) => {
                       return (
-                        <TableComponent
+                        <TableComponentRetorno
                           key={groupIndex}
                           headerList={arrayCabecalho}
                           data={group}
