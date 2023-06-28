@@ -1,5 +1,5 @@
 import { Flex, Img, Text } from "@chakra-ui/react";
-import { dataClient } from "../../components/viewPDF/data/dataClient";
+import { dataClient } from "../../components/revisaoCarteira/data/dataClient";
 import { abreviarNome } from "../../functions/formtadores";
 import { IDSUMARIORELATORIO } from "../../constants/idForHTML";
 

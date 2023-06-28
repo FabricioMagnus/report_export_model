@@ -2,10 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import { Flex, Img } from "@chakra-ui/react";
 import Filtros from "./components/filtros";
-import TableComponent from "./components/viewPDF/components/TableComponent";
-import { arrayCabecalho } from "./components/viewPDF/data/cabecalho";
-import { rowList } from "./components/viewPDF/data/rowList";
-import { IDREVISAOCARTEIRA } from "./constants/idForHTML";
+import TableComponent from "./components/revisaoCarteira/components/TableComponent";
+import { arrayCabecalho } from "./components/revisaoCarteira/data/cabecalho";
+import { rowList } from "./components/revisaoCarteira/data/rowList";
+import { IDRETORNODOMES, IDREVISAOCARTEIRA } from "./constants/idForHTML";
 import Capa from "./pages/capa";
 import ServicesApi from "./services/services";
 import SwipperBuilder from "./components/swipper";
@@ -28,6 +28,8 @@ function App() {
 
   const [dataGrafico, setDataGrafico] = useState([]);
   const [dataGraficoTipos, setDataGraficoTipos] = useState([]);
+
+  const [dataRetorno, setDataRetorno] = useState([]);
 
   const idClienteDeTeste = 129;
 
@@ -78,6 +80,14 @@ function App() {
         filtroData.split("-")[1].replace(/^0+(?!10$)/g, "")
       );
       setDataGraficoTipos(response4);
+
+      const response5 = await ServicesApi.getJsonByTipo(
+        filtroData.split("-")[0],
+        idClienteParametro,
+        "retorno",
+        filtroData.split("-")[1].replace(/^0+(?!10$)/g, "")
+      );
+      setDataRetorno(response5);
 
       setViewRelatório(true);
     } catch (error) {
@@ -159,6 +169,30 @@ function App() {
                           nomeCliente={dataCliente && dataCliente.nome}
                           cnpjCliente={dataCliente && dataCliente.cnpj}
                           id={`${IDREVISAOCARTEIRA}-${groupIndex}`}
+                        />
+                      );
+                    })),
+                ...(dataRetorno &&
+                  dataRetorno
+                    .reduce((result, item, index) => {
+                      const chunkIndex = Math.floor(index / 17);
+                      if (!result[chunkIndex]) {
+                        result[chunkIndex] = [];
+                      }
+                      result[chunkIndex].push(item);
+                      return result;
+                    }, [])
+                    .map((group, groupIndex) => {
+                      return (
+                        <TableComponent
+                          key={groupIndex}
+                          headerList={arrayCabecalho}
+                          data={group}
+                          rowList={rowList}
+                          loading={false}
+                          nomeCliente={dataCliente && dataCliente.nome}
+                          cnpjCliente={dataCliente && dataCliente.cnpj}
+                          id={`${IDRETORNODOMES}-${groupIndex}`}
                         />
                       );
                     })),
