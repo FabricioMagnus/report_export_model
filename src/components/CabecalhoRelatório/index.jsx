@@ -16,7 +16,7 @@ export default function CabecalhoRelatorio({
       borderBottom={"1px solid #20A6DF"}
       mt={5}
     >
-      <Text color={"#123E6B"} fontSize={"30px"} fontWeight={"bold"}>
+      <Text color={"#123E6B"} fontSize={"40px"} fontWeight={"bold"}>
         {titulo}
       </Text>
       <Flex flexDir={"column"}>

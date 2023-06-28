@@ -94,14 +94,14 @@ function App() {
 
   return (
     <Flex
-      w={"99vw"}
+      w={"100vw"}
       h={"fit-content"}
       flexDirection={"column"}
       bgColor={"#e5e5e5"}
       justifyContent={"space-evenly"}
     >
       <Flex
-        h={"11vh"}
+        h={"6vh"}
         justifyContent={"space-evenly"}
         alignItems={"center"}
         bgColor={"#fff"}
@@ -126,7 +126,7 @@ function App() {
         justifyContent={"space-evenly"}
         alignItems={"center"}
       >
-        <Flex w={"100%"} h={"89vh"} bgColor={"#fff"} p={5}>
+        <Flex w={"100%"} h={"94vh"} bgColor={"#fff"} p={3} overflowY={"hidden"}>
           {viewRelatório && isOk && (
             <SwipperBuilder
               components={[
@@ -141,7 +141,7 @@ function App() {
                 ...(dataCarteira &&
                   dataCarteira
                     .reduce((result, item, index) => {
-                      const chunkIndex = Math.floor(index / 16);
+                      const chunkIndex = Math.floor(index / 17);
                       if (!result[chunkIndex]) {
                         result[chunkIndex] = [];
                       }

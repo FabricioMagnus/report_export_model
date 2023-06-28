@@ -21,7 +21,7 @@ export default function TableComponent({
   cnpjCliente,
   id,
 }) {
-  const fontTd = "10px";
+  const fontTd = "12px";
 
   const Rows = data.map((obj, index) => {
     const arrayToLocaleFormater = [
