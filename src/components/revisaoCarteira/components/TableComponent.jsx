@@ -9,7 +9,7 @@ import {
   ToLocaleFormat,
   abreviarNome,
 } from "../../../functions/formtadores";
-import CabecalhoRelatorio from "../../CabecalhoRelatório";
+import CabecalhoRelatorio from "../../../defaultComponents/CabecalhoRelatório";
 import { IDREVISAOCARTEIRA } from "../../../constants/idForHTML";
 
 export default function TableComponent({

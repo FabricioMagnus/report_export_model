@@ -1,8 +1,8 @@
 import { Flex, Img } from "@chakra-ui/react";
-import PieChart from "../../components/graficos/pieChart";
-import BarChart from "../../components/graficos/barChart";
+import PieChart from "../../components/revisaoCarteira/graficos/pieChart";
+import BarChart from "../../components/revisaoCarteira/graficos/barChart";
 import { IDGRAFICOSREVISAOCARTEIRA } from "../../constants/idForHTML";
-import CabecalhoRelatorio from "../../components/CabecalhoRelatório";
+import CabecalhoRelatorio from "../../defaultComponents/CabecalhoRelatório";
 
 export default function GraficosVisaoGeralCarteira({
   dataCarteira,

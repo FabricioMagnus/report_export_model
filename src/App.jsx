@@ -1,18 +1,19 @@
 import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import { Flex, Img } from "@chakra-ui/react";
-import Filtros from "./components/filtros";
+
 import TableComponent from "./components/revisaoCarteira/components/TableComponent";
 import { arrayCabecalho } from "./components/revisaoCarteira/data/cabecalho";
 import { rowList } from "./components/revisaoCarteira/data/rowList";
 import { IDRETORNODOMES, IDREVISAOCARTEIRA } from "./constants/idForHTML";
 import Capa from "./pages/capa";
 import ServicesApi from "./services/services";
-import SwipperBuilder from "./components/swipper";
 import GraficosVisaoGeralCarteira from "./pages/graficosVisaoGeralCarteira";
 import Sumario from "./pages/sumario";
 import { useParams } from "react-router-dom";
 import TableComponentRetorno from "./components/retornoMes/components/TableComponentRetorno";
+import Filtros from "./defaultComponents/filtros";
+import SwipperBuilder from "./defaultComponents/swipper";
 
 function App() {
   const componentRef = useRef();

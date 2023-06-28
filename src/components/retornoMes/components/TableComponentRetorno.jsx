@@ -9,8 +9,8 @@ import {
   ToLocaleFormat,
   abreviarNome,
 } from "../../../functions/formtadores";
-import CabecalhoRelatorio from "../../CabecalhoRelatório";
 import { IDREVISAOCARTEIRA } from "../../../constants/idForHTML";
+import CabecalhoRelatorio from "../../../defaultComponents/CabecalhoRelatório";
 
 export default function TableComponentRetorno({
   headerList,
