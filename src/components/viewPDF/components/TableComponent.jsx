@@ -265,15 +265,14 @@ export default function TableComponent({
     <div
       style={{
         pageBreakInside: "avoid",
-        width: "98.5%",
+        width: "100%",
       }}
       id={id}
     >
       <Flex
         flexDirection="column"
         height={"95%"}
-        px={6}
-        m={3}
+        my={3}
         bgColor={"#fff"}
         w={"98%"}
         mx={"auto"}

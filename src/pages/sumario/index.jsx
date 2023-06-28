@@ -8,7 +8,7 @@ export default function Sumario({ data, filtroData }) {
     <Flex
       w={"100%"}
       id={IDSUMARIORELATORIO}
-      h={"86vh"}
+      h={"100%"}
       bgGradient="linear(#20A6DF, #123E6B)"
       mx={"auto"}
       shadow={"lg"}
