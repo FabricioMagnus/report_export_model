@@ -11,7 +11,7 @@ import {
 } from "chart.js";
 import { Chart } from "react-chartjs-2";
 import { Box, Flex, Text } from "@chakra-ui/react";
-import { IDGRAFICOSREVISAOCARTEIRA } from "../../constants/idForHTML";
+import { IDGRAFICOSREVISAOCARTEIRA } from "../../../constants/idForHTML";
 ChartJS.register(...registerables);
 
 function BarChart({ dataChart }) {
