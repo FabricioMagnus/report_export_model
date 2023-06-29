@@ -35,6 +35,7 @@ function App() {
   const [dataGraficoTipos, setDataGraficoTipos] = useState([]);
 
   const [dataRetorno, setDataRetorno] = useState([]);
+  const [dataRetornoResumo, setDataRetornoResumo] = useState([]);
 
   const idClienteDeTeste = 129;
 
@@ -43,6 +44,7 @@ function App() {
 
   async function getRelatorio() {
     try {
+      //CHAMADA DE API PARA REVISÃO DA CARTEIRA
       const response = await ServicesApi.getJsonByTipo(
         filtroData.split("-")[0],
         idClienteParametro,
@@ -61,7 +63,7 @@ function App() {
         return acc;
       }, []);
       setArrayIdsRevisaoCarteira(ids);
-
+      //CHAMADA DE API PARA DADOS DO CLIENTE
       const response2 = await ServicesApi.getJsonByTipo(
         filtroData.split("-")[0],
         idClienteParametro,
@@ -69,7 +71,7 @@ function App() {
         filtroData.split("-")[1].replace(/^0+(?!10$)/g, "")
       );
       setDataCliente(response2);
-
+      //CHAMADA DE API PARA GRAFICO DE LEGISLAÇÃO DA REVISÃO DA CARTEIRA
       const response3 = await ServicesApi.getJsonByTipo(
         filtroData.split("-")[0],
         idClienteParametro,
@@ -77,7 +79,7 @@ function App() {
         filtroData.split("-")[1].replace(/^0+(?!10$)/g, "")
       );
       setDataGrafico(response3);
-
+      //CHAMADA DE API PARA GRAFICO DE TIPOS DA REVISÃO DA CARTEIRA
       const response4 = await ServicesApi.getJsonByTipo(
         filtroData.split("-")[0],
         idClienteParametro,
@@ -85,7 +87,7 @@ function App() {
         filtroData.split("-")[1].replace(/^0+(?!10$)/g, "")
       );
       setDataGraficoTipos(response4);
-
+      //CHAMADA DE API PARA RETORNO DO MÊS
       const response5 = await ServicesApi.getJsonByTipo(
         filtroData.split("-")[0],
         idClienteParametro,
@@ -93,6 +95,14 @@ function App() {
         filtroData.split("-")[1].replace(/^0+(?!10$)/g, "")
       );
       setDataRetorno(response5);
+      //CHAMADA DE API PARA RESUMO DO RETORNO DO MÊS
+      const response6 = await ServicesApi.getJsonByTipo(
+        filtroData.split("-")[0],
+        idClienteParametro,
+        "retornoresumo",
+        filtroData.split("-")[1].replace(/^0+(?!10$)/g, "")
+      );
+      setDataRetornoResumo(response6);
 
       const idsRetornoMês = response.reduce((acc, item, index) => {
         if (index % 10 === 0) {
