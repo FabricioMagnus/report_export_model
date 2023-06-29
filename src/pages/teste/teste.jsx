@@ -46,7 +46,7 @@ export default function Teste() {
       {dataRetorno &&
         dataRetorno
           .reduce((result, item, index) => {
-            const chunkIndex = Math.floor(index / 17);
+            const chunkIndex = Math.floor(index / 18);
             if (!result[chunkIndex]) {
               result[chunkIndex] = [];
             }

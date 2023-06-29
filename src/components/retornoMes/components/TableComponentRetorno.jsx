@@ -27,12 +27,20 @@ export default function TableComponentRetorno({
 }) {
   const fontTd = "12px";
 
-  const headerIndices = data.reduce((indices, obj, index) => {
-    if (obj.isHeader) {
-      indices.push(index);
-    }
-    return indices;
-  }, []);
+  const headerIndices = [];
+
+  if (!data[0].isHeader) {
+    headerIndices.push(0);
+  }
+
+  headerIndices.push(
+    ...data.reduce((indices, obj, index) => {
+      if (obj.isHeader) {
+        indices.push(index);
+      }
+      return indices;
+    }, [])
+  );
 
   headerIndices.push(data.length);
 
@@ -59,8 +67,8 @@ export default function TableComponentRetorno({
     >
       <Flex
         flexDirection="column"
-        // height={"95%"}
-        h={"94vh"}
+        height={"95%"}
+        // h={"94vh"}
         my={3}
         bgColor={"#fff"}
         w={"98%"}
@@ -74,13 +82,13 @@ export default function TableComponentRetorno({
         <Flex w={"90%"} mx={"auto"} mt={4} flexDir={"column"}>
           {groups.map((group, index) => {
             const filtered = group.filter((item) => !item.isHeader);
-            const titulo = group.filter((item) => item.isHeader);
+            const titulo = group.filter((item) => item.isHeader)[0];
             const Rows = rowsBuilder(filtered, rowList);
             return (
               <TableBuilder
                 Header_Row={Header_Row}
                 Rows={Rows}
-                titulo={titulo ? titulo[0].nomeFundo : ""}
+                titulo={titulo ? titulo.nomeFundo : ""}
                 key={index}
               />
             );
