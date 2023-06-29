@@ -116,7 +116,17 @@ export default function rowsBuilder(data, rowList) {
             <Td textAlign={"center"} fontSize={fontTd}>{`${obj[key]} %`}</Td>
           );
         }
-        if (key === "efetivo" || key === "retornoPercentual") {
+        if (key === "efetivo") {
+          return (
+            <Td
+              borderTopRightRadius={"lg"}
+              borderBottomRightRadius={"lg"}
+              textAlign={"center"}
+              fontSize={fontTd}
+            >{`${obj[key].toFixed(4)} %`}</Td>
+          );
+        }
+        if (key === "retornoPercentual") {
           return (
             <Td textAlign={"center"} fontSize={fontTd}>{`${obj[key].toFixed(
               4

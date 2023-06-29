@@ -23,6 +23,7 @@ export default function Filtros({
   filtroData,
   setFiltroData,
   arrayIds,
+  arrayIdsRetornoMes,
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [loadingPDF, setLoadingPDF] = useState(false);
@@ -32,7 +33,10 @@ export default function Filtros({
     IDSUMARIORELATORIO,
     ...arrayIds,
     IDGRAFICOSREVISAOCARTEIRA,
+    ...arrayIdsRetornoMes,
   ];
+
+  console.log("array para exportação", arrayparaExportação);
 
   const idClienteDeTeste = 129;
 

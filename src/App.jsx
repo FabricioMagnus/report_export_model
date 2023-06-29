@@ -29,6 +29,7 @@ function App() {
 
   const [dataCarteira, setDataCarteira] = useState([]);
   const [arrayIdsRevisaoCarteira, setArrayIdsRevisaoCarteira] = useState([]);
+  const [arrayIdsRetornoMes, setArrayIdsRetornoMes] = useState([]);
 
   const [dataGrafico, setDataGrafico] = useState([]);
   const [dataGraficoTipos, setDataGraficoTipos] = useState([]);
@@ -93,6 +94,15 @@ function App() {
       );
       setDataRetorno(response5);
 
+      const idsRetornoMês = response.reduce((acc, item, index) => {
+        if (index % 10 === 0) {
+          const id = `${IDRETORNODOMES}-${Math.floor(index / 10)}`;
+          acc.push(id);
+        }
+        return acc;
+      }, []);
+      setArrayIdsRetornoMes(idsRetornoMês);
+
       setViewRelatório(true);
     } catch (error) {
       setViewRelatório(false);
@@ -132,6 +142,7 @@ function App() {
           filtroData={filtroData}
           setFiltroData={setFiltroData}
           arrayIds={arrayIdsRevisaoCarteira}
+          arrayIdsRetornoMes={arrayIdsRetornoMes}
         />
       </Flex>
       <Flex

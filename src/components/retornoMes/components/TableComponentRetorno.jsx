@@ -52,8 +52,6 @@ export default function TableComponentRetorno({
     })
     .filter((item) => item);
 
-  console.log("headerIndices", headerIndices);
-  console.log("groups", groups);
   const Header_Row = HeaderBuilder(headerList);
   const Rows = rowsBuilder(data, rowList);
 
