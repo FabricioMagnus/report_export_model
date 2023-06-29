@@ -7,6 +7,7 @@ import ServicesApi from "../../services/services";
 import {
   IDCAPARELATORIO,
   IDGRAFICOSREVISAOCARTEIRA,
+  IDRETORNODOMESRESUMO,
   IDREVISAOCARTEIRA,
   IDSUMARIORELATORIO,
 } from "../../constants/idForHTML";
@@ -34,6 +35,7 @@ export default function Filtros({
     ...arrayIds,
     IDGRAFICOSREVISAOCARTEIRA,
     ...arrayIdsRetornoMes,
+    IDRETORNODOMESRESUMO,
   ];
 
   console.log("array para exportação", arrayparaExportação);
