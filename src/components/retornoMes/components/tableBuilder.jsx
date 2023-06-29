@@ -6,7 +6,7 @@ export default function TableBuilder({ Header_Row, Rows, titulo }) {
 
   return (
     <>
-      <Text color={"#20A6DF"} fontWeight={"bold"} my={2} fontSize={"20px"}>
+      <Text color={"#20A6DF"} fontWeight={"bold"} mt={2} fontSize={"20px"}>
         {titulo}
       </Text>
       <Table
