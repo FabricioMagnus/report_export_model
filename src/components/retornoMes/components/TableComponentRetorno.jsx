@@ -1,6 +1,17 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-key */
-
+import {
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
+  Flex,
+  Text,
+  TableCaption,
+} from "@chakra-ui/react";
+import CabecalhoRelatorio from "../../../defaultComponents/CabecalhoRelatório";
 import rowsBuilder from "./rowsBuilders";
 import HeaderBuilder from "./headerBuilder";
 import TableBuilder from "./tableBuilder";
@@ -18,7 +29,6 @@ export default function TableComponentRetorno({
 
   const headerIndices = data.reduce((indices, obj, index) => {
     if (obj.isHeader) {
-      // Inclui o primeiro objeto com isHeader no primeiro grupo
       indices.push(index);
     }
     return indices;
@@ -34,19 +44,49 @@ export default function TableComponentRetorno({
     })
     .filter((item) => item);
 
-  // console.log("headerIndices", headerIndices);
-  // console.log("groups", groups);
+  console.log("headerIndices", headerIndices);
+  console.log("groups", groups);
   const Header_Row = HeaderBuilder(headerList);
   const Rows = rowsBuilder(data, rowList);
 
   return (
-    <TableBuilder
+    <div
+      style={{
+        pageBreakInside: "avoid",
+        width: "100%",
+      }}
       id={id}
-      nomeCliente={nomeCliente}
-      cnpjCliente={cnpjCliente}
-      Header_Row={Header_Row}
-      Rows={Rows}
-      titulo={"Retorno do Mês"}
-    />
+    >
+      <Flex
+        flexDirection="column"
+        // height={"95%"}
+        h={"94vh"}
+        my={3}
+        bgColor={"#fff"}
+        w={"98%"}
+        mx={"auto"}
+      >
+        <CabecalhoRelatorio
+          titulo={"Retorno do Mês"}
+          nomeCliente={nomeCliente}
+          cnpjCliente={cnpjCliente}
+        />
+        <Flex w={"90%"} mx={"auto"} mt={4} flexDir={"column"}>
+          {groups.map((group, index) => {
+            const filtered = group.filter((item) => !item.isHeader);
+            const titulo = group.filter((item) => item.isHeader);
+            const Rows = rowsBuilder(filtered, rowList);
+            return (
+              <TableBuilder
+                Header_Row={Header_Row}
+                Rows={Rows}
+                titulo={titulo ? titulo[0].nomeFundo : ""}
+                key={index}
+              />
+            );
+          })}
+        </Flex>
+      </Flex>
+    </div>
   );
 }
