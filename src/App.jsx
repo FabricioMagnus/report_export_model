@@ -5,7 +5,11 @@ import { Flex, Img } from "@chakra-ui/react";
 import TableComponent from "./components/revisaoCarteira/components/TableComponent";
 import { arrayCabecalho } from "./components/revisaoCarteira/data/cabecalho";
 import { rowList } from "./components/revisaoCarteira/data/rowList";
-import { IDRETORNODOMES, IDREVISAOCARTEIRA } from "./constants/idForHTML";
+import {
+  IDRETORNODOMES,
+  IDRETORNODOMESRESUMO,
+  IDREVISAOCARTEIRA,
+} from "./constants/idForHTML";
 import Capa from "./pages/capa";
 import ServicesApi from "./services/services";
 import GraficosVisaoGeralCarteira from "./pages/graficosVisaoGeralCarteira";
@@ -16,6 +20,8 @@ import Filtros from "./defaultComponents/filtros";
 import SwipperBuilder from "./defaultComponents/swipper";
 import { arrayCabecalhoRetornoMes } from "./components/retornoMes/data/cabecalho";
 import { rowListretornoMes } from "./components/retornoMes/data/rowList";
+import { arrayCabecalhoRetornoMesResumo } from "./components/retornoMes/data/cabecalhoResumo";
+import { rowListretornoMesResumo } from "./components/retornoMes/data/rowListResumo";
 
 function App() {
   const componentRef = useRef();
@@ -27,10 +33,10 @@ function App() {
 
   const [dataCliente, setDataCliente] = useState([]);
 
-  const [dataCarteira, setDataCarteira] = useState([]);
   const [arrayIdsRevisaoCarteira, setArrayIdsRevisaoCarteira] = useState([]);
   const [arrayIdsRetornoMes, setArrayIdsRetornoMes] = useState([]);
 
+  const [dataCarteira, setDataCarteira] = useState([]);
   const [dataGrafico, setDataGrafico] = useState([]);
   const [dataGraficoTipos, setDataGraficoTipos] = useState([]);
 
@@ -228,6 +234,15 @@ function App() {
                         />
                       );
                     })),
+                <TableComponentRetorno
+                  headerList={arrayCabecalhoRetornoMesResumo}
+                  data={dataRetornoResumo && dataRetornoResumo}
+                  rowList={rowListretornoMesResumo}
+                  loading={false}
+                  nomeCliente={dataCliente && dataCliente.nome}
+                  cnpjCliente={dataCliente && dataCliente.cnpj}
+                  id={IDRETORNODOMESRESUMO}
+                />,
               ]}
             />
           )}

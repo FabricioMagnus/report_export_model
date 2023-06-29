@@ -137,18 +137,34 @@ export default function rowsBuilder(data, rowList) {
         return <Td fontSize={fontTd}>{obj[key]}</Td>;
       });
 
-      return (
-        <Tr
-          my={0.5}
-          bgColor={index % 2 === 0 ? "#F3F3F3" : "#EBEBEB"}
-          borderRadius={"md"}
-          sx={{ lineHeight: "1" }}
-          fontSize={fontTd}
-          key={index}
-        >
-          {[...rowCells]}
-        </Tr>
-      );
+      if (obj.isTotal === true) {
+        return (
+          <Tr
+            my={0.5}
+            bgColor={"#C9C9C9"}
+            borderRadius={"md"}
+            sx={{ lineHeight: "1" }}
+            fontSize={fontTd}
+            key={index}
+            fontWeight={"bold"}
+          >
+            {[...rowCells]}
+          </Tr>
+        );
+      } else {
+        return (
+          <Tr
+            my={0.5}
+            bgColor={index % 2 === 0 ? "#F3F3F3" : "#EBEBEB"}
+            borderRadius={"md"}
+            sx={{ lineHeight: "1" }}
+            fontSize={fontTd}
+            key={index}
+          >
+            {[...rowCells]}
+          </Tr>
+        );
+      }
     }
   });
 }
