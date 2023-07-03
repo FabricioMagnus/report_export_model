@@ -4,6 +4,17 @@ import { abreviarNome } from "../../functions/formtadores";
 import { IDSUMARIORELATORIO } from "../../constants/idForHTML";
 
 export default function Sumario({ data, filtroData }) {
+  const SumarioList = [
+    {
+      id: 1,
+      item: `01   Visão Geral da Carteira`,
+    },
+    {
+      id: 2,
+      item: `02   Retorno do Mês`,
+    },
+  ];
+
   return (
     <Flex
       w={"100%"}
@@ -29,7 +40,7 @@ export default function Sumario({ data, filtroData }) {
       </Flex>
       <Flex w={"100%"} justifyContent={"flex-end"}>
         <Flex
-          w={"15%"}
+          w={"20%"}
           height={"50vh"}
           mr={4}
           p={6}
@@ -40,10 +51,12 @@ export default function Sumario({ data, filtroData }) {
             {`Sumário`}
           </Text>
         </Flex>
-        <Flex w={"35%"} height={"50vh"} p={6} justifyContent={"center"} mt={6}>
-          <Text color={"#fff"} fontSize={"20px"} mb={4}>
-            {`01   Visão Geral da Carteira`}
-          </Text>
+        <Flex w={"35%"} height={"50vh"} p={6} mt={6} flexDir={"column"}>
+          {SumarioList.map((item) => (
+            <Text color={"#fff"} fontSize={"20px"} mb={2} key={item.id}>
+              {item.item}
+            </Text>
+          ))}
         </Flex>
       </Flex>
     </Flex>

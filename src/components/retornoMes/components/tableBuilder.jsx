@@ -2,7 +2,7 @@ import { Table, Thead, Tbody, Tr, Text } from "@chakra-ui/react";
 import CabecalhoRelatorio from "../../../defaultComponents/CabecalhoRelatório";
 
 export default function TableBuilder({ Header_Row, Rows, titulo }) {
-  console.log("titulo", titulo);
+  // console.log("titulo", titulo);
 
   return (
     <>

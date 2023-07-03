@@ -85,7 +85,7 @@ export default function Filtros({
   };
 
   return (
-    <Flex w={"100%"} justifyContent={"space-evenly"}>
+    <Flex w={"100%"} justifyContent={"space-evenly"} alignItems={"center"}>
       <Input
         bgColor={"blue.900"}
         color={"white"}
@@ -142,6 +142,7 @@ export default function Filtros({
           Exportar
         </Button>
       )}
+      <Text fontWeight={"bold"}>Ver. 2.1</Text>
 
       <ModalComponent
         isOpen={isOpen}

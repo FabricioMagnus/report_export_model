@@ -102,9 +102,15 @@ export default function rowsBuilder(data, rowList) {
           key === "saldoAnterior" ||
           key === "saldoAtual" ||
           key === "aplicacoes" ||
-          key === "resgates" ||
-          key === "retorno"
+          key === "resgates"
         ) {
+          return (
+            <Td fontSize={fontTd} textAlign={"center"}>
+              {ToLocaleFormat(obj[key])}
+            </Td>
+          );
+        }
+        if (key === "retorno") {
           return (
             <Td fontSize={fontTd} textAlign={"center"}>
               {ToLocaleFormat(obj[key])}
