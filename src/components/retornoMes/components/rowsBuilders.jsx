@@ -112,14 +112,28 @@ export default function rowsBuilder(data, rowList) {
         }
         if (key === "retorno") {
           return (
-            <Td fontSize={fontTd} textAlign={"center"}>
+            <Td
+              fontSize={fontTd}
+              textAlign={"center"}
+              color={
+                obj[key] > 0
+                  ? "#169C3C"
+                  : obj[key] < 0
+                  ? "#C63434"
+                  : obj[key] === 0
+                  ? "#20A6DF"
+                  : "gray"
+              }
+            >
               {ToLocaleFormat(obj[key])}
             </Td>
           );
         }
         if (key === "participacao") {
           return (
-            <Td textAlign={"center"} fontSize={fontTd}>{`${obj[key]} %`}</Td>
+            <Td textAlign={"center"} fontSize={fontTd}>{`${obj[key].toFixed(
+              2
+            )} %`}</Td>
           );
         }
         if (key === "efetivo") {
@@ -128,15 +142,34 @@ export default function rowsBuilder(data, rowList) {
               borderTopRightRadius={"lg"}
               borderBottomRightRadius={"lg"}
               textAlign={"center"}
+              color={
+                obj[key] > 0
+                  ? "#169C3C"
+                  : obj[key] < 0
+                  ? "#C63434"
+                  : obj[key] === 0
+                  ? "#20A6DF"
+                  : "gray"
+              }
               fontSize={fontTd}
             >{`${obj[key].toFixed(4)} %`}</Td>
           );
         }
         if (key === "retornoPercentual") {
           return (
-            <Td textAlign={"center"} fontSize={fontTd}>{`${obj[key].toFixed(
-              4
-            )} %`}</Td>
+            <Td
+              textAlign={"center"}
+              fontSize={fontTd}
+              color={
+                obj[key] > 0
+                  ? "#169C3C"
+                  : obj[key] < 0
+                  ? "#C63434"
+                  : obj[key] === 0
+                  ? "#20A6DF"
+                  : "gray"
+              }
+            >{`${obj[key].toFixed(4)} %`}</Td>
           );
         }
 
