@@ -12,6 +12,7 @@ import {
 import { Chart } from "react-chartjs-2";
 import { Box, Flex, Text } from "@chakra-ui/react";
 import { IDGRAFICOSREVISAOCARTEIRA } from "../../../constants/idForHTML";
+import ChartDataLabels from "chartjs-plugin-datalabels";
 ChartJS.register(...registerables);
 
 function BarChart({ dataChart }) {
@@ -78,7 +79,12 @@ function BarChart({ dataChart }) {
         </Text>
       </Box>
       <Flex w={"100%"} h={"100%"}>
-        <Bar options={options} data={data} id={IDGRAFICOSREVISAOCARTEIRA} />
+        <Bar
+          plugins={[ChartDataLabels]}
+          options={options}
+          data={data}
+          id={IDGRAFICOSREVISAOCARTEIRA}
+        />
       </Flex>
     </Box>
   );
